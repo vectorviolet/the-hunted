@@ -3,7 +3,7 @@ import random
 import pygame
 from pygamine import Application
 from pygamine import Mouse
-from pygamine import SplashScreen, ImageMedia
+from pygamine import SplashScreen, standard_splash_media
 import settings
 from audio import AudioManager
 from combat import CombatSystem
@@ -45,10 +45,7 @@ class Game(Application):
         # step is needed here anymore (see the previous, hand-rolled
         # _fit_rect/_present_canvas/_authored_mouse_pos this replaced).
 
-        self.splash = SplashScreen([
-            ImageMedia("assets/images/branding/pygame_logo.png",
-                       fade_ms=settings.SPLASH_FADE_MS, hold_ms=settings.SPLASH_HOLD_MS),
-        ])
+        self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
 
         self._world = GameWorld(window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H)
         self._world.platforms = [Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]['platforms']]
@@ -80,8 +77,6 @@ class Game(Application):
         self._p2.be_peasant()
         self._bind_ai()
         self._refresh_scores()
-
-        self._audio.play_menu()
 
     # ------------------------------------------------------------------ helpers
 
@@ -124,6 +119,11 @@ class Game(Application):
         self._refresh_scores()
 
     # -------------------------------------------------------- Application overrides
+
+    def show_splash(self) -> None:
+        super().show_splash()
+        # Only now: the splash plays the publisher clip's own audio first.
+        self._audio.play_menu()
 
     def on_exit_request(self) -> None:
         if self._state == self.STATE_GAME:

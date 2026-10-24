@@ -5,9 +5,6 @@ TITLE = "The Hunted"
 FLOOR_Y = 490.0
 GROUND_Y = 550  # visual ground-tile top; matches the player foot line when standing on FLOOR_Y
 
-# Startup splash (pygamine.SplashScreen): fade-in then hold, per image
-SPLASH_FADE_MS = 1500
-SPLASH_HOLD_MS = 1000
 
 # Physics
 GRAVITY       = 0.5
