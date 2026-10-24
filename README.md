@@ -1,6 +1,6 @@
 # The Hunted
 
-![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/umutcanekinci/hunted/main/.github/badges/coverage.json)
+![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/hunted/main/.github/badges/coverage.json)
 
 My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomised each round — it's a chase-and-catch party game, not a horror game.
 
@@ -35,7 +35,7 @@ In 1-player mode you control **both keysets** and play against the AI.
 
 [![Available on itch.io](https://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://umutcanekinci.itch.io/the-hunted)
 
-Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/umutcanekinci/hunted/releases/latest) — no Python required. Unzip and run:
+Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/vectorviolet/hunted/releases/latest) — no Python required. Unzip and run:
 
 | OS | Run |
 |----|-----|
@@ -56,7 +56,7 @@ Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch
 ## Running
 
 ```bash
-git clone --recurse-submodules https://github.com/umutcanekinci/hunted.git
+git clone --recurse-submodules https://github.com/vectorviolet/hunted.git
 cd hunted
 uv sync
 uv run python __main__.py
@@ -113,7 +113,7 @@ See [CLAUDE.md](CLAUDE.md) for the full architecture overview.
 
 Umutcan Ekinci — [umutcannekinci@gmail.com](mailto:umutcannekinci@gmail.com)
 
-See also the [contributors](https://github.com/umutcanekinci/hunted/contributors).
+See also the [contributors](https://github.com/vectorviolet/hunted/contributors).
 
 ## License
 
