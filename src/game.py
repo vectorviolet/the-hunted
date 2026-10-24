@@ -55,7 +55,7 @@ class Game(Application):
         self._renderer = GameRenderer(self.window, self._world)
         self._combat   = CombatSystem(self._world)
 
-        self._font_hud   = pygame.font.SysFont("ComicSansMs", 22)
+        self._font_hud   = pygame.font.Font(settings.FONT, 25)
         self._score_surfs: list[pygame.Surface] = [None, None]
 
         self._current_level = 0

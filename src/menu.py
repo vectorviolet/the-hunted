@@ -2,7 +2,7 @@ import pygame
 
 from background import ParallaxBackground
 from entities import Platform
-from settings import GROUND_Y, WHITE
+from settings import FONT, GROUND_Y, WHITE
 
 
 class Menu:
@@ -15,7 +15,7 @@ class Menu:
         self._btn_2p_hover    = self._btn_2p_click    = False
         self._btn_start_hover = self._btn_start_click = False
 
-        self._font_sm = pygame.font.SysFont("ComicSansMs", 18)
+        self._font_sm = pygame.font.Font(FONT, 21)
         self._lbl_p1  = self._font_sm.render("P1", True, WHITE)
         self._lbl_p2  = self._font_sm.render("P2", True, WHITE)
 

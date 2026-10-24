@@ -16,9 +16,9 @@ class GameRenderer:
             (0, settings.GROUND_Y), world.window_w, int(world.window_h - settings.GROUND_Y)
         )
 
-        self._font_sm    = pygame.font.SysFont("ComicSansMs", 18)
-        self._font_hud   = pygame.font.SysFont("ComicSansMs", 22)
-        self._font_title = pygame.font.SysFont("ComicSansMs", 42)
+        self._font_sm    = pygame.font.Font(settings.FONT, 21)
+        self._font_hud   = pygame.font.Font(settings.FONT, 25)
+        self._font_title = pygame.font.Font(settings.FONT, 48)
 
         self._lbl_vampire = self._font_sm.render("VAMPIRE", True, settings.HP_RED)
         self._lbl_peasant = self._font_sm.render("PEASANT", True, settings.HP_GREEN)

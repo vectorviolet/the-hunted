@@ -125,3 +125,4 @@ Most remaining **assets** (character sprites, buttons, cursor, jump sound) are *
 
 - **Background art** (`assets/images/bg_layers/`, `platfor_tile.png`) — CC0.
 - **Music** (`menu_theme.wav`, `chase_theme.wav`) — "8-Bit Beat'em Up Soundtrack" by [wyver9](https://wyver9.bandcamp.com/album/8-bit-beatem-up-soundtrack/), licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Also on [OpenGameArt](https://opengameart.org/).
+- **Font** (`assets/fonts/ComicNeue-Regular.ttf`) — [Comic Neue](https://fonts.google.com/specimen/Comic+Neue), licensed under the [SIL Open Font License 1.1](assets/fonts/OFL-ComicNeue.txt).

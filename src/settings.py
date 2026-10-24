@@ -2,6 +2,13 @@ VIRTUAL_W = 800
 VIRTUAL_H = 600
 FPS = 60
 TITLE = "The Hunted"
+
+# UI font, bundled in assets/fonts/ (SIL OFL, license alongside) so text looks
+# the same on every OS: Comic Neue, an open lookalike of the Comic Sans MS the
+# game used to ask the system for. It renders ~13% smaller at the same point
+# size, so call sites use their old Comic Sans sizes x1.15 (18->21, 22->25,
+# 42->48) to keep the layout.
+FONT = "assets/fonts/ComicNeue-Regular.ttf"
 FLOOR_Y = 490.0
 GROUND_Y = 550  # visual ground-tile top; matches the player foot line when standing on FLOOR_Y
 
