@@ -34,7 +34,7 @@ Unlike its sibling games that use the YAML-driven panel system (`chokepoint`, `h
 
 ### pygamine — Shared Submodule
 
-`src/pygamine/` is a git submodule pointing at `https://github.com/umutcanekinci/pygamine.git`. The same submodule is used by `chokepoint`, `highrise`, `standoff`, `terraria`, and `artifical-chaos`. Changes here propagate to all six projects — bump via `scripts/sync-pygamine.bat`.
+`src/pygamine/` is a git submodule pointing at `https://github.com/vectorviolet/pygamine.git`. The same submodule is used by `chokepoint`, `highrise`, `standoff`, `terraria`, and `artifical-chaos`. Changes here propagate to all six projects — bump via `scripts/sync-pygamine.bat`.
 
 This project uses only a small slice of pygamine: `Application`, `Mouse`, and `GameObject` (for `Cursor`).
 
