@@ -3,7 +3,7 @@ import random
 import pygame
 from pygamine import Application
 from pygamine import Mouse
-from pygamine import SplashScreen
+from pygamine import SplashScreen, ImageMedia
 import settings
 from audio import AudioManager
 from combat import CombatSystem
@@ -45,10 +45,10 @@ class Game(Application):
         # step is needed here anymore (see the previous, hand-rolled
         # _fit_rect/_present_canvas/_authored_mouse_pos this replaced).
 
-        self.splash = SplashScreen(
-            ["assets/images/branding/pygame_logo.png"],
-            fade_ms=settings.SPLASH_FADE_MS, hold_ms=settings.SPLASH_HOLD_MS,
-        )
+        self.splash = SplashScreen([
+            ImageMedia("assets/images/branding/pygame_logo.png",
+                       fade_ms=settings.SPLASH_FADE_MS, hold_ms=settings.SPLASH_HOLD_MS),
+        ])
 
         self._world = GameWorld(window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H)
         self._world.platforms = [Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]['platforms']]
