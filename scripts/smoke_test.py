@@ -34,9 +34,21 @@ def boot_game() -> None:
     print(f"  {game._state}: OK")
 
 
+def run_game_briefly() -> None:
+    # The path the steps above never touch: the splash, any run() override
+    # and the hand-off into the main loop (a crash there once shipped unseen).
+    from game import Game
+    from pygamine.devtools.smoke import run_briefly
+
+    frames = run_briefly(Game())
+    print(f"  splash + {frames} main-loop frames via the real run(): OK")
+
+
 def main() -> None:
     print("Booting Game() and cycling every state...")
     boot_game()
+    print("Running the real run() -- splash and main loop -- briefly...")
+    run_game_briefly()
     print("Smoke test passed.")
 
 
