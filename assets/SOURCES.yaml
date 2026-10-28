@@ -1,0 +1,528 @@
+# Where every file under assets/ comes from. Each pack is kept, as downloaded, in the
+# asset library (asset-library/INDEX.md) under the same slug.
+#
+# source: a pack slug from `packs`, "own" (made for this game), or "unknown"
+#         (origin not yet confirmed; then `todo` says what to do).
+# original: the file's path inside that pack. modified: what was changed.
+# todo: what still has to be done about a file.
+
+packs:
+  ansimuz-mountain-at-dusk:
+    name: "Mountain at Dusk Background"
+    author: "Luis Zuno (ansimuz)"
+    url: https://opengameart.org/content/mountain-at-dusk-background
+    license: CC0-1.0
+    used_for: "parallax background layers"
+  font-comic-neue:
+    name: "Comic Neue"
+    author: "Craig Rozynski"
+    url: https://fonts.google.com/specimen/Comic+Neue
+    license: OFL-1.1
+    used_for: "UI font"
+  redshrike-lpc-four-characters:
+    name: "Four characters: My LPC entries"
+    author: "Stephen \"Redshrike\" Challener"
+    url: https://opengameart.org/content/four-characters-my-lpc-entries
+    license: CC-BY-3.0
+    license_note: "offered as CC BY 3.0, CC BY-SA 3.0 or OGA-BY 3.0; CC BY 3.0 chosen"
+    attribution: "Stephen \"Redshrike\" Challener, with a link to https://opengameart.org"
+    used_for: "the peasant (Baldric)"
+  wyver9-8bit-beatem-up:
+    name: "8-Bit Beat'em Up Soundtrack"
+    author: "wyver9"
+    url: https://wyver9.bandcamp.com/album/8-bit-beatem-up-soundtrack/
+    license: CC-BY-SA-4.0
+    attribution: "\"8-Bit Beat'em Up Soundtrack\" by wyver9"
+    used_for: "menu and chase music"
+
+files:
+  "fonts/ComicNeue-Regular.ttf":
+    source: font-comic-neue
+    original: "ofl/comicneue/ComicNeue-Regular.ttf"
+  "fonts/OFL-ComicNeue.txt":
+    source: font-comic-neue
+    original: "ofl/comicneue/OFL.txt"
+    modified: "whitespace only"
+  "images/bg_layers/parallax-mountain-bg.png":
+    source: ansimuz-mountain-at-dusk
+    original: "parallax_mountain_pack/layers/parallax-mountain-bg.png"
+  "images/bg_layers/parallax-mountain-foreground-trees.png":
+    source: ansimuz-mountain-at-dusk
+    original: "parallax_mountain_pack/layers/parallax-mountain-foreground-trees.png"
+  "images/bg_layers/parallax-mountain-montain-far.png":
+    source: ansimuz-mountain-at-dusk
+    original: "parallax_mountain_pack/layers/parallax-mountain-montain-far.png"
+  "images/bg_layers/parallax-mountain-mountains.png":
+    source: ansimuz-mountain-at-dusk
+    original: "parallax_mountain_pack/layers/parallax-mountain-mountains.png"
+  "images/bg_layers/parallax-mountain-trees.png":
+    source: ansimuz-mountain-at-dusk
+    original: "parallax_mountain_pack/layers/parallax-mountain-trees.png"
+  "images/buttons/oneplayer.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/oneplayer2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/oneplayer3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/start.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/twoplayer.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/twoplayer2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/buttons/twoplayer3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-0.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-1.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-4.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-5.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-6.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click/L-7.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-0.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-1.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-10.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-11.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-12.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-4.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-5.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-6.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-7.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-8.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/click2/L2-9.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-0.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-1.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-4.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-5.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-6.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-7.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-8.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/help/H-9.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-0.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-1.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-10.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-11.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-12.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-13.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-14.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-15.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-16.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-4.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-5.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-6.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-7.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-8.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/normal/N-9.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/writing/W-0.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/writing/W-1.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/writing/W-2.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/cursor/writing/W-3.png":
+    source: unknown
+    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/peasant/L1.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 1 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L2.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 2 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L3.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 3 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L4.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 4 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L5.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 5 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L6.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 6 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L7.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 7 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L8.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 8 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/L9.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 2, column 9 (walking left), cut out of the sheet; pixel-identical"
+  "images/peasant/R1.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 1 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R2.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 2 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R3.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 3 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R4.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 4 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R5.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 5 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R6.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 6 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R7.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 7 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R8.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 8 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/R9.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 4, column 9 (walking right), cut out of the sheet; pixel-identical"
+  "images/peasant/standing.png":
+    source: redshrike-lpc-four-characters
+    original: "baldricfrontwalksheet copy.png"
+    modified: "the 64x64 frame in row 3, column 1 (walking down), cut out of the sheet; pixel-identical"
+  "images/platfor_tile.png":
+    source: unknown
+    todo: "the README credits it as CC0 together with the parallax background, but it is not in that pack: find its source"
+  "images/vampire/L1E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L2E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L3E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L4E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L5E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L6E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L7E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L8E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/L9E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R1E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R2E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R3E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R4E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R5E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R6E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R7E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R8E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/vampire/R9E.png":
+    source: unknown
+    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+  "images/wait/321-0-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-1-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-10-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-11-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-12-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-13-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-14-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-15-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-16-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-17-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-18-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-19-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-2-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-20-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-21-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-22-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-23-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-24-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-25-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-26-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-27-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-28-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-29-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-3-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-30-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-31-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-32-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-33-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-34-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-35-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-36-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-37-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-38-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-39-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-4-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-40-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-41-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-42-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-43-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-44-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-45-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-46-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-47-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-48-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-5-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-6-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-7-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-8-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "images/wait/321-9-removebg-preview.png":
+    source: unknown
+    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+  "sounds/chase_theme.wav":
+    source: wyver9-8bit-beatem-up
+    original: "Level 5 Chase"
+    todo: "CC BY-SA 4.0 is outside the pre-approved licenses (CC0, CC BY, OFL): the owner decides whether to keep it; the pack is not in the asset library yet"
+  "sounds/jump.wav":
+    source: unknown
+    todo: "replaced on 2026-07-09 (commit 4aedf04) without a recorded source: find it, or replace it"
+  "sounds/menu_theme.wav":
+    source: wyver9-8bit-beatem-up
+    original: "Title"
+    todo: "CC BY-SA 4.0 is outside the pre-approved licenses (CC0, CC BY, OFL): the owner decides whether to keep it; the pack is not in the asset library yet"
