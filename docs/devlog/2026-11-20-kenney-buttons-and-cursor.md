@@ -32,7 +32,7 @@ another color folder of the UI Pack (the filenames are the same in every color).
 - The pack's 192x64 buttons are resized to the old sizes (310x100 and 212x44) in three pieces: the
   rounded ends keep their proportions and only the middle is stretched.
 - States: normal is the raised gradient button, hover is the glossy raised one, pressed is the
-  flat button without the bottom edge, so it looks pushed in (the label sits a bit lower).
+  flat button drawn lower by the height of the raised buttons' bottom edge, so the whole face drops (the label with it). START has all three states too.
 - Cursor: one static image per state instead of 17 + 8 + 13 animated frames. Normal is the
   arrow, `click` (over something clickable) the pointing hand, `click2` (pressed) the closed hand,
   `help` the arrow with a question mark and `writing` the I-beam. Each image has a hotspot, so the

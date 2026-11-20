@@ -206,6 +206,14 @@ def test_update_level_select_switches_the_cursor_state_when_hovering_a_card(game
     assert game._cursor.state == NORMAL
 
 
+def test_entering_the_game_resets_the_cursor_to_the_arrow(game):
+    game._cursor.set_state(CLICK)
+
+    game._enter_game()
+
+    assert game._cursor.state == NORMAL
+
+
 def test_update_game_awards_a_point_and_starts_a_new_round_on_a_kill(game, monkeypatch):
     game._state = Game.STATE_GAME
     game._enter_game()

@@ -284,6 +284,7 @@ class Game(Application):
         self._vampire = vampire
         self._peasant = self._p2 if vampire is self._p1 else self._p1
 
+        self._cursor.set_state(NORMAL)
         self._state = self.STATE_GAME
 
     def _update_game(self) -> None:
