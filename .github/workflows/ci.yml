@@ -3,9 +3,9 @@ name: CI
 # Runs on GitHub's servers AFTER code arrives there:
 #   * every push to any branch
 #   * every pull request targeting main
-# Runs lint (ruff), spelling (codespell) and type checks (mypy), the pygamine engine's own test suite (vendored as a submodule, but
-# nothing previously exercised it here), this app's own game-logic tests
-# (tests/), and a smoke test that the app itself still boots headlessly.
+# Runs lint (ruff), spelling (codespell) and type checks (mypy), the pygamine
+# engine's own test suite (vendored as a submodule, but nothing previously
+# exercised it here), this app's own game-logic tests (tests/), and a smoke test that the app itself still boots headlessly.
 # Deliberately separate from release.yml, which only builds/publishes on
 # version tags.
 on:
