@@ -2,7 +2,7 @@
 
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run python scripts/art_gen/shoot.py [prefix]
 
-Writes scripts/art_gen/work/<prefix>_{menu,countdown,level_select,level0,level1,level2}.png
+Writes scripts/art_gen/work/<prefix>_{menu,mode,credits,countdown,level_select,level0,level1,level2}.png
 (default prefix "after"). Run from the repo root.
 """
 
@@ -22,6 +22,7 @@ OUT = Path("scripts/art_gen/work")
 
 def main(prefix: str) -> None:
     import settings
+    from menu import PAGE_CREDITS, PAGE_MAIN, PAGE_MODE
     from entities import Projectile, level_platforms
     from game import Game
 
@@ -37,6 +38,14 @@ def main(prefix: str) -> None:
     # The hovered PLAY button (the real cursor is drawn by the engine, not here).
     game._menu.update_pointer(game._menu.button_rects()["play"].center, False)
     save("menu")
+    # The mode menu (PLAY pressed) with VS AI hovered, then the credits.
+    game._menu.go_to(PAGE_MODE)
+    game._menu.update_pointer(game._menu.button_rects()["vs_ai"].center, False)
+    save("mode")
+    game._menu.go_to(PAGE_CREDITS)
+    game._menu.update_pointer((0, 0), False)
+    save("credits")
+    game._menu.go_to(PAGE_MAIN)
     game._menu.update_pointer((0, 0), False)
     game._countdown = 20
     save("countdown")

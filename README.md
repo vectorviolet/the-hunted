@@ -2,9 +2,11 @@
 
 ![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/hunted/main/.github/badges/coverage.json)
 
-My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomized each round — it's a chase-and-catch party game, not a horror game.
+My first-ever pygame project — kept here as a learning artifact. A goofy couch platformer for one player against the AI (VS AI) or two on one keyboard (PVP): one player is the vampire, the other the peasant, roles randomized each round. It's a chase-and-catch party game, not a horror game.
 
 > **Note on assets:** the code and game logic are mine. All the art (characters, backgrounds, platforms, buttons, cursor, countdown) is my own AI-generated pixel art (OpenAI Codex image generation, in one style: see [the style guide](docs/design/art-style.md)); the fonts are open (SIL OFL) and the music and sounds come from properly licensed packs. Everything is credited in [CREDITS.md](CREDITS.md).
+
+**[Play it in your browser on itch.io](https://umutcanekinci.itch.io/the-hunted)**, or [download it](#download) (Windows installer and zips, macOS, Linux).
 
 ![Gameplay](docs/preview.gif)
 
@@ -13,13 +15,22 @@ My first-ever pygame project — kept here as a learning artifact. A goofy local
 - In every round, one player becomes the **vampire** and the other a **peasant**, chosen randomly.
 - The vampire is **faster** and wins by catching/touching the peasant.
 - Only the peasant can **fire bullets**.
-- 1-player mode pits you against a built-in **AI opponent** with separate vampire / peasant behaviors.
+- **VS AI** pits you against a built-in **AI opponent** with separate vampire / peasant behaviors; **PVP** is two players on one keyboard.
+- Three levels to chase across: **Classic**, **Towers** and **Arena**.
+
+### Menu
+
+**PLAY** opens the mode menu (**VS AI**, **PVP**, **BACK**); picking a mode starts the countdown and then the level select. **CREDITS** shows everyone whose work is in the game, and **EXIT** quits (in the browser it shows a "Thanks for playing" popup). **BACK** and Esc go up one page.
 
 ### Screenshots
 
-| Menu | Level select | Round in progress |
-|------|--------------|-------------------|
-| ![](docs/screenshots/01_main_menu.png) | ![](docs/screenshots/02_level_select.png) | ![](docs/screenshots/03_round_in_progress.png) |
+| Main menu | Mode menu | Credits |
+|-----------|-----------|---------|
+| ![](docs/screenshots/01_main_menu.png) | ![](docs/screenshots/02_mode_menu.png) | ![](docs/screenshots/03_credits.png) |
+
+| Level select | Classic | Towers | Arena |
+|--------------|---------|--------|-------|
+| ![](docs/screenshots/04_level_select.png) | ![](docs/screenshots/05_round_classic.png) | ![](docs/screenshots/06_round_towers.png) | ![](docs/screenshots/07_round_arena.png) |
 
 ### Controls
 
@@ -47,7 +58,7 @@ Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch
 >
 > Windows SmartScreen: the app is unsigned, so the first launch shows **"Windows protected your PC."** Click **More info → Run anyway**. This is Microsoft's download-reputation check, not a virus warning — brand-new unsigned executables always trigger it. The installer is unsigned too and shows the same warning.
 
-**In the browser.** Play it on [itch.io](https://umutcanekinci.itch.io/the-hunted) without installing anything (desktop browser with a keyboard; click the page to start; F11 toggles fullscreen). The same build is attached to each GitHub release as `hunted-web.zip`; to build and test it yourself see [CONTRIBUTING.md](CONTRIBUTING.md#browser-build).
+**In the browser.** Play it on [itch.io](https://umutcanekinci.itch.io/the-hunted) without installing anything (desktop browser with a keyboard; the game is 960x540, so use the fullscreen button; click the page to start; F11 toggles fullscreen). The same build is attached to each GitHub release as `hunted-web.zip`; to build and test it yourself see [CONTRIBUTING.md](CONTRIBUTING.md#browser-build).
 
 ## Requirements (from source)
 
@@ -100,16 +111,18 @@ src/entities.py        Player, Platform, Projectile
 src/combat.py          Bullet physics + round transitions
 src/input_handler.py   KeyboardInputHandler + AIInputHandler protocols
 src/menu.py            The menu pages (main, mode, credits, web popup): layout, buttons, scrolling
-src/credits.py         The credits text, built from assets/SOURCES.yaml
+src/credits.py         The credits text: credits_data.py, generated from assets/SOURCES.yaml
 src/renderer.py        Level-select + in-game drawing
 src/audio.py           Menu / game music
 src/cursor.py          Custom multi-state cursor
-src/settings.py        Physics, combat, colors, and 3 level layouts
+src/settings.py        Physics, combat, the palette colors, and 3 level layouts (960x540 canvas)
 src/util/              Frozen-build resource path resolution, the browser check
 web/                   Browser build: pygbag entry point, loader page, icon
 packaging/             Windows installer script (Inno Setup) and its icon
 src/pygamine/       Engine submodule (used only for Application + Mouse + GameObject)
-assets/                Images and sounds
+assets/                Images, sounds and fonts
+docs/                  Architecture, devlog, art style guide, screenshots, itch.io store text (docs/store/)
+scripts/               Smoke test, credits and devlog generators, art and media scripts
 ```
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the architecture overview.

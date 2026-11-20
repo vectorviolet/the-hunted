@@ -1,11 +1,15 @@
 """README and store media from the game's own art: screenshots, preview.gif and the covers.
 
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run python scripts/art_gen/shoot.py
-    SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run --group art python scripts/art_gen/make_media.py
+    SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run --group art python scripts/art_gen/make_media.py [step ...]
 
-Needs the ``art`` dependency group (Pillow). README and store media stay at full 1920x1080
-(screenshots, preview.gif) and the store sizes (cover 2752x1536, itch.io cover 630x500); only
-devlog images are capped at 1280 px wide.
+Steps (default: all but the devlog ones): ``screenshots``, ``gif``, ``covers``, ``social``, and for
+the devlog ``devlog`` and ``cover-sheet``.
+Run shoot.py first: the screenshots are made from its frames (the covers and the gif come
+from the game directly).
+Needs the ``art`` dependency group (Pillow). README and store media stay at full size (screenshots
+and preview.gif 1920x1080, itch.io cover 630x500, GitHub social preview 1280x640); only devlog
+images are capped at 1280 px wide.
 """
 
 from __future__ import annotations
@@ -46,13 +50,20 @@ def letterbox(frame: Image.Image) -> Image.Image:
     return frame.convert("RGB").resize(FULL, Image.Resampling.NEAREST)
 
 
+SHOTS = (
+    ("after_menu", "01_main_menu"),
+    ("after_mode", "02_mode_menu"),
+    ("after_credits", "03_credits"),
+    ("after_level_select", "04_level_select"),
+    ("after_level0", "05_round_classic"),
+    ("after_level1", "06_round_towers"),
+    ("after_level2", "07_round_arena"),
+)
+
+
 def screenshots() -> None:
     out = ROOT / "docs" / "screenshots"
-    for src, dst in (
-        ("after_menu", "01_main_menu"),
-        ("after_level_select", "02_level_select"),
-        ("after_level1", "03_round_in_progress"),
-    ):
+    for src, dst in SHOTS:
         letterbox(Image.open(WORK / f"{src}.png")).save(
             out / f"{dst}.png", optimize=True
         )
@@ -171,12 +182,110 @@ def cover(
     return img.convert("RGB")
 
 
-def covers() -> None:
-    store = ROOT / "docs" / "store"
-    cover((2752, 1536), 4, 8, 12 * 24, 8 * 7).save(store / "cover.png", optimize=True)
-    cover((630, 500), 1, 3, 12 * 6, 8 * 2).save(
-        store / "cover_itchio.png", optimize=True
+def tagline(img: Image.Image, text: str, cx: int, y: int, size: int) -> None:
+    d = ImageDraw.Draw(img)
+    d.fontmode = "1"
+    small = font("Silkscreen-Regular.ttf", size)
+    d.text((cx + size // 8, y + size // 8), text, font=small, fill=INK, anchor="mm")
+    d.text((cx, y), text, font=small, fill=GOLD, anchor="mm")
+
+
+def title_at(img: Image.Image, cx: int, cy: int, size: int) -> None:
+    d = ImageDraw.Draw(img)
+    d.fontmode = "1"
+    big = font("Jacquard12-Regular.ttf", size)
+    shadow = max(2, size // 12)
+    d.text(
+        (cx + shadow, cy + shadow), "The Hunted", font=big, fill=CRIMSON, anchor="mm"
     )
+    d.text((cx, cy), "The Hunted", font=big, fill=RIM, anchor="mm")
+
+
+def chase_frame(level: int, vampire_plat: int, peasant_plat: int) -> Image.Image:
+    """A 960x540 frame of a round on `level` with the characters close together on two
+    platforms and a bullet in the air (the cover's action shot), drawn by the real game."""
+    import settings
+    from entities import Projectile, level_platforms
+    from game import Game
+
+    random.seed(3)
+    game = Game()
+    game._world.two_players = True
+    game._current_level = level
+    game._world.platforms = level_platforms(level)
+    game._reset_players()
+    game._enter_game()
+    plats = game._world.platforms
+    vampire = game._vampire
+    assert vampire is not None
+    peasant = game._p2 if vampire is game._p1 else game._p1
+    for player, idx, share in (
+        (vampire, vampire_plat, 0.25),
+        (peasant, peasant_plat, 0.7),
+    ):
+        plat = plats[idx]
+        player.x = plat.x + plat.width * share - 32
+        player.y = plat.y - 60
+    peasant.hp = int(settings.MAX_HP * 0.7)
+    game._world.bullets.clear()
+    game._world.bullets.append(
+        Projectile(
+            int(peasant.x) - 40,
+            int(peasant.y) + 36,
+            settings.BULLET_RADIUS,
+            settings.BULLET_COLOR,
+            -1,
+        )
+    )
+    game.draw()
+    raw = pygame.image.tobytes(game.window, "RGB")
+    return Image.frombytes("RGB", game.window.get_size(), raw)
+
+
+def action_cover(frame: Image.Image, line: str) -> Image.Image:
+    """A 630x500 cover from a 960x540 round frame: its middle 630 px at 1x, with the title on
+    a dark veil over the top."""
+    img = frame.crop((165, 40, 795, 540)).convert("RGBA")
+    assert img.size == (630, 500), img.size
+    img.alpha_composite(Image.new("RGBA", (630, 130), (*INK, 170)), (0, 0))
+    title_at(img, 315, 52, 12 * 6)
+    tagline(img, line, 315, 106, 8 * 2)
+    return img.convert("RGB")
+
+
+CANDIDATES = (
+    # name, builder. a: the menu scene (backdrop, ground, both characters); b and c: a crop of a
+    # real round on Towers and Arena.
+    ("a-menu-scene", lambda: cover((630, 500), 1, 3, 12 * 6, 8 * 2)),
+    (
+        "b-towers-chase",
+        lambda: action_cover(chase_frame(1, 2, 3), "CATCH THEM. OR SHOOT BACK."),
+    ),
+    (
+        "c-arena-duel",
+        lambda: action_cover(chase_frame(2, 2, 3), "THE ROLES SWAP EVERY ROUND"),
+    ),
+)
+DEFAULT_COVER = "a-menu-scene"
+
+
+def covers() -> None:
+    """Three itch.io cover candidates (630x500) in docs/store/candidates/; the default is
+    copied to docs/store/cover.png."""
+    store = ROOT / "docs" / "store"
+    (store / "candidates").mkdir(exist_ok=True)
+    for name, build in CANDIDATES:
+        img = build()
+        assert img.size == (630, 500)
+        img.save(store / "candidates" / f"{name}.png", optimize=True)
+        if name == DEFAULT_COVER:
+            img.save(store / "cover.png", optimize=True)
+
+
+def social_preview() -> None:
+    """The GitHub social preview, 1280x640 (GitHub's 2:1): the menu scene with the title."""
+    img = cover((1280, 640), 2, 5, 12 * 11, 8 * 3)
+    img.save(ROOT / "docs" / "design" / "social-preview.png", optimize=True)
 
 
 def devlog_comparisons() -> None:
@@ -212,15 +321,45 @@ def devlog_comparisons() -> None:
         sheet.save(out / f"19-169-{name.replace('_', '-')}.png", optimize=True)
 
 
-def main() -> None:
+def cover_sheet() -> None:
+    """The three cover candidates side by side for the devlog, 1280 px wide."""
+    names = [n for n, _ in CANDIDATES]
+    gap, w = 8, 420
+    h = round(500 * w / 630)
+    sheet = Image.new("RGB", (3 * w + 2 * gap, 24 + h), (24, 20, 28))
+    d = ImageDraw.Draw(sheet)
+    d.fontmode = "1"
+    small = font("Silkscreen-Regular.ttf", 8)
+    for i, name in enumerate(names):
+        img = Image.open(ROOT / "docs" / "store" / "candidates" / f"{name}.png")
+        x = i * (w + gap)
+        d.text((x + 4, 8), name.upper(), font=small, fill=GOLD)
+        sheet.paste(img.resize((w, h), Image.Resampling.BOX), (x, 24))
+    sheet.save(
+        ROOT / "docs" / "devlog" / "img" / "22-cover-candidates.png", optimize=True
+    )
+
+
+STEPS = {
+    "screenshots": screenshots,
+    "gif": preview_gif,
+    "covers": covers,
+    "social": social_preview,
+    "devlog": devlog_comparisons,
+    "cover-sheet": cover_sheet,
+}
+
+
+def main(steps: list[str]) -> None:
+    unknown = [n for n in steps if n not in STEPS]
+    if unknown:
+        raise SystemExit(f"unknown step {unknown}; choose from {list(STEPS)}")
     pygame.init()
     pygame.display.set_mode((1, 1))
-    devlog_comparisons()
-    screenshots()
-    covers()
-    preview_gif()
+    for name in steps or [n for n in STEPS if n not in ("devlog", "cover-sheet")]:
+        STEPS[name]()
     print("ok")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
