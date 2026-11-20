@@ -4,7 +4,7 @@ from pygamine import GameObject
 
 
 class Cursor(GameObject):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._frame = 0
 

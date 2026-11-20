@@ -22,7 +22,7 @@ class Game(Application):
     STATE_LEVEL_SELECT = "level_select"
     STATE_GAME         = "game"
 
-    def __init__(self):
+    def __init__(self) -> None:
         pygame.mixer.pre_init(44100, -16, 2, 1024 * 3)
         self._cursor = Cursor()
         _mouse = Mouse()
@@ -57,12 +57,12 @@ class Game(Application):
         self._combat   = CombatSystem(self._world)
 
         self._font_hud   = pygame.font.Font(settings.FONT, 25)
-        self._score_surfs: list[pygame.Surface] = [None, None]
+        self._score_surfs: list[pygame.Surface] = []
 
         self._current_level = 0
         self._state         = self.STATE_MENU
-        self._vampire       = None
-        self._peasant       = None
+        self._vampire: Player | None = None
+        self._peasant: Player | None = None
         self._countdown     = 100
         self._intro_seq     = random.choice((1, 2, 3))
         self._intro_flag    = False
@@ -92,9 +92,11 @@ class Game(Application):
         if isinstance(self._p2._input, AIInputHandler):
             self._p2._input.bind(self._p2, self._p1)
 
-    def _refresh_scores(self):
-        self._score_surfs[0] = self._font_hud.render(f"P1   {self._p1.score}", True, settings.WHITE)
-        self._score_surfs[1] = self._font_hud.render(f"P2   {self._p2.score}", True, settings.WHITE)
+    def _refresh_scores(self) -> None:
+        self._score_surfs = [
+            self._font_hud.render(f"P1   {self._p1.score}", True, settings.WHITE),
+            self._font_hud.render(f"P2   {self._p2.score}", True, settings.WHITE),
+        ]
 
     def _btn_rect(self, name: str) -> pygame.Rect:
         cx, cy = self._world.window_w // 2, self._world.window_h // 2
@@ -104,7 +106,7 @@ class Game(Application):
             'start': pygame.Rect(cx - 155, cy - 250, 310, 100),
         }[name]
 
-    def _reset_players(self):
+    def _reset_players(self) -> None:
         self._p1 = self._make_player(
             (self._world.platforms[1].x - 64 + 18, settings.FLOOR_Y), "R"
         )
@@ -166,6 +168,7 @@ class Game(Application):
         elif self._state == self.STATE_LEVEL_SELECT:
             self._renderer.draw_level_select(pos)
         elif self._state == self.STATE_GAME:
+            assert self._vampire is not None
             self._renderer.draw_game(
                 self._p1, self._p2, self._vampire, self._current_level, self._score_surfs
             )
@@ -259,15 +262,17 @@ class Game(Application):
         self._renderer.randomize_background()
         self._audio.play_game()
 
-        self._vampire = random.choice((self._p1, self._p2))
-        self._vampire.be_vampire()
-        self._peasant = self._p2 if self._vampire is self._p1 else self._p1
+        vampire = random.choice((self._p1, self._p2))
+        vampire.be_vampire()
+        self._vampire = vampire
+        self._peasant = self._p2 if vampire is self._p1 else self._p1
 
         self._state = self.STATE_GAME
 
     def _update_game(self) -> None:
         self._p1.update()
         self._p2.update()
+        assert self._vampire is not None and self._peasant is not None
         winner = self._combat.resolve(self._vampire, self._peasant)
         if winner is not None:
             winner.score += 1

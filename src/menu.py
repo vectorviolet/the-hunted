@@ -7,7 +7,7 @@ from settings import FONT, GROUND_Y, WHITE
 
 
 class Menu:
-    def __init__(self, window_w: int, window_h: int, cursor):
+    def __init__(self, window_w: int, window_h: int, cursor) -> None:
         self.cursor   = cursor
         self.window_w = window_w
         self.window_h = window_h
@@ -42,14 +42,14 @@ class Menu:
         ]
         self._countdown_graphic = CountdownGraphic()
 
-    def update_button_state(self, btn_name: str, hovered: bool, pressed: bool):
+    def update_button_state(self, btn_name: str, hovered: bool, pressed: bool) -> None:
         setattr(self, f'_btn_{btn_name}_hover', hovered and not pressed)
         setattr(self, f'_btn_{btn_name}_click', hovered and pressed)
 
     def randomize_background(self) -> None:
         self._background.randomize()
 
-    def draw(self, surface: pygame.Surface, countdown: int, p1, p2=None):
+    def draw(self, surface: pygame.Surface, countdown: int, p1, p2=None) -> None:
         """Draw the main menu. Pass p2=None for single-player mode."""
         surface.blit(self._background.surface, (0, 0))
         self._ground.draw(surface)

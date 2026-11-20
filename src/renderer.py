@@ -7,7 +7,7 @@ from world import GameWorld
 
 
 class GameRenderer:
-    def __init__(self, window: pygame.Surface, world: GameWorld):
+    def __init__(self, window: pygame.Surface, world: GameWorld) -> None:
         self._window = window
         self._world = world
 
@@ -28,7 +28,7 @@ class GameRenderer:
     def randomize_background(self) -> None:
         self._background.randomize()
 
-    def draw_game(self, p1, p2, vampire, current_level: int, score_surfs):
+    def draw_game(self, p1, p2, vampire, current_level: int, score_surfs) -> None:
         self._window.blit(self._background.surface, (0, 0))
         self._ground.draw(self._window)
 
@@ -43,13 +43,13 @@ class GameRenderer:
 
         self._draw_top_hud(p1, p2, current_level, score_surfs)
 
-    def _draw_sprite_hud(self, player, vampire):
+    def _draw_sprite_hud(self, player, vampire) -> None:
         ix, iy = int(player.x), int(player.y)
         self._draw_role_tag(player, ix, iy, vampire)
         self._draw_health_bar(player, ix, iy)
         player.draw(self._window)
 
-    def _draw_role_tag(self, player, ix, iy, vampire):
+    def _draw_role_tag(self, player, ix, iy, vampire) -> None:
         is_vampire = vampire is player
         role_lbl = self._lbl_vampire if is_vampire else self._lbl_peasant
         tag_x = ix + (player.width - role_lbl.get_width()) // 2
@@ -58,7 +58,7 @@ class GameRenderer:
         pygame.draw.rect(self._window, (0, 0, 0, 160), tag_bg, border_radius=3)
         self._window.blit(role_lbl, (tag_x, tag_y))
 
-    def _draw_health_bar(self, player, ix, iy):
+    def _draw_health_bar(self, player, ix, iy) -> None:
         bar_w, bar_h = 52, 7
         bar_x = ix + (player.width - bar_w) // 2
         bar_y = iy - 12
@@ -70,7 +70,7 @@ class GameRenderer:
             pygame.draw.rect(self._window, hp_color, (bar_x, bar_y, fill, bar_h))
         pygame.draw.rect(self._window, settings.LIGHT_GREY, (bar_x, bar_y, bar_w, bar_h), 1)
 
-    def _draw_top_hud(self, p1, p2, current_level: int, score_surfs):
+    def _draw_top_hud(self, p1, p2, current_level: int, score_surfs) -> None:
         pad, panel_h = 6, 32
 
         p1_surf = score_surfs[0]
@@ -94,7 +94,7 @@ class GameRenderer:
 
     # ------------------------------------------------------------ level select
 
-    def draw_level_select(self, pos):
+    def draw_level_select(self, pos) -> None:
         self._window.blit(self._background.surface, (0, 0))
 
         overlay = pygame.Surface((self._world.window_w, self._world.window_h), pygame.SRCALPHA)

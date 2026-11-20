@@ -22,7 +22,7 @@ class ParallaxBackground:
     don't look identical.
     """
 
-    def __init__(self, window_w: int, window_h: int):
+    def __init__(self, window_w: int, window_h: int) -> None:
         self._window_w = window_w
         self._window_h = window_h
         self._sky = pygame.transform.scale(

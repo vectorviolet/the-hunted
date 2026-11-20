@@ -12,7 +12,7 @@ class Player:
     }
 
     def __init__(self, world: GameWorld, location, input_handler: InputHandler,
-                 width: int = 64, height: int = 64):
+                 width: int = 64, height: int = 64) -> None:
         self._world  = world
         self._input  = input_handler
 
@@ -41,31 +41,31 @@ class Player:
         self._jump_sound  = pygame.mixer.Sound('assets/sounds/jump.wav')
 
         self.hitbox     = pygame.Rect(0, 0, 0, 0)
-        self.walk_left  = []
-        self.walk_right = []
+        self.walk_left: list[pygame.Surface]  = []
+        self.walk_right: list[pygame.Surface] = []
 
     @property
     def control(self) -> str:
         return self._input.control
 
     @control.setter
-    def control(self, value: str):
+    def control(self, value: str) -> None:
         self._input.control = value
 
     # ---------------------------------------------------------------- role
 
-    def _update_hitbox(self):
+    def _update_hitbox(self) -> None:
         ox, oy, w, h = self._HITBOX['vampire' if self.vampire else 'peasant']
         self.hitbox = pygame.Rect(int(self.x) + ox, int(self.y) + oy, w, h)
 
-    def be_vampire(self):
+    def be_vampire(self) -> None:
         self.walk_right = [pygame.image.load(f'assets/images/vampire/R{i}E.png') for i in range(1, 10)]
         self.walk_left  = [pygame.image.load(f'assets/images/vampire/L{i}E.png') for i in range(1, 10)]
         self.mov_speed  = settings.VAMPIRE_SPEED
         self.vampire    = True
         self._update_hitbox()
 
-    def be_peasant(self):
+    def be_peasant(self) -> None:
         self.walk_right = [pygame.image.load(f'assets/images/peasant/R{i}.png') for i in range(1, 10)]
         self.walk_left  = [pygame.image.load(f'assets/images/peasant/L{i}.png') for i in range(1, 10)]
         self.mov_speed  = settings.PLAYER_SPEED
@@ -74,13 +74,13 @@ class Player:
 
     # ---------------------------------------------------------------- input / update
 
-    def update(self):
+    def update(self) -> None:
         self.move()
         self.shoot()
         self.jump()
         self.physics_update()
 
-    def move(self):
+    def move(self) -> None:
         if self._input.is_moving_right():
             self.vel_x = min(self.vel_x + settings.ACCEL, self.mov_speed)
             self.left, self.right, self.standing = False, True, False
@@ -103,14 +103,14 @@ class Player:
             new_x += self._world.window_w
         self.x = new_x
 
-    def jump(self):
+    def jump(self) -> None:
         if self._input.is_jump_pressed() and self.on_ground:
             self.vel_y     = settings.JUMP_POWER
             self.on_ground = False
             if not self.vampire:
                 self._jump_sound.play()
 
-    def shoot(self):
+    def shoot(self) -> None:
         if self.vampire:
             return
         if self._shoot_timer > 0:
@@ -129,7 +129,7 @@ class Player:
 
     # ---------------------------------------------------------------- physics
 
-    def physics_update(self):
+    def physics_update(self) -> None:
         self.vel_y = min(self.vel_y + settings.GRAVITY, settings.MAX_FALL_SPEED)
         prev_y     = self.y
         self.y    += self.vel_y
@@ -163,7 +163,7 @@ class Player:
 
     # ---------------------------------------------------------------- animation
 
-    def draw(self, surface: pygame.Surface):
+    def draw(self, surface: pygame.Surface) -> None:
         frames = self.walk_left if self.left else self.walk_right
         if not frames:
             return
@@ -180,7 +180,7 @@ class Player:
 
         self._update_hitbox()
 
-    def intro_jump(self):
+    def intro_jump(self) -> None:
         if self.on_ground:
             self.vel_y     = settings.JUMP_POWER * 0.65
             self.on_ground = False
@@ -197,7 +197,7 @@ class Player:
 class Platform:
     _tile_cache: dict[int, pygame.Surface] = {}
 
-    def __init__(self, location: tuple, width: int, height: int):
+    def __init__(self, location: tuple, width: int, height: int) -> None:
         self.x, self.y = location
         self.width     = width
         self.height    = height
@@ -219,7 +219,7 @@ class Platform:
             cls._tile_cache[size] = tile
         return tile
 
-    def draw(self, surface: pygame.Surface):
+    def draw(self, surface: pygame.Surface) -> None:
         tile_w    = self.tile.get_width()
         x         = self.x
         remaining = self.width
@@ -231,7 +231,7 @@ class Platform:
 
 
 class Projectile:
-    def __init__(self, x: int, y: int, radius: int, color: tuple, facing: int):
+    def __init__(self, x: int, y: int, radius: int, color: tuple, facing: int) -> None:
         self.x         = float(x)
         self.y         = float(y)
         self.radius    = radius
@@ -243,5 +243,5 @@ class Projectile:
         r = self.radius
         return pygame.Rect(int(self.x) - r, int(self.y) - r, r * 2, r * 2)
 
-    def draw(self, surface: pygame.Surface):
+    def draw(self, surface: pygame.Surface) -> None:
         pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), self.radius)

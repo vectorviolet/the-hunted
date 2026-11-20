@@ -8,10 +8,14 @@ class _Idle:
     self-contained (see tests/conftest.py's FakeInputHandler for the
     settable version used elsewhere)."""
     control = "idle"
-    def is_moving_right(self) -> bool: return False
-    def is_moving_left(self) -> bool: return False
-    def is_jump_pressed(self) -> bool: return False
-    def is_fire_pressed(self) -> bool: return False
+    @staticmethod
+    def is_moving_right() -> bool: return False
+    @staticmethod
+    def is_moving_left() -> bool: return False
+    @staticmethod
+    def is_jump_pressed() -> bool: return False
+    @staticmethod
+    def is_fire_pressed() -> bool: return False
 
 
 def make_player(world, x: float, y: float, role: str) -> Player:

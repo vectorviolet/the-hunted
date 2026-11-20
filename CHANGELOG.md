@@ -7,8 +7,13 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- CI runs ruff (lint and format), codespell (American English) and mypy next to the tests. No change to how the game plays.
+
 ### Changed
 
+- Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
 - The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so
   the unlicensed remove.bg frames are gone from the repo. Same look and timing.

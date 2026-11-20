@@ -1,3 +1,5 @@
+from typing import TypedDict
+
 VIRTUAL_W = 800
 VIRTUAL_H = 600
 FPS = 60
@@ -48,7 +50,12 @@ LIGHT_GREY = (180, 180, 180)
 MID_GREY   = ( 90,  90, 110)
 
 # Levels  — platform y must end in 0 so velocity steps land cleanly
-LEVELS = [
+class Level(TypedDict):
+    name: str
+    platforms: list[tuple[tuple[int, int], int, int]]
+
+
+LEVELS: list[Level] = [
     {
         'name': 'Classic',
         'platforms': [

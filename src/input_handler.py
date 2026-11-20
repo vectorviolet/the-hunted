@@ -1,11 +1,18 @@
+from __future__ import annotations
+
 import random
-from typing import Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 import pygame
+
+if TYPE_CHECKING:
+    from entities import Player
 
 
 @runtime_checkable
 class InputHandler(Protocol):
+    control: str
+
     def is_moving_right(self) -> bool: ...
     def is_moving_left(self) -> bool: ...
     def is_jump_pressed(self) -> bool: ...
@@ -13,7 +20,7 @@ class InputHandler(Protocol):
 
 
 class KeyboardInputHandler:
-    def __init__(self, control: str):
+    def __init__(self, control: str) -> None:
         self.control = control
 
     def is_moving_right(self) -> bool:
@@ -50,17 +57,28 @@ class KeyboardInputHandler:
 class AIInputHandler:
     """Drives a Player by reading its own state, the opponent's, and the world."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.control = "AI"
-        self._self = None
-        self._target = None
+        self._bound_self: Player | None = None
+        self._bound_target: Player | None = None
 
-    def bind(self, self_player, target_player) -> None:
-        self._self = self_player
-        self._target = target_player
+    @property
+    def _self(self) -> Player:
+        # Only read after _ready() has confirmed bind() ran.
+        assert self._bound_self is not None
+        return self._bound_self
+
+    @property
+    def _target(self) -> Player:
+        assert self._bound_target is not None
+        return self._bound_target
+
+    def bind(self, self_player: Player, target_player: Player) -> None:
+        self._bound_self = self_player
+        self._bound_target = target_player
 
     def _ready(self) -> bool:
-        return self._self is not None and self._target is not None
+        return self._bound_self is not None and self._bound_target is not None
 
     def _dx(self) -> float:
         # Wrap-aware horizontal delta (chase the short way around the screen).

@@ -2,21 +2,22 @@ import pygame
 
 
 class AudioManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self._menu_song = pygame.mixer.Sound('assets/sounds/menu_theme.wav')
         self._game_song = pygame.mixer.Sound('assets/sounds/chase_theme.wav')
 
-    def play_menu(self):
+    def play_menu(self) -> None:
         self._menu_song.play(-1)
 
-    def stop_menu(self):
+    def stop_menu(self) -> None:
         self._menu_song.stop()
 
-    def play_game(self):
+    def play_game(self) -> None:
         self._game_song.play(-1)
 
-    def stop_game(self):
+    def stop_game(self) -> None:
         self._game_song.stop()
 
-    def pause_all(self):
+    @staticmethod
+    def pause_all() -> None:
         pygame.mixer.pause()
