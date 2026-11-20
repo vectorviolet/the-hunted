@@ -8,7 +8,9 @@ from renderer import GameRenderer
 
 @pytest.fixture
 def renderer(world):
-    world.platforms = [Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]["platforms"]]
+    world.platforms = [
+        Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]["platforms"]
+    ]
     return GameRenderer(pygame.Surface((world.window_w, world.window_h)), world)
 
 
@@ -20,24 +22,35 @@ def test_level_card_rect_lays_cards_out_left_to_right_centered_in_the_window(ren
 
 def score_surfaces():
     font = pygame.font.SysFont(None, 20)
-    return [font.render("P1   0", True, settings.WHITE), font.render("P2   0", True, settings.WHITE)]
+    return [
+        font.render("P1   0", True, settings.WHITE),
+        font.render("P2   0", True, settings.WHITE),
+    ]
 
 
-def test_draw_game_with_two_players_and_a_bullet_does_not_raise(renderer, world, input_handler):
+def test_draw_game_with_two_players_and_a_bullet_does_not_raise(
+    renderer, world, input_handler
+):
     p1 = Player(world, (100, settings.FLOOR_Y), input_handler)
     p2 = Player(world, (200, settings.FLOOR_Y), input_handler)
     p1.be_peasant()
     p2.be_vampire()
     world.bullets.append(Projectile(50, 50, settings.BULLET_RADIUS, settings.BLACK, 1))
 
-    renderer.draw_game(p1, p2, vampire=p2, current_level=0, score_surfs=score_surfaces())
+    renderer.draw_game(
+        p1, p2, vampire=p2, current_level=0, score_surfs=score_surfaces()
+    )
 
 
-def test_draw_game_single_player_with_no_p2_does_not_raise(renderer, world, input_handler):
+def test_draw_game_single_player_with_no_p2_does_not_raise(
+    renderer, world, input_handler
+):
     p1 = Player(world, (100, settings.FLOOR_Y), input_handler)
     p1.be_peasant()
 
-    renderer.draw_game(p1, None, vampire=p1, current_level=0, score_surfs=score_surfaces())
+    renderer.draw_game(
+        p1, None, vampire=p1, current_level=0, score_surfs=score_surfaces()
+    )
 
 
 def test_draw_level_select_does_not_raise_hovered_or_not(renderer):

@@ -2,8 +2,8 @@ import random
 
 import pygame
 
-_LAYERS_DIR    = "assets/images/bg_layers"
-_SKY_FILE      = f"{_LAYERS_DIR}/parallax-mountain-bg.png"
+_LAYERS_DIR = "assets/images/bg_layers"
+_SKY_FILE = f"{_LAYERS_DIR}/parallax-mountain-bg.png"
 _HORIZON_FILES = [
     f"{_LAYERS_DIR}/parallax-mountain-montain-far.png",
     f"{_LAYERS_DIR}/parallax-mountain-mountains.png",
@@ -34,9 +34,11 @@ class ParallaxBackground:
 
     @staticmethod
     def _load_layer(path: str) -> pygame.Surface:
-        img   = pygame.image.load(path).convert_alpha()
+        img = pygame.image.load(path).convert_alpha()
         scale = _HORIZON_HEIGHT / img.get_height()
-        return pygame.transform.scale(img, (int(img.get_width() * scale), _HORIZON_HEIGHT))
+        return pygame.transform.scale(
+            img, (int(img.get_width() * scale), _HORIZON_HEIGHT)
+        )
 
     def randomize(self) -> None:
         self.surface.blit(self._sky, (0, 0))

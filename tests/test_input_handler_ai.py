@@ -2,16 +2,20 @@ from entities import Player
 from input_handler import AIInputHandler
 
 
-def make_player(world, input_handler, x: float, vampire: bool = False, left: bool = False) -> Player:
+def make_player(
+    world, input_handler, x: float, vampire: bool = False, left: bool = False
+) -> Player:
     p = Player(world, (x, 0.0), input_handler)
     p.vampire = vampire
     p.left = left
     return p
 
 
-def make_ai(world, input_handler, self_x, target_x, *, self_vampire=False, self_left=False):
+def make_ai(
+    world, input_handler, self_x, target_x, *, self_vampire=False, self_left=False
+):
     ai = AIInputHandler()
-    me     = make_player(world, input_handler, self_x, vampire=self_vampire, left=self_left)
+    me = make_player(world, input_handler, self_x, vampire=self_vampire, left=self_left)
     target = make_player(world, input_handler, target_x)
     ai.bind(me, target)
     return ai, me, target
@@ -43,13 +47,17 @@ def test_dx_wraps_the_short_way_in_the_other_direction(world, input_handler):
 
 
 def test_vampire_closes_in_past_the_small_deadzone(world, input_handler):
-    ai, _, _ = make_ai(world, input_handler, self_x=100, target_x=200, self_vampire=True)  # dx=100
+    ai, _, _ = make_ai(
+        world, input_handler, self_x=100, target_x=200, self_vampire=True
+    )  # dx=100
     assert ai.is_moving_right() is True
     assert ai.is_moving_left() is False
 
 
 def test_vampire_holds_still_inside_the_deadzone(world, input_handler):
-    ai, _, _ = make_ai(world, input_handler, self_x=100, target_x=102, self_vampire=True)  # dx=2
+    ai, _, _ = make_ai(
+        world, input_handler, self_x=100, target_x=102, self_vampire=True
+    )  # dx=2
     assert ai.is_moving_right() is False
     assert ai.is_moving_left() is False
 
@@ -68,14 +76,18 @@ def test_peasant_closes_in_when_the_vampire_is_too_far(world, input_handler):
     assert ai.is_moving_right() is True
 
 
-def test_peasant_turns_to_face_the_target_when_in_range_but_facing_away(world, input_handler):
+def test_peasant_turns_to_face_the_target_when_in_range_but_facing_away(
+    world, input_handler
+):
     # dx=100 (in the 80-180 "hold" band), facing left while target is to
     # the right -> turn toward it.
     ai, _, _ = make_ai(world, input_handler, self_x=100, target_x=200, self_left=True)
     assert ai.is_moving_right() is True
 
 
-def test_peasant_holds_position_when_in_range_and_already_facing_target(world, input_handler):
+def test_peasant_holds_position_when_in_range_and_already_facing_target(
+    world, input_handler
+):
     ai, _, _ = make_ai(world, input_handler, self_x=100, target_x=200, self_left=False)
     assert ai.is_moving_right() is False
     assert ai.is_moving_left() is False

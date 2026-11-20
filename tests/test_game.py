@@ -100,7 +100,9 @@ def test_step_intro_two_player_seq_2_moves_both_players_every_call(game):
     assert game._p2.y != p2_y_before
 
 
-def test_step_intro_two_player_seq_1_holds_p2_until_p1_descends_past_the_threshold(game):
+def test_step_intro_two_player_seq_1_holds_p2_until_p1_descends_past_the_threshold(
+    game,
+):
     game._world.two_players = True
     game._intro_seq = 1
     game._intro_flag = False
@@ -119,7 +121,9 @@ def test_step_intro_two_player_seq_1_holds_p2_until_p1_descends_past_the_thresho
     assert game._p2.y != p2_y_before
 
 
-def test_step_intro_two_player_seq_3_holds_p1_until_p2_descends_past_the_threshold(game):
+def test_step_intro_two_player_seq_3_holds_p1_until_p2_descends_past_the_threshold(
+    game,
+):
     game._world.two_players = True
     game._intro_seq = 3
     game._intro_flag = False
@@ -156,7 +160,9 @@ def test_update_menu_transitions_to_level_select_once_countdown_reaches_60(game)
 
     assert game._countdown == 60
     assert game._state == Game.STATE_LEVEL_SELECT
-    game._state = Game.STATE_MENU  # restore, so later tests get their expected starting state
+    game._state = (
+        Game.STATE_MENU
+    )  # restore, so later tests get their expected starting state
 
 
 def test_handle_level_select_event_selecting_a_level_enters_game(game):
@@ -177,7 +183,9 @@ def test_single_player_mode_binds_an_ai_handler_to_p2(game):
     game._state = Game.STATE_LEVEL_SELECT
     game._world.two_players = False
 
-    click(game, game._renderer.level_card_rect(0).center)  # -> _reset_players() -> _enter_game()
+    click(
+        game, game._renderer.level_card_rect(0).center
+    )  # -> _reset_players() -> _enter_game()
 
     assert isinstance(game._p2._input, AIInputHandler)
     assert game._p2._input._self is game._p2
@@ -205,7 +213,8 @@ def test_update_game_awards_a_point_and_starts_a_new_round_on_a_kill(game, monke
 
     monkeypatch.setattr(game._combat, "resolve", lambda vampire, peasant: winner)
     monkeypatch.setattr(
-        game._combat, "begin_round",
+        game._combat,
+        "begin_round",
         lambda vampire, p1, p2: (game._vampire, game._peasant),
     )
 

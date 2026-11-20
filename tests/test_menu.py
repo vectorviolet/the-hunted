@@ -58,7 +58,9 @@ def test_update_button_state_pressed_flag_is_ignored_when_not_hovering():
     assert menu._btn_start_click is False
 
 
-def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(world, input_handler):
+def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
+    world, input_handler
+):
     menu = make_menu()
     menu.update_button_state("1p", hovered=True, pressed=False)
     surface = pygame.Surface((800, 600))

@@ -3,8 +3,8 @@ import pygame
 
 class AudioManager:
     def __init__(self) -> None:
-        self._menu_song = pygame.mixer.Sound('assets/sounds/menu_theme.wav')
-        self._game_song = pygame.mixer.Sound('assets/sounds/chase_theme.wav')
+        self._menu_song = pygame.mixer.Sound("assets/sounds/menu_theme.wav")
+        self._game_song = pygame.mixer.Sound("assets/sounds/chase_theme.wav")
 
     def play_menu(self) -> None:
         self._menu_song.play(-1)
