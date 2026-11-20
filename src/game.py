@@ -11,7 +11,15 @@ from countdown import END_FRAME
 from cursor import CLICK, NORMAL, Cursor
 from entities import Player, level_platforms
 from input_handler import AIInputHandler, KeyboardInputHandler
-from menu import Menu
+from menu import (
+    IDLE,
+    PAGE_CREDITS,
+    PAGE_MAIN,
+    PAGE_MODE,
+    PAGE_THANKS,
+    SCROLL_STEP,
+    Menu,
+)
 from renderer import GameRenderer
 from util import web
 from world import GameWorld
@@ -70,7 +78,7 @@ class Game(Application):
         self._state = self.STATE_MENU
         self._vampire: Player | None = None
         self._peasant: Player | None = None
-        self._countdown = 100
+        self._countdown = IDLE
         self._intro_seq = random.choice((1, 2, 3))
         self._intro_flag = False
 
@@ -110,14 +118,6 @@ class Game(Application):
             self._font_hud.render(f"P2  {self._p2.score}", False, settings.BONE),
         ]
 
-    def _btn_rect(self, name: str) -> pygame.Rect:
-        cx, cy = self._world.window_w // 2, self._world.window_h // 2
-        return {
-            "1p": pygame.Rect(cx - 106, cy - 120, 212, 44),
-            "2p": pygame.Rect(cx - 106, cy - 56, 212, 44),
-            "start": pygame.Rect(cx - 155, cy - 240, 310, 100),
-        }[name]
-
     def _reset_players(self) -> None:
         self._p1 = self._make_player(
             (self._world.platforms[1].x - 64 + 18, settings.FLOOR_Y), "R"
@@ -154,20 +154,24 @@ class Game(Application):
             super().cycle_window_mode(step)
 
     def on_exit_request(self) -> None:
+        """Esc (and closing the window): go back one page, like a BACK button. On the main
+        menu that is EXIT. In the game it returns to the main menu."""
         if self._state == self.STATE_GAME:
             self._audio.stop_game()
             self._world.bullets.clear()
-            self._reset_players()
-            self._audio.play_menu()
-            self._countdown = 100
-            self._state = self.STATE_MENU
+            self._back_to_menu(PAGE_MAIN)
         elif self._state == self.STATE_LEVEL_SELECT:
-            self._reset_players()
-            self._audio.play_menu()
-            self._countdown = 100
-            self._state = self.STATE_MENU
+            self._back_to_menu(PAGE_MODE)
         else:
-            super().on_exit_request()
+            self._menu_back()
+
+    def _back_to_menu(self, page: str) -> None:
+        """Leaves the level select or the game for the menu's `page`, with its music."""
+        self._reset_players()
+        self._audio.play_menu()
+        self._countdown = IDLE
+        self._menu.go_to(page)
+        self._state = self.STATE_MENU
 
     def handle_event(self, event: pygame.event.Event) -> None:
         if self._state == self.STATE_MENU:
@@ -189,7 +193,7 @@ class Game(Application):
             p2 = self._p2 if self._world.two_players else None
             self._menu.draw(self.window, self._countdown, self._p1, p2)
         elif self._state == self.STATE_LEVEL_SELECT:
-            self._renderer.draw_level_select(pos)
+            self._renderer.draw_level_select(pos, pygame.mouse.get_pressed()[0])
         elif self._state == self.STATE_GAME:
             assert self._vampire is not None
             self._renderer.draw_game(
@@ -203,34 +207,74 @@ class Game(Application):
     # -------------------------------------------------------------------- menu
 
     def _handle_menu_event(self, event: pygame.event.Event) -> None:
+        if self._countdown != IDLE:
+            return  # the page's buttons are gone while the countdown runs
         if event.type == pygame.MOUSEBUTTONUP:
-            pos = self.mouse.position
-            if self._btn_rect("start").collidepoint(pos):
-                self._countdown = 0
-            elif self._btn_rect("1p").collidepoint(pos):
-                self._world.two_players = False
-                self._p1.control = "RL"
-            elif self._btn_rect("2p").collidepoint(pos):
-                self._world.two_players = True
-                self._p1.control = "R"
-                self._p2.control = "L"
+            name = self._menu.button_at(self.mouse.position)
+            if name is not None:
+                self._press_menu_button(name)
+        elif self._menu.page == PAGE_CREDITS:
+            if event.type == pygame.MOUSEWHEEL:
+                self._menu.scroll_by(-event.y * SCROLL_STEP)
+            elif event.type == pygame.KEYDOWN and event.key in (
+                pygame.K_UP,
+                pygame.K_DOWN,
+            ):
+                self._menu.scroll_by(
+                    SCROLL_STEP if event.key == pygame.K_DOWN else -SCROLL_STEP
+                )
+
+    def _press_menu_button(self, name: str) -> None:
+        page = self._menu.page
+        if name == "back":
+            self._menu_back()
+        elif page == PAGE_MAIN:
+            if name == "play":
+                self._menu.go_to(PAGE_MODE)
+            elif name == "credits":
+                self._menu.go_to(PAGE_CREDITS)
+            else:
+                self._exit_game()
+        elif page == PAGE_MODE:
+            self._start_mode(two_players=name == "pvp")
+        else:  # the popup's "leave a comment or rating" link
+            web.open_in_new_tab(settings.ITCH_URL)
+
+    def _start_mode(self, two_players: bool) -> None:
+        """VS AI or PVP was picked: set the controls and start the countdown."""
+        self._world.two_players = two_players
+        self._p1.control = "R" if two_players else "RL"
+        if two_players:
+            self._p2.control = "L"
+        self._countdown = 0
+
+    def _menu_back(self) -> None:
+        """BACK or Esc on a menu page: one page up (the main menu for every page above it).
+        On the main menu, EXIT."""
+        if self._menu.page == PAGE_MAIN:
+            self._exit_game()
+        else:
+            self._countdown = IDLE  # Esc during the countdown cancels it
+            self._menu.go_to(PAGE_MAIN)
+
+    def _exit_game(self) -> None:
+        """EXIT, or Esc on the main menu. The browser build can't close its tab, so it shows
+        the "Thanks for playing" popup instead of quitting."""
+        if web.is_web():
+            self._menu.go_to(PAGE_THANKS)
+        else:
+            super().on_exit_request()
 
     def _update_menu(self) -> None:
-        self._update_menu_button_states(self.mouse.position)
+        self._menu.update_pointer(self.mouse.position, pygame.mouse.get_pressed()[0])
         self._step_intro()
 
-        if self._countdown < 100:
+        if self._countdown < IDLE:
             self._countdown += 1
         if self._countdown == END_FRAME:
             self._audio.pause_all()
             self._audio.stop_menu()
             self._state = self.STATE_LEVEL_SELECT
-
-    def _update_menu_button_states(self, pos) -> None:
-        for name in ("1p", "2p", "start"):
-            hovered = self._btn_rect(name).collidepoint(pos)
-            pressed = pygame.mouse.get_pressed()[0] if hovered else False
-            self._menu.update_button_state(name, hovered, pressed)
 
     def _step_intro(self) -> None:
         if self._world.two_players:
@@ -256,7 +300,7 @@ class Game(Application):
 
     def _update_level_select(self) -> None:
         pos = self.mouse.position
-        any_hover = any(
+        any_hover = self._renderer.back_rect().collidepoint(pos) or any(
             self._renderer.level_card_rect(i).collidepoint(pos)
             for i in range(len(settings.LEVELS))
         )
@@ -265,6 +309,9 @@ class Game(Application):
     def _handle_level_select_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.MOUSEBUTTONUP:
             pos = self.mouse.position
+            if self._renderer.back_rect().collidepoint(pos):
+                self._back_to_menu(PAGE_MODE)
+                return
             for i in range(len(settings.LEVELS)):
                 if self._renderer.level_card_rect(i).collidepoint(pos):
                     self._current_level = i

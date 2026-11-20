@@ -29,7 +29,7 @@ My first-ever pygame project — kept here as a learning artifact. A goofy local
 | Jump | Up arrow | W |
 | Fire | Right Ctrl | Space |
 
-In 1-player mode you control **both keysets** and play against the AI.
+In VS AI mode you control **both keysets** and play against the AI.
 
 ## Download
 
@@ -99,7 +99,8 @@ src/world.py           GameWorld dataclass (platforms, bullets, window dims)
 src/entities.py        Player, Platform, Projectile
 src/combat.py          Bullet physics + round transitions
 src/input_handler.py   KeyboardInputHandler + AIInputHandler protocols
-src/menu.py            Main-menu drawing + button states
+src/menu.py            The menu pages (main, mode, credits, web popup): layout, buttons, scrolling
+src/credits.py         The credits text, built from assets/SOURCES.yaml
 src/renderer.py        Level-select + in-game drawing
 src/audio.py           Menu / game music
 src/cursor.py          Custom multi-state cursor

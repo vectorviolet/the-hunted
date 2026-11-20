@@ -21,6 +21,12 @@ def _window() -> Any:
     return platform.window  # type: ignore[attr-defined]
 
 
+def open_in_new_tab(url: str) -> None:
+    """Opens `url` in a new browser tab. Needs a click or key press (a button
+    press is one), or the browser's pop-up blocker refuses."""
+    _window().open(url, "_blank")
+
+
 def is_fullscreen() -> bool:
     """True while the page is in the browser's fullscreen mode."""
     return _window().document.fullscreenElement is not None

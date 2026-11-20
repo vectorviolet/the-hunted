@@ -2,6 +2,16 @@ import pygame
 
 import settings
 from background import load_background
+from buttons import (
+    BACK_TOP,
+    BTN_HOVER,
+    BTN_NORMAL,
+    BTN_PRESSED,
+    BUTTON_FONT,
+    BUTTON_SIZE,
+    centered_button_rect,
+    make_button,
+)
 from entities import Platform, level_platforms
 from pixelart import nine_slice
 from world import GameWorld
@@ -25,6 +35,12 @@ class GameRenderer:
         self._thumbs: dict[tuple[int, int], pygame.Surface] = {}
         self._card = pygame.image.load("assets/images/ui/card.png").convert_alpha()
         self._card_frames: dict[tuple[int, int], pygame.Surface] = {}
+
+        self._back_rect = centered_button_rect(BACK_TOP)
+        self._back_buttons = {
+            state: make_button(state, BUTTON_SIZE, "BACK", BUTTON_FONT)
+            for state in (BTN_NORMAL, BTN_PRESSED, BTN_HOVER)
+        }
 
         self._font_sm = pygame.font.Font(settings.UI_FONT, 16)
         self._font_title = pygame.font.Font(settings.TITLE_FONT, 72)
@@ -136,7 +152,12 @@ class GameRenderer:
 
     # ------------------------------------------------------------ level select
 
-    def draw_level_select(self, pos) -> None:
+    def back_rect(self) -> pygame.Rect:
+        """The level select's BACK button."""
+        return self._back_rect
+
+    def draw_level_select(self, pos, pressed: bool = False) -> None:
+        """The level select; `pressed` is whether the mouse button is down (for BACK)."""
         self._window.blit(load_background(settings.MENU_BACKGROUND, self._size), (0, 0))
 
         self._text(
@@ -179,6 +200,12 @@ class GameRenderer:
                     settings.GOLD,
                     (rect.centerx, rect.bottom + 22),
                 )
+
+        hovered = self._back_rect.collidepoint(pos)
+        state = (
+            BTN_PRESSED if hovered and pressed else BTN_HOVER if hovered else BTN_NORMAL
+        )
+        self._window.blit(self._back_buttons[state], self._back_rect)
 
     def _card_frame(self, size: tuple[int, int]) -> pygame.Surface:
         frame = self._card_frames.get(size)

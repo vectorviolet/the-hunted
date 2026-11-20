@@ -15,7 +15,8 @@ src/world.py           GameWorld dataclass (window size, platforms, bullets, two
 src/entities.py        Player, Platform, Projectile
 src/combat.py          CombatSystem: bullet physics, contact damage, round transitions
 src/input_handler.py   InputHandler protocol, KeyboardInputHandler, AIInputHandler
-src/menu.py            Main-menu buttons and their button-state visuals
+src/menu.py            The menu pages (main, mode, credits, web popup): layout, buttons, scrolling
+src/credits.py         The credits text, built from assets/SOURCES.yaml
 src/countdown.py       The pre-game countdown (3, 2, 1, GO) from the glyph art
 src/renderer.py        Level-select and in-game drawing
 src/background.py      load_background: the full-screen picture of a level or the menu
@@ -59,12 +60,18 @@ string constants:
 State changes happen inside the handlers; for example `_update_menu` moves to level select when
 the countdown ends.
 
+`STATE_MENU` has pages (`Menu.page`): the main menu (PLAY, CREDITS, EXIT), the mode menu (VS AI,
+PVP, BACK), the credits and, in the browser build only, the "Thanks for playing" popup. `Menu`
+knows the layout and draws; `Game` decides what a click does. BACK and Esc go one page up (the
+level select's BACK goes to the mode menu); on the main menu desktop EXIT and Esc quit, while the
+browser build opens the popup because it can't close its tab.
+
 ## Subsystems
 
 | Attribute on `Game` | Class | Responsibility |
 |---|---|---|
 | `_world` | `GameWorld` | Window size, platforms, bullets, the `two_players` flag |
-| `_menu` | `Menu` | Main-menu buttons, the countdown and the button-state visuals |
+| `_menu` | `Menu` | The menu pages, their buttons, the credits scrolling and the countdown |
 | `_audio` | `AudioManager` | Two music tracks (menu and game) on the default mixer |
 | `_renderer` | `GameRenderer` | Level-select and in-game drawing |
 | `_combat` | `CombatSystem` | Bullet physics, contact damage, round transitions |

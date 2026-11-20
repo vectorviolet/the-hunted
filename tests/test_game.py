@@ -11,8 +11,17 @@ import pytest
 
 import settings
 from cursor import CLICK, NORMAL
+from countdown import END_FRAME
 from game import Game
 from input_handler import AIInputHandler
+from menu import (
+    IDLE,
+    PAGE_CREDITS,
+    PAGE_MAIN,
+    PAGE_MODE,
+    PAGE_THANKS,
+    SCROLL_STEP,
+)
 
 
 @pytest.fixture(scope="module")
@@ -41,40 +50,253 @@ def test_game_boots_and_cycles_through_every_state(game):
     game.draw()
 
 
-def test_btn_rect_returns_rects_centered_on_the_window(game):
-    cx, cy = game._world.window_w // 2, game._world.window_h // 2
-
-    assert game._btn_rect("1p") == pygame.Rect(cx - 106, cy - 120, 212, 44)
-    assert game._btn_rect("2p") == pygame.Rect(cx - 106, cy - 56, 212, 44)
-    assert game._btn_rect("start") == pygame.Rect(cx - 155, cy - 240, 310, 100)
-
-
-def test_clicking_start_kicks_off_the_countdown(game):
-    game._state = Game.STATE_MENU
-    game._countdown = 100
-
-    click(game, game._btn_rect("start").center)
-
-    assert game._countdown == 0
+def show(game_, page):
+    """Puts the game on the menu's `page`, no countdown running."""
+    game_._state = Game.STATE_MENU
+    game_._countdown = IDLE
+    game_._menu.go_to(page)
 
 
-def test_clicking_1p_selects_single_player(game):
-    game._state = Game.STATE_MENU
+def click_button(game_, name):
+    click(game_, game_._menu.button_rects()[name].center)
 
-    click(game, game._btn_rect("1p").center)
+
+def press(game_, key):
+    event = pygame.event.Event(pygame.KEYDOWN, key=key)
+    game_._handle_core_event(event)  # what the Application does with every event,
+    game_.handle_event(event)  # then hands it on
+
+
+def test_the_main_menu_has_play_credits_and_exit(game):
+    show(game, PAGE_MAIN)
+
+    assert list(game._menu.button_rects()) == ["play", "credits", "exit"]
+
+
+def test_play_opens_the_mode_menu(game):
+    show(game, PAGE_MAIN)
+
+    click_button(game, "play")
+
+    assert game._menu.page == PAGE_MODE
+    assert list(game._menu.button_rects()) == ["vs_ai", "pvp", "back"]
+    assert game._countdown == IDLE
+
+
+def test_credits_opens_the_credits_page(game):
+    show(game, PAGE_MAIN)
+
+    click_button(game, "credits")
+
+    assert game._menu.page == PAGE_CREDITS
+
+
+def test_exit_quits_on_desktop(game, monkeypatch):
+    show(game, PAGE_MAIN)
+    calls = []
+    monkeypatch.setattr(game, "exit", lambda: calls.append(True))
+
+    click_button(game, "exit")
+
+    assert calls == [True]
+
+
+def test_a_click_that_misses_every_button_does_nothing(game):
+    show(game, PAGE_MAIN)
+
+    click(game, (5, 5))
+
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_vs_ai_selects_single_player_and_starts_the_countdown(game):
+    show(game, PAGE_MODE)
+
+    click_button(game, "vs_ai")
 
     assert game._world.two_players is False
     assert game._p1.control == "RL"
+    assert game._countdown == 0
 
 
-def test_clicking_2p_selects_two_player(game):
-    game._state = Game.STATE_MENU
+def test_pvp_selects_two_player_and_starts_the_countdown(game):
+    show(game, PAGE_MODE)
 
-    click(game, game._btn_rect("2p").center)
+    click_button(game, "pvp")
 
     assert game._world.two_players is True
     assert game._p1.control == "R"
     assert game._p2.control == "L"
+    assert game._countdown == 0
+
+
+def test_buttons_are_dead_while_the_countdown_runs(game):
+    show(game, PAGE_MODE)
+    game._countdown = 20
+
+    click_button(game, "pvp")
+
+    assert game._countdown == 20  # not restarted
+    assert game._menu.page == PAGE_MODE
+
+
+def test_mode_menu_back_returns_to_the_main_menu(game):
+    show(game, PAGE_MODE)
+
+    click_button(game, "back")
+
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_credits_back_returns_to_the_main_menu(game):
+    show(game, PAGE_CREDITS)
+
+    click_button(game, "back")
+
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_the_menu_chain_goes_down_and_back_up_page_by_page(game):
+    show(game, PAGE_MAIN)
+    click_button(game, "play")
+    click_button(game, "vs_ai")
+    game._countdown = END_FRAME - 1
+    game._update_menu()
+    assert game._state == Game.STATE_LEVEL_SELECT
+
+    click(game, game._renderer.back_rect().center)  # level select BACK
+    assert (game._state, game._menu.page) == (Game.STATE_MENU, PAGE_MODE)
+    assert game._countdown == IDLE
+
+    click_button(game, "back")  # mode menu BACK
+    assert (game._state, game._menu.page) == (Game.STATE_MENU, PAGE_MAIN)
+
+
+def test_level_select_back_restarts_the_menu_music_and_resets_the_players(
+    game, monkeypatch
+):
+    game._state = Game.STATE_LEVEL_SELECT
+    played = []
+    monkeypatch.setattr(game._audio, "play_menu", lambda: played.append(True))
+    old_p1 = game._p1
+
+    click(game, game._renderer.back_rect().center)
+
+    assert played == [True]
+    assert game._p1 is not old_p1
+
+
+@pytest.mark.parametrize("page", [PAGE_MODE, PAGE_CREDITS, PAGE_THANKS])
+def test_esc_goes_back_to_the_main_menu_like_the_back_button(game, page):
+    show(game, page)
+
+    press(game, pygame.K_ESCAPE)
+
+    assert game._state == Game.STATE_MENU
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_esc_during_the_countdown_cancels_it(game):
+    show(game, PAGE_MODE)
+    game._countdown = 20
+
+    press(game, pygame.K_ESCAPE)
+
+    assert game._countdown == IDLE
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_esc_on_the_level_select_goes_back_to_the_mode_menu(game):
+    game._state = Game.STATE_LEVEL_SELECT
+
+    press(game, pygame.K_ESCAPE)
+
+    assert (game._state, game._menu.page) == (Game.STATE_MENU, PAGE_MODE)
+
+
+def test_esc_on_the_main_menu_quits_on_desktop(game, monkeypatch):
+    show(game, PAGE_MAIN)
+    calls = []
+    monkeypatch.setattr(game, "exit", lambda: calls.append(True))
+
+    press(game, pygame.K_ESCAPE)
+
+    assert calls == [True]
+
+
+def test_esc_in_the_game_returns_to_the_main_menu(game):
+    game._menu.go_to(PAGE_MODE)
+    game._state = Game.STATE_GAME
+
+    press(game, pygame.K_ESCAPE)
+
+    assert (game._state, game._menu.page) == (Game.STATE_MENU, PAGE_MAIN)
+
+
+@pytest.mark.parametrize("how", ["exit button", "esc"])
+def test_in_the_browser_exit_opens_the_thanks_popup(game, monkeypatch, how):
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    monkeypatch.setattr(game, "exit", lambda: pytest.fail("a tab can't be closed"))
+    show(game, PAGE_MAIN)
+
+    if how == "esc":
+        press(game, pygame.K_ESCAPE)
+    else:
+        click_button(game, "exit")
+
+    assert game._menu.page == PAGE_THANKS
+    assert list(game._menu.button_rects()) == ["rate", "back"]
+
+
+def test_the_popups_back_button_and_esc_close_it(game, monkeypatch):
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    show(game, PAGE_THANKS)
+    click_button(game, "back")
+    assert game._menu.page == PAGE_MAIN
+
+    show(game, PAGE_THANKS)
+    press(game, pygame.K_ESCAPE)
+    assert game._menu.page == PAGE_MAIN
+
+
+def test_the_popups_rate_button_opens_the_itch_page_in_a_new_tab(game, monkeypatch):
+    opened = []
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    monkeypatch.setattr("util.web.open_in_new_tab", opened.append)
+    show(game, PAGE_THANKS)
+
+    click_button(game, "rate")
+
+    assert opened == ["https://umutcanekinci.itch.io/the-hunted"]
+    assert game._menu.page == PAGE_THANKS
+
+
+def test_the_credits_scroll_with_the_wheel_and_the_arrow_keys(game):
+    show(game, PAGE_CREDITS)
+    assert game._menu.max_scroll > 0  # the credits don't fit: they scroll
+
+    game.handle_event(pygame.event.Event(pygame.MOUSEWHEEL, x=0, y=-1))
+    assert game._menu.scroll == SCROLL_STEP
+    game.handle_event(pygame.event.Event(pygame.KEYDOWN, key=pygame.K_DOWN))
+    assert game._menu.scroll == 2 * SCROLL_STEP
+    game.handle_event(pygame.event.Event(pygame.KEYDOWN, key=pygame.K_UP))
+    game.handle_event(pygame.event.Event(pygame.MOUSEWHEEL, x=0, y=1))
+    assert game._menu.scroll == 0
+
+
+def test_scrolling_does_nothing_on_the_other_pages(game):
+    show(game, PAGE_MODE)
+
+    game.handle_event(pygame.event.Event(pygame.MOUSEWHEEL, x=0, y=-1))
+
+    assert game._menu.scroll == 0
+
+
+def test_every_menu_page_draws(game):
+    for page in (PAGE_MAIN, PAGE_MODE, PAGE_CREDITS, PAGE_THANKS):
+        show(game, page)
+        game.update()
+        game.draw()  # must not raise
 
 
 def test_step_intro_single_player_only_moves_p1(game):
@@ -256,7 +478,7 @@ def test_on_exit_request_from_the_menu_delegates_to_the_real_quit(game, monkeypa
     # From STATE_MENU there's nowhere softer to fall back to -- it's really
     # quitting. Application.exit() calls sys.exit(), so it's monkeypatched
     # rather than actually invoked here.
-    game._state = Game.STATE_MENU
+    show(game, PAGE_MAIN)
     calls = []
     monkeypatch.setattr(game, "exit", lambda: calls.append(True))
 

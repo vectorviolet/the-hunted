@@ -64,12 +64,14 @@ This project uses only a small slice of pygamine: `Application`, `Mouse`, and `G
 
 State transitions happen in-band inside the handlers (e.g. `_update_menu` flips to `STATE_LEVEL_SELECT` after a countdown).
 
+`STATE_MENU` has pages, `Menu.page`: main (PLAY, CREDITS, EXIT), mode (VS AI, PVP, BACK), credits (text built by `src/credits.py` from `assets/SOURCES.yaml`, scrolls) and the web build's "Thanks for playing" popup. BACK and Esc (`Game.on_exit_request`) go one page up; the level select's BACK goes to the mode menu. On the main menu, EXIT and Esc quit on desktop and open the popup when `util.web.is_web()`.
+
 ### Subsystems (composed in `Game.__init__`)
 
 | Attribute | Class | Responsibility |
 |-----------|-------|----------------|
 | `_world` | `GameWorld` (dataclass, `src/world.py`) | Window size, platforms list, bullets list, `two_players` flag |
-| `_menu` | `Menu` (`src/menu.py`) | Main-menu buttons + countdown (drawn by `src/countdown.py`) + button-state visuals |
+| `_menu` | `Menu` (`src/menu.py`) | The menu pages (main, mode, credits, web popup), their buttons, the credits scrolling + countdown (drawn by `src/countdown.py`) |
 | `_audio` | `AudioManager` (`src/audio.py`) | Two music tracks (menu / game) on the default mixer |
 | `_renderer` | `GameRenderer` (`src/renderer.py`) | Level-select and in-game drawing |
 | `_combat` | `CombatSystem` (`src/combat.py`) | Bullet physics, contact damage, round transitions |
@@ -117,7 +119,7 @@ the tables by hand. `tests/test_devlog_index.py` fails in CI if a table is out o
 
 `web/main.py` (entry point, `run_async()`), `web/template.tmpl` and `scripts/build_web.py` make the
 pygbag bundle (`uv run python scripts/build_web.py`; `--stage-only` is offline); `src/util/web.py`
-holds `is_web()` (used to skip the threaded splash in the browser) and the fullscreen toggle F11 uses there. `packaging/hunted.iss` is the
+holds `is_web()` (used to skip the threaded splash in the browser), `open_in_new_tab()` (the popup's rating link) and the fullscreen toggle F11 uses there. `packaging/hunted.iss` is the
 Inno Setup script for the Windows installer. Both are built by `release.yml` (see ADR 0001 and
 CONTRIBUTING.md). Keep `PYGBAG_VERSION` in step with the CDN URLs in the template.
 

@@ -16,6 +16,7 @@ PR. "Owner" is the project owner; "Claude" is the Claude Code session that imple
 | 2026-11-20 | [Browser build and Windows installer](2026-11-20-browser-build-and-installer.md) | Web, packaging | #9, PR #17 |
 | 2026-11-20 | [Drawing the pre-game countdown in code](2026-11-20-countdown-in-code.md) | UI, Art | PR #11 |
 | 2026-11-20 | [Kenney buttons and cursor](2026-11-20-kenney-buttons-and-cursor.md) | UI, Art | #5, PR #14 |
+| 2026-11-20 | [Main menu pages: play, credits and exit](2026-11-20-main-menu-pages.md) | UI | #18 |
 | 2026-11-20 | [Replacing the music and the jump sound](2026-11-20-music-and-jump-sound.md) | Audio | #7, PR #15 |
 | 2026-11-20 | [New pixel-art vampire and peasant](2026-11-20-pixel-art-characters.md) | Art | #8 |
 <!-- index:end -->
