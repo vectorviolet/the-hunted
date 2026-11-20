@@ -22,8 +22,9 @@ The spec is the owner's (2026-11-20); the details below are what the implementat
 - **PLAY opens the mode menu:** VS AI (the old 1 PLAYER), PVP (the old 2 PLAYER, local) and BACK.
   Picking a mode starts the countdown and then the level select, as before. The mode used to be a
   toggle you could change after pressing START; now it is the choice that starts the game.
-- **Credits:** built at runtime from `assets/SOURCES.yaml` (`src/credits.py`), the same data
-  `CREDITS.md`'s asset table is generated from, so the page can't drift from it. Sections: game
+- **Credits:** built from `assets/SOURCES.yaml`, the same data `CREDITS.md`'s asset table is
+  generated from, so the page can't drift from it. `scripts/gen_credits.py` writes the text to
+  `src/credits_data.py` and the game imports that; a test fails when it is out of date. Sections: game
   (VectorViolet), music, sounds, art, fonts, engine. A pack lands in a section by where its files
   live (`fonts/`, `images/`, `sounds/`; a sounds pack whose `used_for` says music is music). It
   doesn't fit the panel, so it scrolls with the mouse wheel and the Up and Down arrow keys, with a
@@ -58,13 +59,16 @@ has the second card hovered):
 - **A separate screen state per page.** `STATE_MENU` keeps one `Menu` with a `page`; the pages
   share the backdrop, the players and the cursor logic, and the countdown runs on the mode page.
 - **Hand-written credits text.** It would have to be kept in step with `SOURCES.yaml` and
-  `CREDITS.md`; reading the file costs nothing, since `assets/` is bundled in every build.
+  `CREDITS.md`.
+- **Reading `SOURCES.yaml` at runtime.** It needs PyYAML, which the browser build doesn't have.
 - **Fitting the credits by shrinking the font.** Silkscreen only looks right at whole multiples of
   16 px, so the text scrolls instead.
 - **Keeping the 1 PLAYER / 2 PLAYER toggles on the main menu.** The owner asked for the mode menu.
 
 ## Result
 
-`pyyaml` is now a declared dependency, and the web entry point lists it too (pygamine only imports
-it in subsystems this game doesn't use, so the browser build had no reason to ship it before), and `types-pyyaml` joins the dev group for mypy. `util.web.open_in_new_tab` is new. The
+The game needs no YAML library at runtime: the first version read `SOURCES.yaml` when the menu
+loaded, and the browser build crashed at startup because pygbag doesn't install PyYAML from the
+entry point's dependency header. The credits text is now generated at development time instead (a
+test boots the browser-mode game with `yaml` blocked). `util.web.open_in_new_tab` is new. The
 README screenshots, the preview and the store media still show the old menu; retaking them is #22.

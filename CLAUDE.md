@@ -64,7 +64,7 @@ This project uses only a small slice of pygamine: `Application`, `Mouse`, and `G
 
 State transitions happen in-band inside the handlers (e.g. `_update_menu` flips to `STATE_LEVEL_SELECT` after a countdown).
 
-`STATE_MENU` has pages, `Menu.page`: main (PLAY, CREDITS, EXIT), mode (VS AI, PVP, BACK), credits (text built by `src/credits.py` from `assets/SOURCES.yaml`, scrolls) and the web build's "Thanks for playing" popup. BACK and Esc (`Game.on_exit_request`) go one page up (closing the window always quits); the level select's BACK goes to the mode menu. On the main menu, EXIT and Esc quit on desktop and open the popup when `util.web.is_web()`.
+`STATE_MENU` has pages, `Menu.page`: main (PLAY, CREDITS, EXIT), mode (VS AI, PVP, BACK), credits (text generated from `assets/SOURCES.yaml` into `src/credits_data.py` by `scripts/gen_credits.py`, scrolls; the game never reads YAML, the browser build has no PyYAML) and the web build's "Thanks for playing" popup. BACK and Esc (`Game.on_exit_request`) go one page up (closing the window always quits); the level select's BACK goes to the mode menu. On the main menu, EXIT and Esc quit on desktop and open the popup when `util.web.is_web()`.
 
 ### Subsystems (composed in `Game.__init__`)
 
@@ -103,8 +103,8 @@ All images, sounds and the fonts live under `assets/`. Loaded directly with `pyg
 
 **Asset sources:** every file under `assets/` must be listed in `assets/SOURCES.yaml` with its
 source pack (or `own`, or `unknown` with a `todo`) and its original file name. Each pack needs its
-license text in `licenses/assets/<slug>.txt`. CREDITS.md's asset section is generated from
-`SOURCES.yaml` by `scripts/gen_credits.py`; don't edit it by hand. `tests/test_sources.py` enforces
+license text in `licenses/assets/<slug>.txt`. CREDITS.md's asset section and `src/credits_data.py` (the credits page's text) are generated from
+`SOURCES.yaml` by `scripts/gen_credits.py`; don't edit them by hand. `tests/test_sources.py` enforces
 all of this. Never add an asset whose origin and license you can't state.
 
 **Devlog and ADRs:** every feature or design-decision PR adds or updates an entry in

@@ -1,7 +1,6 @@
 # /// script
 # dependencies = [
 #   "pygame-ce",
-#   "pyyaml",
 # ]
 # ///
 """Entry point of the web build (pygbag), staged as `main.py` at the root of
