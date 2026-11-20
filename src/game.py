@@ -25,6 +25,9 @@ from util import web
 from world import GameWorld
 
 
+LEFT_BUTTON = 1  # the only mouse button that presses menu buttons and level cards
+
+
 class Game(Application):
     STATE_MENU = "menu"
     STATE_LEVEL_SELECT = "level_select"
@@ -153,8 +156,15 @@ class Game(Application):
         else:
             super().cycle_window_mode(step)
 
+    def _handle_core_event(self, event: pygame.event.Event) -> None:
+        # Closing the window always quits, from any page or state; only Esc goes back.
+        if event.type == pygame.QUIT:
+            super().on_exit_request()
+        else:
+            super()._handle_core_event(event)
+
     def on_exit_request(self) -> None:
-        """Esc (and closing the window): go back one page, like a BACK button. On the main
+        """Esc: go back one page, like a BACK button. On the main
         menu that is EXIT. In the game it returns to the main menu."""
         if self._state == self.STATE_GAME:
             self._audio.stop_game()
@@ -209,7 +219,7 @@ class Game(Application):
     def _handle_menu_event(self, event: pygame.event.Event) -> None:
         if self._countdown != IDLE:
             return  # the page's buttons are gone while the countdown runs
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP and event.button == LEFT_BUTTON:
             name = self._menu.button_at(self.mouse.position)
             if name is not None:
                 self._press_menu_button(name)
@@ -307,7 +317,7 @@ class Game(Application):
         self._cursor.set_state(CLICK if any_hover else NORMAL)
 
     def _handle_level_select_event(self, event: pygame.event.Event) -> None:
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP and event.button == LEFT_BUTTON:
             pos = self.mouse.position
             if self._renderer.back_rect().collidepoint(pos):
                 self._back_to_menu(PAGE_MODE)

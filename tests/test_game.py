@@ -15,6 +15,7 @@ from countdown import END_FRAME
 from game import Game
 from input_handler import AIInputHandler
 from menu import (
+    BUTTONS,
     IDLE,
     PAGE_CREDITS,
     PAGE_MAIN,
@@ -29,9 +30,9 @@ def game():
     return Game()
 
 
-def click(game_, position):
+def click(game_, position, button=1):
     game_.mouse.position = position
-    game_.handle_event(pygame.event.Event(pygame.MOUSEBUTTONUP))
+    game_.handle_event(pygame.event.Event(pygame.MOUSEBUTTONUP, button=button))
 
 
 def test_game_boots_and_cycles_through_every_state(game):
@@ -290,6 +291,53 @@ def test_scrolling_does_nothing_on_the_other_pages(game):
     game.handle_event(pygame.event.Event(pygame.MOUSEWHEEL, x=0, y=-1))
 
     assert game._menu.scroll == 0
+
+
+@pytest.mark.parametrize("button", [2, 3, 4, 5])  # middle, right, wheel up, wheel down
+def test_only_the_left_button_presses_a_menu_button(game, button):
+    show(game, PAGE_MAIN)
+
+    click(game, game._menu.button_rects()["play"].center, button)
+
+    assert game._menu.page == PAGE_MAIN
+
+
+@pytest.mark.parametrize("button", [2, 3, 4, 5])
+def test_only_the_left_button_presses_the_level_selects_buttons(game, button):
+    game._state = Game.STATE_LEVEL_SELECT
+
+    click(game, game._renderer.back_rect().center, button)
+    click(game, game._renderer.level_card_rect(0).center, button)
+
+    assert game._state == Game.STATE_LEVEL_SELECT
+
+
+@pytest.mark.parametrize(
+    "where", ["main", "mode", "credits", "thanks", "countdown", "level select", "game"]
+)
+def test_closing_the_window_always_quits(game, monkeypatch, where):
+    calls = []
+    monkeypatch.setattr(game, "exit", lambda: calls.append(True))
+    show(game, where if where in BUTTONS else PAGE_MODE)
+    if where == "countdown":
+        game._countdown = 20
+    elif where == "level select":
+        game._state = Game.STATE_LEVEL_SELECT
+    elif where == "game":
+        game._state = Game.STATE_GAME
+
+    game._handle_core_event(pygame.event.Event(pygame.QUIT))
+
+    assert calls == [True]
+
+
+def test_a_back_button_never_sits_on_the_exit_button_of_the_page_it_leads_to(game):
+    # A double-click on BACK must not land on the next page's EXIT (or start a mode).
+    exit_rect = BUTTONS[PAGE_MAIN]["exit"][1]
+    for page in (PAGE_MODE, PAGE_CREDITS, PAGE_THANKS):
+        assert not BUTTONS[page]["back"][1].colliderect(exit_rect), page
+    mode_rects = [rect for _, rect in BUTTONS[PAGE_MODE].values()]
+    assert not any(game._renderer.back_rect().colliderect(r) for r in mode_rects)
 
 
 def test_every_menu_page_draws(game):

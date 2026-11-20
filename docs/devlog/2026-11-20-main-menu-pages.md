@@ -65,6 +65,6 @@ has the second card hovered):
 
 ## Result
 
-`pyyaml` is now a declared dependency (pygamine already imported it, so the browser build has it
-too), and `types-pyyaml` joins the dev group for mypy. `util.web.open_in_new_tab` is new. The
+`pyyaml` is now a declared dependency, and the web entry point lists it too (pygamine only imports
+it in subsystems this game doesn't use, so the browser build had no reason to ship it before), and `types-pyyaml` joins the dev group for mypy. `util.web.open_in_new_tab` is new. The
 README screenshots, the preview and the store media still show the old menu; retaking them is #22.

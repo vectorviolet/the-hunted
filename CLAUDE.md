@@ -64,7 +64,7 @@ This project uses only a small slice of pygamine: `Application`, `Mouse`, and `G
 
 State transitions happen in-band inside the handlers (e.g. `_update_menu` flips to `STATE_LEVEL_SELECT` after a countdown).
 
-`STATE_MENU` has pages, `Menu.page`: main (PLAY, CREDITS, EXIT), mode (VS AI, PVP, BACK), credits (text built by `src/credits.py` from `assets/SOURCES.yaml`, scrolls) and the web build's "Thanks for playing" popup. BACK and Esc (`Game.on_exit_request`) go one page up; the level select's BACK goes to the mode menu. On the main menu, EXIT and Esc quit on desktop and open the popup when `util.web.is_web()`.
+`STATE_MENU` has pages, `Menu.page`: main (PLAY, CREDITS, EXIT), mode (VS AI, PVP, BACK), credits (text built by `src/credits.py` from `assets/SOURCES.yaml`, scrolls) and the web build's "Thanks for playing" popup. BACK and Esc (`Game.on_exit_request`) go one page up (closing the window always quits); the level select's BACK goes to the mode menu. On the main menu, EXIT and Esc quit on desktop and open the popup when `util.web.is_web()`.
 
 ### Subsystems (composed in `Game.__init__`)
 

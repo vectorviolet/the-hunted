@@ -37,12 +37,13 @@ BUTTONS: dict[str, dict[str, tuple[str, pygame.Rect]]] = {
     PAGE_MODE: {
         "vs_ai": ("VS AI", centered_button_rect(_SLOT_TOPS[0])),
         "pvp": ("PVP", centered_button_rect(_SLOT_TOPS[1])),
-        "back": ("BACK", centered_button_rect(_SLOT_TOPS[2])),
+        # Not in EXIT's slot: a double-click on BACK must not land on EXIT.
+        "back": ("BACK", centered_button_rect(342)),
     },
     PAGE_CREDITS: {"back": ("BACK", centered_button_rect(352))},
     PAGE_THANKS: {
         "rate": ("LEAVE A COMMENT OR RATING", centered_button_rect(250, _RATE_SIZE)),
-        "back": ("BACK", centered_button_rect(318)),
+        "back": ("BACK", centered_button_rect(330)),
     },
 }
 TITLES = {

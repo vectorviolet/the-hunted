@@ -27,7 +27,7 @@ dev = [
     # Same version as `uvx codespell@...` in ci.yml's spelling job.
     "codespell==2.4.3",
     # Type stubs for pyyaml (mypy checks src/credits.py).
-    "types-pyyaml",
+    "types-pyyaml==6.0.12.20261113",
 ]
 
 [tool.uv.sources]
