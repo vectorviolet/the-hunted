@@ -35,6 +35,8 @@ def countdown_step(countdown: int) -> CountdownStep | None:
     if not 0 < countdown < END_FRAME:
         return None
     index, frame = divmod(countdown, STEP_FRAMES)
+    if index == 0:
+        frame -= 1  # the countdown is first drawn at 1, so "3" starts its drop too
     return CountdownStep(LABELS[index], _DROP[frame] if frame < len(_DROP) else 0)
 
 

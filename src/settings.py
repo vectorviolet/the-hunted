@@ -53,7 +53,7 @@ LIGHT_GREY = (180, 180, 180)
 MID_GREY = (90, 90, 110)
 
 # The art style's palette (docs/design/art-style.md) for everything drawn in code.
-INK = (28, 11, 24)  # violet-black: plates, outlines, shadows
+INK = (20, 14, 20)  # #140e14, the palette's violet-black: plates, outlines, shadows
 RIM = (255, 244, 214)  # the characters' outline color; also bar outlines and titles
 BONE = (217, 215, 220)  # text
 PLUM = (108, 77, 110)  # plate edges

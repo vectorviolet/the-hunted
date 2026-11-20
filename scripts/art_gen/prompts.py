@@ -3,7 +3,9 @@
 Every job is sent to OpenAI Codex image generation by ``generate.py`` with the three style
 references attached (vampire sheet, peasant sheet, icon A). ``kind`` tells ``process.py`` how
 to clean the result up. Outputs are not deterministic: re-running makes new pictures, so the
-raw files that were picked are kept in ``scripts/art_gen/raw/``.
+raw pictures are not kept (about 1.3 MB each; ``generate.py`` writes them to the gitignored
+``scripts/art_gen/work/``). The committed assets in ``assets/images/`` are the source of truth;
+regenerating gives different pictures.
 """
 
 STYLE = (

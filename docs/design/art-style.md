@@ -42,7 +42,7 @@ hard edges (`scripts/art_gen/palette.py` is the single source of truth, `process
 | violet | `#2c2150 #3f3270 #574a8c #7263a8 #8f80c0 #aea2d8` |
 | glow | `#8a4a2a #c07a3a` |
 
-Dark violet-black (`#1c0b18`-ish) is for outlines and shadows only, never for large areas of
+Dark violet-black (`#140e14`) is for outlines and shadows only, never for large areas of
 scenery. Saturated colors (crimson, torch, gold) are accents.
 
 ## Pixel scale

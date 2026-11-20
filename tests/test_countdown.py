@@ -49,6 +49,13 @@ def test_a_glyph_drops_in_and_then_rests():
     assert all(offset % 2 == 0 for offset in offsets)  # whole art pixels (2 px each)
 
 
+def test_every_glyph_starts_its_drop_at_the_same_height():
+    firsts = [countdown_step(1), *(countdown_step(i * STEP_FRAMES) for i in (1, 2, 3))]
+    offsets = [step.offset for step in firsts if step is not None]
+    assert len(offsets) == 4
+    assert len(set(offsets)) == 1 and offsets[0] < 0
+
+
 def _painted_bounds(label: str, offset: int = 0) -> pygame.Rect:
     surface = pygame.Surface((800, 600), pygame.SRCALPHA)
     CountdownGraphic().draw(surface, CountdownStep(label, offset))

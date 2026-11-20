@@ -32,10 +32,10 @@ KEY_DISTANCE = (
     150  # summed channel distance from magenta that still counts as background
 )
 INK = (
-    28,
-    11,
-    24,
-)  # violet-black; fills keyed-out pixels so resizing never bleeds magenta
+    20,
+    14,
+    20,
+)  # #140e14, the palette ink; fills keyed-out pixels so resizing never bleeds magenta
 
 # Readability grade for backgrounds (pass 2, night): mid-dark with real saturation. In the
 # standing band (BAND rows, where the characters and platforms are) luma is held to

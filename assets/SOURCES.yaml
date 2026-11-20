@@ -211,7 +211,7 @@ files:
   "images/ui/panel.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "popup panel frame, 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "popup panel frame, 9-slice with a 20 px border. Reserved for the popups of #18 (Thanks for playing, credits); the game does not load it yet. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/vampire/L1E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"

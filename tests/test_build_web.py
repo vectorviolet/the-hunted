@@ -272,9 +272,9 @@ def test_template_removes_the_loading_page_before_the_game_starts():
     ("text", "background"),
     [
         ("#ffffff", "#000000"),  # loading status on the page
-        ("#ffffff", "#1c0b18"),
-        ("#f3be51", "#1c0b18"),  # CLICK TO PLAY on its plate
-        ("#a8b46c", "#1c0b18"),  # progress bar on its track
+        ("#ffffff", "#140e14"),
+        ("#f3be51", "#140e14"),  # CLICK TO PLAY on its plate
+        ("#a8b46c", "#140e14"),  # progress bar on its track
         ("#a8b46c", "#000000"),
         ("#fff4d6", "#000000"),  # the title
     ],

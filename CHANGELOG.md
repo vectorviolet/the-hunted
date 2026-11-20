@@ -35,8 +35,8 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Text uses bundled pixel fonts instead of the system Comic Sans, so the game looks the same on
-  every machine (see the art style entry above).
+- Text uses the bundled Comic Neue (SIL OFL) instead of the system Comic Sans, so the game looks the
+  same on every machine; sizes are scaled to keep the layout.
 - Startup now opens with the shared splash all the sibling games use: the publisher clip, then
   the pygame logo.
 - pygamine updated to 0.19.0, now at `vectorviolet/pygamine`; repo links point at `vectorviolet`.

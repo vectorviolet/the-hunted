@@ -19,7 +19,7 @@ class GameRenderer:
         self._size = (world.window_w, world.window_h)
 
         self._grounds: dict[str, Platform] = {}
-        self._thumbs: dict[int, pygame.Surface] = {}
+        self._thumbs: dict[tuple[int, int], pygame.Surface] = {}
         self._card = pygame.image.load("assets/images/ui/card.png").convert_alpha()
         self._card_frames: dict[tuple[int, int], pygame.Surface] = {}
 
@@ -185,7 +185,7 @@ class GameRenderer:
 
     def _thumb(self, level: int, width: int) -> pygame.Surface:
         """A level's whole scene (backdrop, ground, platforms) scaled to a card's preview."""
-        thumb = self._thumbs.get(level)
+        thumb = self._thumbs.get((level, width))
         if thumb is None:
             lvl = settings.LEVELS[level]
             scene = load_background(lvl["background"], self._size).copy()
@@ -193,7 +193,9 @@ class GameRenderer:
             for plat in level_platforms(level):
                 plat.draw(scene)
             height = width * self._world.window_h // self._world.window_w
-            thumb = self._thumbs[level] = pygame.transform.scale(scene, (width, height))
+            thumb = self._thumbs[(level, width)] = pygame.transform.scale(
+                scene, (width, height)
+            )
         return thumb
 
     def level_card_rect(self, i: int) -> pygame.Rect:

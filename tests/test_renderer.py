@@ -154,3 +154,9 @@ def test_each_card_previews_its_own_level(renderer):
 
     assert len(previews) == len(settings.LEVELS)
     assert renderer._thumb(0, 132).get_size() == (132, 99)
+
+
+def test_a_preview_is_cached_per_size(renderer):
+    assert renderer._thumb(0, 132) is renderer._thumb(0, 132)
+    assert renderer._thumb(0, 80).get_size() == (80, 60)
+    assert renderer._thumb(0, 132).get_size() == (132, 99)
