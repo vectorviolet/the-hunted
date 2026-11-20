@@ -44,7 +44,7 @@ class Player:
         self.vampire = False
 
         self._shoot_timer = 0
-        self._jump_sound = pygame.mixer.Sound("assets/sounds/jump.wav")
+        self._jump_sound = pygame.mixer.Sound("assets/sounds/jump.ogg")
 
         self.hitbox = pygame.Rect(0, 0, 0, 0)
         self.walk_left: list[pygame.Surface] = []

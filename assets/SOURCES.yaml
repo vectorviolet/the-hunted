@@ -34,13 +34,26 @@ packs:
     attribution: "Stephen \"Redshrike\" Challener, with a link to https://opengameart.org"
     changes: "each 64x64 walking frame is cut out of the original sheet; the pixels are unchanged"
     used_for: "the peasant (Baldric)"
-  wyver9-8bit-beatem-up:
-    name: "8-Bit Beat'em Up Soundtrack"
-    author: "wyver9"
-    url: https://wyver9.bandcamp.com/album/8-bit-beatem-up-soundtrack/
-    license: CC-BY-SA-4.0
-    attribution: "\"8-Bit Beat'em Up Soundtrack\" by wyver9"
-    used_for: "menu and chase music"
+  hydrogene-8-bit-truth:
+    name: "8-bit - Truth"
+    author: "HydroGene"
+    url: https://opengameart.org/content/8-bit-truth
+    license: CC0-1.0
+    changes: "converted from MP3 to Ogg Vorbis (quality 5); the sound is unchanged"
+    used_for: "menu music"
+  hydrogene-8-bit-epic-space-shooter-music:
+    name: "8-bit Epic Space Shooter Music"
+    author: "HydroGene"
+    url: https://opengameart.org/content/8-bit-epic-space-shooter-music
+    license: CC0-1.0
+    changes: "converted from MP3 to Ogg Vorbis (quality 5); the sound is unchanged"
+    used_for: "chase music"
+  kenney-interface-sounds:
+    name: "Interface Sounds"
+    author: "Kenney"
+    url: https://kenney.nl/assets/interface-sounds
+    license: CC0-1.0
+    used_for: "jump sound"
 
 files:
   "fonts/ComicNeue-Regular.ttf":
@@ -371,14 +384,14 @@ files:
   "images/vampire/R9E.png":
     source: unknown
     todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
-  "sounds/chase_theme.wav":
-    source: wyver9-8bit-beatem-up
-    original: "Level 5 Chase"
-    todo: "replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses"
-  "sounds/jump.wav":
-    source: unknown
-    todo: "replaced on 2026-07-09 (commit 4aedf04) without a recorded source: find it, or replace it"
-  "sounds/menu_theme.wav":
-    source: wyver9-8bit-beatem-up
-    original: "Title"
-    todo: "replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses"
+  "sounds/chase_theme.ogg":
+    source: hydrogene-8-bit-epic-space-shooter-music
+    original: "8bit-spaceshooter.mp3"
+    modified: "converted from MP3 to Ogg Vorbis (quality 5)"
+  "sounds/jump.ogg":
+    source: kenney-interface-sounds
+    original: "Audio/maximize_006.ogg"
+  "sounds/menu_theme.ogg":
+    source: hydrogene-8-bit-truth
+    original: "16._truth_0.mp3"
+    modified: "converted from MP3 to Ogg Vorbis (quality 5)"

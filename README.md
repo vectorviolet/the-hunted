@@ -119,7 +119,7 @@ See also the [contributors](https://github.com/vectorviolet/hunted/contributors)
 
 The **code** in this repository is licensed under the MIT License — see the [LICENSE](LICENSE) file.
 
-Some **assets** (vampire sprites, buttons, cursor, jump sound) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace them. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
+Some **assets** (vampire sprites, buttons, cursor) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace them. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
 
 ## Credits
 
