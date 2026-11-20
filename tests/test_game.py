@@ -44,9 +44,9 @@ def test_game_boots_and_cycles_through_every_state(game):
 def test_btn_rect_returns_rects_centered_on_the_window(game):
     cx, cy = game._world.window_w // 2, game._world.window_h // 2
 
-    assert game._btn_rect("1p") == pygame.Rect(cx - 106, cy - 130, 212, 44)
-    assert game._btn_rect("2p") == pygame.Rect(cx - 106, cy - 66, 212, 44)
-    assert game._btn_rect("start") == pygame.Rect(cx - 155, cy - 250, 310, 100)
+    assert game._btn_rect("1p") == pygame.Rect(cx - 106, cy - 120, 212, 44)
+    assert game._btn_rect("2p") == pygame.Rect(cx - 106, cy - 56, 212, 44)
+    assert game._btn_rect("start") == pygame.Rect(cx - 155, cy - 240, 310, 100)
 
 
 def test_clicking_start_kicks_off_the_countdown(game):
@@ -107,15 +107,15 @@ def test_step_intro_two_player_seq_1_holds_p2_until_p1_descends_past_the_thresho
     game._world.two_players = True
     game._intro_seq = 1
     game._intro_flag = False
-    game._p1.y = 490.0
-    game._p2.y = 490.0
+    game._p1.y = settings.FLOOR_Y
+    game._p2.y = settings.FLOOR_Y
     p2_y_before = game._p2.y
 
     game._step_intro()  # p1 still above the 340 gate -- p2 must not move yet
     assert game._p2.y == p2_y_before
     assert game._intro_flag is False
 
-    game._p1.y = 340.0  # force p1 past the gate
+    game._p1.y = settings.FLOOR_Y - 150  # force p1 past the gate
     game._step_intro()
 
     assert game._intro_flag is True
@@ -128,15 +128,15 @@ def test_step_intro_two_player_seq_3_holds_p1_until_p2_descends_past_the_thresho
     game._world.two_players = True
     game._intro_seq = 3
     game._intro_flag = False
-    game._p1.y = 490.0
-    game._p2.y = 490.0
+    game._p1.y = settings.FLOOR_Y
+    game._p2.y = settings.FLOOR_Y
     p1_y_before = game._p1.y
 
     game._step_intro()  # p2 still above the 340 gate -- p1 must not move yet
     assert game._p1.y == p1_y_before
     assert game._intro_flag is False
 
-    game._p2.y = 340.0  # force p2 past the gate
+    game._p2.y = settings.FLOOR_Y - 150  # force p2 past the gate
     game._step_intro()
 
     assert game._intro_flag is True

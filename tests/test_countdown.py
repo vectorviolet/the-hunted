@@ -57,7 +57,7 @@ def test_every_glyph_starts_its_drop_at_the_same_height():
 
 
 def _painted_bounds(label: str, offset: int = 0) -> pygame.Rect:
-    surface = pygame.Surface((800, 600), pygame.SRCALPHA)
+    surface = pygame.Surface((960, 540), pygame.SRCALPHA)
     CountdownGraphic().draw(surface, CountdownStep(label, offset))
     return surface.get_bounding_rect()
 
@@ -82,7 +82,7 @@ def test_the_offset_moves_the_glyph_vertically():
 def test_the_glyphs_look_different():
     images = set()
     for label in ("3", "2", "1", "GO"):
-        surface = pygame.Surface((800, 600))
+        surface = pygame.Surface((960, 540))
         CountdownGraphic().draw(surface, CountdownStep(label, 0))
         images.add(pygame.image.tobytes(surface, "RGB"))
     assert len(images) == 4

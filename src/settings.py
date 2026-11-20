@@ -1,7 +1,9 @@
 from typing import TypedDict
 
-VIRTUAL_W = 800
-VIRTUAL_H = 600
+# The game is drawn on a 960x540 (16:9) canvas. pygamine scales it with nearest-neighbor
+# to the window: fullscreen on a 1920x1080 screen is an exact 2x, so the pixels stay sharp.
+VIRTUAL_W = 960
+VIRTUAL_H = 540
 FPS = 60
 TITLE = "The Hunted"
 
@@ -12,10 +14,12 @@ TITLE = "The Hunted"
 TITLE_FONT = "assets/fonts/Jacquard12-Regular.ttf"
 UI_FONT = "assets/fonts/Silkscreen-Regular.ttf"
 WINDOW_ICON = "assets/images/icon/icon_64.png"
-FLOOR_Y = 490.0
-GROUND_Y = (
-    550  # visual ground-tile top; matches the player foot line when standing on FLOOR_Y
-)
+GROUND_HEIGHT = 50  # the ground strip, drawn at the bottom of the canvas
+GROUND_Y = VIRTUAL_H - GROUND_HEIGHT  # visual ground-tile top (490)
+FLOOR_Y = float(
+    GROUND_Y - 60
+)  # a player's y when standing on the ground: the foot line is
+# at the ground tile's top
 
 
 # Physics
@@ -63,7 +67,9 @@ GOLD = (243, 190, 81)  # hints, bullets
 BULLET_COLOR = GOLD
 
 
-# Levels  — platform y must end in 0 so velocity steps land cleanly
+# Levels  — platform y must end in 0 so velocity steps land cleanly. Laid out on the 960x540
+# canvas: the old 800x600 layouts moved up 60 px (the ground is 60 px higher) and stretched 1.2x
+# sideways, so every vertical step is unchanged and the platforms span the whole width.
 class Level(TypedDict):
     name: str
     background: str  # assets/images/background/<background>.png
@@ -77,9 +83,9 @@ LEVELS: list[Level] = [
         "background": "classic",
         "style": "classic",
         "platforms": [
-            ((0, 400), 300, 50),
-            ((500, 400), 300, 50),
-            ((250, 250), 300, 50),
+            ((0, 340), 360, 50),
+            ((600, 340), 360, 50),
+            ((300, 190), 360, 50),
         ],
     },
     {
@@ -87,11 +93,11 @@ LEVELS: list[Level] = [
         "background": "towers",
         "style": "towers",
         "platforms": [
-            ((0, 430), 220, 30),
-            ((580, 430), 220, 30),
-            ((150, 300), 220, 30),
-            ((430, 300), 220, 30),
-            ((310, 170), 180, 30),
+            ((0, 370), 264, 30),
+            ((696, 370), 264, 30),
+            ((180, 240), 264, 30),
+            ((516, 240), 264, 30),
+            ((372, 110), 216, 30),
         ],
     },
     {
@@ -99,13 +105,13 @@ LEVELS: list[Level] = [
         "background": "arena",
         "style": "arena",
         "platforms": [
-            ((50, 480), 160, 20),
-            ((590, 480), 160, 20),
-            ((200, 370), 180, 20),
-            ((420, 370), 180, 20),
-            ((0, 260), 200, 20),
-            ((600, 260), 200, 20),
-            ((300, 190), 200, 20),
+            ((60, 420), 192, 20),
+            ((708, 420), 192, 20),
+            ((240, 310), 216, 20),
+            ((504, 310), 216, 20),
+            ((0, 200), 240, 20),
+            ((720, 200), 240, 20),
+            ((360, 130), 240, 20),
         ],
     },
 ]

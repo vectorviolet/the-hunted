@@ -48,9 +48,9 @@ scenery. Saturated colors (crimson, torch, gold) are accents.
 ## Pixel scale
 
 - **Characters: 1x.** 64x64 frames, drawn 1 art pixel = 1 screen pixel (already done).
-- **Scenery and UI: 2x.** They are made at 400x300 (half of the 800x600 game) and enlarged with
+- **Scenery and UI: 2x.** They are made at 480x270 (half of the 960x540 game) and enlarged with
   nearest neighbor, so one art pixel is 2x2 screen pixels. Reasons: AI generation does not hold a
-  true 1 px grid at 800x600, and chunkier scenery behind finer characters helps the characters
+  true 1 px grid at 960x540, and chunkier scenery behind finer characters helps the characters
   read. This is a deliberate, single rule; there are no mixed scales inside one asset.
   (If the owner wants everything at 1x, the pipeline has one constant, `SCALE` in
   `scripts/art_gen/process.py`, but the detail gets noisy.)
@@ -100,7 +100,7 @@ warm hue and outline, which is why cool backgrounds matter.
 
 ## Backgrounds
 
-800x600, one per level plus the menu. The owner's picks, from two moods each (the rejected
+960x540 (16:9), one per level plus the menu. The owner's picks, from two moods each (the rejected
 candidates are in the devlog, `docs/devlog/2026-11-20-art-style-candidates.md`):
 
 | Screen | File | Scene |

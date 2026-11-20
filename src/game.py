@@ -113,9 +113,9 @@ class Game(Application):
     def _btn_rect(self, name: str) -> pygame.Rect:
         cx, cy = self._world.window_w // 2, self._world.window_h // 2
         return {
-            "1p": pygame.Rect(cx - 106, cy - 130, 212, 44),
-            "2p": pygame.Rect(cx - 106, cy - 66, 212, 44),
-            "start": pygame.Rect(cx - 155, cy - 250, 310, 100),
+            "1p": pygame.Rect(cx - 106, cy - 120, 212, 44),
+            "2p": pygame.Rect(cx - 106, cy - 56, 212, 44),
+            "start": pygame.Rect(cx - 155, cy - 240, 310, 100),
         }[name]
 
     def _reset_players(self) -> None:
@@ -236,7 +236,7 @@ class Game(Application):
         if self._world.two_players:
             if self._intro_seq == 1:
                 self._p1.intro_jump()
-                if self._p1.y <= 340:
+                if self._p1.y <= settings.FLOOR_Y - 150:
                     self._intro_flag = True
                 if self._intro_flag:
                     self._p2.intro_jump()
@@ -245,7 +245,7 @@ class Game(Application):
                 self._p2.intro_jump()
             else:
                 self._p2.intro_jump()
-                if self._p2.y <= 340:
+                if self._p2.y <= settings.FLOOR_Y - 150:
                     self._intro_flag = True
                 if self._intro_flag:
                     self._p1.intro_jump()

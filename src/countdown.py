@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 import pygame
 
-CENTER = (400, 160)  # the glyph is centered here
+CENTER = (480, 150)  # the glyph is centered here
 STEP_FRAMES = 15  # frames per glyph (0.25 s at 60 FPS, one update per frame)
 LABELS = ("3", "2", "1", "GO")
 END_FRAME = STEP_FRAMES * len(

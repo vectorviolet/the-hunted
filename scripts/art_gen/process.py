@@ -46,9 +46,12 @@ BAND = (0.4, 0.9)
 SATURATION = 1.1
 
 # Logical (half resolution) sizes.
-BG_SIZE = (400, 300)
+CROP_TOP = (
+    0.3  # share of the cropped-off height taken from the top (the rest from the bottom)
+)
+BG_SIZE = (480, 270)  # half of the 960x540 canvas
 PLATFORM_HEIGHTS = {"classic": 25, "towers": 15, "arena": 10}  # screen 50 / 30 / 20
-GROUND_HEIGHT = 25  # screen 50 (settings.GROUND_Y 550 to 600)
+GROUND_HEIGHT = 25  # screen 50 (settings.GROUND_Y 490 to 540)
 CAP, MID = (
     8,
     16,
@@ -156,9 +159,11 @@ def grade(img: Image.Image) -> Image.Image:
 def process_bg(name: str) -> None:
     img = Image.open(raw_path(name)).convert("RGB")
     w, h = img.size
-    cw = round(h * 4 / 3)
-    left = (w - cw) // 2
-    img = img.crop((left, 0, left + cw, h))
+    # 16:9 from the 3:2 picture: all of the width, and the top part of the height (the sky and
+    # the scenery are on top; the bottom is calm ground haze that the ground strip covers).
+    ch = round(w * 9 / 16)
+    top = round((h - ch) * CROP_TOP)
+    img = img.crop((0, top, w, top + ch))
     img = img.resize(BG_SIZE, Image.Resampling.BOX)
     img = majority(snap(grade(img)))
     if name in PICKED_BACKGROUNDS:

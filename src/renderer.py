@@ -10,6 +10,7 @@ CARD_BORDER = 20  # px of the card frame art that keep their pixels
 CARD_LIFT = 6  # a hovered card is drawn this much higher
 THUMB_MARGIN = 24  # a card's preview is inset this far from its sides
 PLATE_EDGE = 2  # border width of the HUD plates
+CARD_SIZE = (240, 210)  # a level-select card
 
 
 class GameRenderer:
@@ -200,7 +201,7 @@ class GameRenderer:
 
     def level_card_rect(self, i: int) -> pygame.Rect:
         n = len(settings.LEVELS)
-        cw, ch = 180, 210
+        cw, ch = CARD_SIZE
         gap = 25
         total_w = n * cw + (n - 1) * gap
         start_x = (self._world.window_w - total_w) // 2

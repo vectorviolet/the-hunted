@@ -1,4 +1,4 @@
-"""Screenshots of the game (800x600 frames) for the devlog, README and store media.
+"""Screenshots of the game (960x540 frames) for the devlog, README and store media.
 
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run python scripts/art_gen/shoot.py [prefix]
 

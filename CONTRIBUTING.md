@@ -117,7 +117,7 @@ python -m http.server 8000 --bind 127.0.0.1 -d build/web
 Open `http://127.0.0.1:8000` in a focused desktop browser and click the page to start.
 `--stage-only` stages the files without pygbag (CI does this). After the first release, enable
 **This file will be played in the browser** on the itch.io upload and pick the embed size
-(800x600 is the game's canvas). Design: [ADR 0001](docs/decisions/0001-web-build.md).
+(960x540, 16:9, is the game's canvas). Design: [ADR 0001](docs/decisions/0001-web-build.md).
 
 ### Windows installer
 

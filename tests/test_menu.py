@@ -20,7 +20,7 @@ class FakeCursor:
 
 
 def make_menu():
-    return Menu(800, 600, FakeCursor())
+    return Menu(960, 540, FakeCursor())
 
 
 def test_construction_builds_every_button_in_all_three_states():
@@ -67,7 +67,7 @@ def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
 ):
     menu = make_menu()
     menu.update_button_state("1p", hovered=True, pressed=False)
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=100, p1=p1)
@@ -77,7 +77,7 @@ def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
 
 def test_draw_switches_the_cursor_with_the_button_state(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.update_button_state("2p", hovered=True, pressed=True)
@@ -102,7 +102,7 @@ def test_the_three_button_states_look_different():
 
 def test_draw_supports_single_player_with_no_p2(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=100, p1=p1, p2=None)  # must not raise
@@ -110,7 +110,7 @@ def test_draw_supports_single_player_with_no_p2(world, input_handler):
 
 def test_draw_with_two_players(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
     p2 = Player(world, (200, 100), input_handler)
 
@@ -119,7 +119,7 @@ def test_draw_with_two_players(world, input_handler):
 
 def test_draw_mid_countdown_draws_the_countdown(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=30, p1=p1)  # must not raise, no start screen drawn
@@ -130,7 +130,7 @@ def test_draw_paints_the_countdown_only_while_it_runs(world, input_handler):
     p1 = Player(world, (100, 100), input_handler)
 
     def frame(countdown):
-        surface = pygame.Surface((800, 600))
+        surface = pygame.Surface((960, 540))
         menu.draw(surface, countdown=countdown, p1=p1)
         return pygame.image.tobytes(surface, "RGB")
 
@@ -143,7 +143,7 @@ def test_draw_paints_the_countdown_only_while_it_runs(world, input_handler):
 
 def test_draw_late_countdown_draws_go(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=55, p1=p1)  # must not raise
@@ -151,7 +151,7 @@ def test_draw_late_countdown_draws_go(world, input_handler):
 
 def test_cursor_goes_back_to_normal_once_the_countdown_runs(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
     menu.update_button_state("start", hovered=True, pressed=True)
     menu.draw(surface, countdown=100, p1=p1)

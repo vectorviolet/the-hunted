@@ -70,11 +70,11 @@ class Menu:
             start = self._start_btn[
                 self._state(self._btn_start_hover, self._btn_start_click)
             ]
-            surface.blit(start, (cx - 155, cy - 250))
+            surface.blit(start, (cx - 155, cy - 240))
             btn_1p = self._btn_1p[self._state(self._btn_1p_hover, self._btn_1p_click)]
             btn_2p = self._btn_2p[self._state(self._btn_2p_hover, self._btn_2p_click)]
-            surface.blit(btn_1p, (cx - 106, cy - 130))
-            surface.blit(btn_2p, (cx - 106, cy - 66))
+            surface.blit(btn_1p, (cx - 106, cy - 120))
+            surface.blit(btn_2p, (cx - 106, cy - 56))
 
         # The buttons only exist before the countdown starts; afterwards it is a plain arrow.
         any_hover = self._btn_1p_hover or self._btn_2p_hover or self._btn_start_hover

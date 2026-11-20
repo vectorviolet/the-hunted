@@ -35,14 +35,14 @@ def test_dx_is_the_direct_difference_within_half_the_window(world, input_handler
 
 
 def test_dx_wraps_the_short_way_when_target_is_past_the_far_edge(world, input_handler):
-    # self near x=10, target near x=790 on an 800-wide screen -- the short
-    # path is 20px leftward (wrapping through x=0), not 780px rightward.
-    ai, _, _ = make_ai(world, input_handler, self_x=10, target_x=790)
+    # self near x=10, target near x=950 on a 960-wide screen -- the short
+    # path is 20px leftward (wrapping through x=0), not 940px rightward.
+    ai, _, _ = make_ai(world, input_handler, self_x=10, target_x=950)
     assert ai._dx() == -20
 
 
 def test_dx_wraps_the_short_way_in_the_other_direction(world, input_handler):
-    ai, _, _ = make_ai(world, input_handler, self_x=790, target_x=10)
+    ai, _, _ = make_ai(world, input_handler, self_x=950, target_x=10)
     assert ai._dx() == 20
 
 

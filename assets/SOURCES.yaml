@@ -51,19 +51,19 @@ files:
   "images/background/arena.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "Arena level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_arena_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "Arena level background (960x540). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_arena_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/background/classic.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "Classic level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_classic_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "Classic level background (960x540). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_classic_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/background/menu.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "main-menu background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_menu_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "main-menu background (960x540). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_menu_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/background/towers.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "Towers level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_towers_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "Towers level background (960x540). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_towers_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/countdown/1.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"

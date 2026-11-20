@@ -10,7 +10,7 @@
 Highrise and Chokepoint already run in desktop browsers through pygbag 0.9.3
 ([Highrise ADR 0004](https://github.com/vectorviolet/highrise/blob/main/docs/decisions/0004-web-build.md)).
 Hunted uses the same pygamine commit, which has `Application.run_async()`. Hunted is simpler than
-those games: no saves, no config files, no PyYAML, one 800x600 canvas, and its logic runs per
+those games: no saves, no config files, no PyYAML, one 960x540 canvas (800x600 when this was decided; the 16:9 change is in the art style devlog entry), and its logic runs per
 frame at 60 FPS, the same as the browser's frame rate, so no catch-up stepping is needed.
 
 ## Decision

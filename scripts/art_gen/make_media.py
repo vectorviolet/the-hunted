@@ -40,12 +40,10 @@ FULL = (1920, 1080)
 
 
 def letterbox(frame: Image.Image) -> Image.Image:
-    """The 800x600 game frame the way the real window shows it on a 1920x1080 screen: scaled to
-    1440x1080 and centered with black bars."""
-    scaled = frame.convert("RGB").resize((1440, 1080), Image.Resampling.NEAREST)
-    canvas = Image.new("RGB", FULL, (0, 0, 0))
-    canvas.paste(scaled, ((FULL[0] - 1440) // 2, 0))
-    return canvas
+    """The 960x540 game frame the way the real window shows it fullscreen on a 1920x1080
+    screen: an exact 2x, nearest-neighbor."""
+    assert frame.size == (960, 540), frame.size
+    return frame.convert("RGB").resize(FULL, Image.Resampling.NEAREST)
 
 
 def screenshots() -> None:
@@ -182,27 +180,32 @@ def covers() -> None:
 
 
 def devlog_comparisons() -> None:
-    """Real in-game before (current main at the time, shot as work/today_*.png) and after,
-    side by side, 1280 px wide for the devlog."""
+    """The 4:3 game (work/p43_*.png, the 800x600 frames from before the 16:9 change) next to
+    the 16:9 one (work/after_*.png), both at 0.7x so the pair fits the devlog's 1280 px."""
     out = ROOT / "docs" / "devlog" / "img"
+    scale = 0.7
     for name in ("menu", "level_select", "level0", "level1", "level2"):
-        before = WORK / f"today_{name}.png"
-        if not before.exists():
+        old = WORK / f"p43_{name}.png"
+        if not old.exists():
             continue
-        sheet = Image.new("RGB", (1280, 26 + 480), (24, 20, 28))
+        left = Image.open(old).convert("RGB")
+        right = Image.open(WORK / f"after_{name}.png").convert("RGB")
+        left = left.resize((round(w * scale) for w in left.size), Image.Resampling.BOX)
+        right = right.resize(
+            (round(w * scale) for w in right.size), Image.Resampling.BOX
+        )
+        height = max(left.height, right.height)
+        sheet = Image.new(
+            "RGB", (left.width + 8 + right.width, 26 + height), (24, 20, 28)
+        )
         d = ImageDraw.Draw(sheet)
         d.fontmode = "1"
         small = font("Silkscreen-Regular.ttf", 8)
-        d.text((6, 8), "BEFORE (MAIN)", font=small, fill=BONE)
-        d.text((650, 8), "AFTER (THIS PR)", font=small, fill=GOLD)
-        for x, src in ((0, before), (640, WORK / f"after_{name}.png")):
-            frame = (
-                Image.open(src)
-                .convert("RGB")
-                .resize((640, 480), Image.Resampling.NEAREST)
-            )
-            sheet.paste(frame, (x, 26))
-        sheet.save(out / f"19-phase2-{name.replace('_', '-')}.png", optimize=True)
+        d.text((6, 8), "4:3 (800X600)", font=small, fill=BONE)
+        d.text((left.width + 14, 8), "16:9 (960X540)", font=small, fill=GOLD)
+        sheet.paste(left, (0, 26))
+        sheet.paste(right, (left.width + 8, 26))
+        sheet.save(out / f"19-169-{name.replace('_', '-')}.png", optimize=True)
 
 
 def main() -> None:

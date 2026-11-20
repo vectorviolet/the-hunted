@@ -23,7 +23,7 @@ src/pixelart.py        three_slice and nine_slice: platform strips and UI frames
 src/buttons.py         Menu button images (iron art + the label in the UI font)
 src/audio.py           Menu and game music
 src/cursor.py          Custom multi-state mouse cursor
-src/settings.py        Physics, combat, colors and the three level layouts, as plain constants
+src/settings.py        Canvas size (960x540), physics, combat, colors and the three level layouts, as plain constants
 src/util/              Frozen-build resource paths, the browser check (web.py)
 src/pygamine/          Engine submodule (Application, Mouse and GameObject are used)
 assets/                Images, sounds, fonts (every file listed in assets/SOURCES.yaml)
