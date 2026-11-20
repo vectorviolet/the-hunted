@@ -10,18 +10,21 @@ STYLE = (
     "Crisp retro pixel art in exactly the style of the attached reference images (the vampire "
     "and peasant walk sheets and the vampire face icon): hard pixel edges, NO anti-aliasing, "
     "no blur, no gradients, no dithering noise, no painterly texture, a small limited palette "
-    "(violet-black, deep purple, dusk lilac and gray, bone white, crimson, warm torch orange, "
+    "(violet-black, deep purple, deep blue, teal, bone white, crimson, warm torch orange, "
     "straw gold, moss green, brown). Light comes from the upper left (the moon). "
     "No text, no letters, no people, no creatures, no watermark."
 )
 
 BG_RULES = (
     "This is a game background behind two small characters that run left and right across the "
-    "middle and lower middle of the picture, so READABILITY matters most: mid-to-light tones "
-    "only, dull and desaturated (dusk lilac, gray-blue, soft slate, muted rose); low contrast; "
-    "NO dark bands, NO black silhouettes, NO dark tree line or dark wall in the lower two thirds "
-    "of the picture; the area between 40% and 90% of the height must stay calm, light and "
-    "uncluttered. Strong detail only in the upper part and at the far left and right edges. "
+    "middle and lower middle of the picture (one is a black-and-crimson vampire, the other a "
+    "peasant in warm brown and gold). Night or deep-dusk mood, mid-dark values with real "
+    "saturation: deep blue, teal and violet, cool and moody, with a pale moon and a few warm "
+    "torch or window lights as accents. In the area between 40% and 90% of the height keep the "
+    "values mid-dark (not black, not bright): NO near-black shapes, NO black silhouettes or dark "
+    "tree line there, and no saturated red or crimson near the middle (red is reserved for the "
+    "vampire). Strong detail in the upper part and at the far left and right edges; the middle "
+    "stays calm but is a rich cool color with soft texture, not a flat fill. "
     "The scene continues to the bottom edge (no ground strip is needed, it is added later). "
     "Wide landscape image, 1536x1024, side view, flat 2D, no perspective floor."
 )
@@ -31,25 +34,25 @@ MAGENTA = "on a perfectly flat solid magenta (#FF00FF) background, nothing else 
 BACKGROUNDS = {
     "bg_menu_a": "A gothic vampire castle on a distant cliff under a huge pale moon, drifting "
     "clouds, a few small bats, quiet misty valley below. Main-menu mood: grand and calm.",
-    "bg_menu_b": "A hilltop graveyard at dusk with an iron gate and leaning stone crosses far "
+    "bg_menu_b": "A hilltop graveyard at night with an iron gate and leaning stone crosses far "
     "away, the castle tiny on the horizon, moon behind thin clouds, low fog. Main-menu mood: "
     "eerie and quiet.",
-    "bg_classic_a": "Moonlit mountain valley at dusk: layered pale lilac mountains, a few "
+    "bg_classic_a": "Moonlit mountain valley at night: layered deep blue and teal mountains with pale snow caps, a few "
     "scattered pines far away, a tiny village with glowing windows at the horizon, a big "
     "pale moon.",
-    "bg_classic_b": "A warm dusk over rolling hills: soft rose and peach sky, a windmill and "
-    "village rooftops far away, thin purple clouds, a low pale moon.",
-    "bg_towers_a": "A castle courtyard at dusk: light gray stone walls with battlements and "
+    "bg_classic_b": "A deep violet dusk over rolling teal hills: indigo sky with a band of dim magenta-orange glow "
+    "at the horizon, a windmill and village rooftops with lit windows far away, a low pale moon.",
+    "bg_towers_a": "A castle courtyard at night: blue-gray stone walls with battlements and "
     "red banners on the far left and right, torches, a tall gothic window glowing, the castle "
     "on a hill in the distance, pale moon. Open misty sky in the middle.",
     "bg_towers_b": "A skyline of tall gothic spires and tower tops seen far away through "
-    "lilac fog at dusk, tiny glowing windows, flying buttresses, pale moon, open sky in the "
+    "deep blue fog at night, tiny glowing windows, flying buttresses, pale moon, open sky in the "
     "middle.",
     "bg_arena_a": "A ruined ancient stone arena at twilight: crumbling arches and broken "
-    "columns of pale sandstone at the far left and right, hanging torches, sandy haze, a pale "
+    "columns of cool blue-gray stone at the far left and right, hanging torches, sandy haze, a pale "
     "moon over the open middle.",
-    "bg_arena_b": "The inside of a vast gothic cathedral ruin: tall pale stone pillars and "
-    "pointed arches at the far left and right, a large rose window glowing crimson high up, "
+    "bg_arena_b": "The inside of a vast gothic cathedral ruin: tall blue-gray stone pillars and "
+    "pointed arches at the far left and right, a large rose window glowing violet and amber high up, "
     "dust rays, open hazy nave in the middle.",
 }
 

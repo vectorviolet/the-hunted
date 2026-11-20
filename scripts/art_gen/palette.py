@@ -48,6 +48,25 @@ SCENERY: dict[str, list[str]] = {
     "grass": ["#6a7a3a", "#8a9a52", "#a8b46c"],
     "torch": ["#d9692a", "#f6e08a"],
     "banner": ["#b83a45", "#d86a70"],
+    # Night ramps for the moody backgrounds (pass 2): cool, mid-dark, saturated.
+    "nightblue": [
+        "#1e2a52",
+        "#2b3b6b",
+        "#3a4e86",
+        "#4d64a0",
+        "#667db8",
+        "#8a9ed0",
+    ],
+    "teal": ["#1c4650", "#2a6270", "#3b8090", "#58a0ae", "#82c0c8"],
+    "violet": [
+        "#2c2150",
+        "#3f3270",
+        "#574a8c",
+        "#7263a8",
+        "#8f80c0",
+        "#aea2d8",
+    ],
+    "glow": ["#8a4a2a", "#c07a3a"],
 }
 
 

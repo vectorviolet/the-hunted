@@ -1,9 +1,10 @@
 """Clean the raw Codex pictures up into game-ready pixel art (hard edges, shared palette).
 
-    python scripts/art_gen/process.py [name ...]     # default: every raw picture
+    uv run --group art python scripts/art_gen/process.py [name ...]     # default: every raw picture
 
-Needs Pillow and numpy (``pip install pillow numpy``); the game itself does not.
-Reads ``scripts/art_gen/work/raw/<name>.png`` (or ``raw/`` next to this file when committed),
+Needs Pillow and numpy, in the optional ``art`` dependency group: ``uv run --group art python
+scripts/art_gen/process.py``. The game itself does not need them.
+Reads ``scripts/art_gen/work/raw/<name>.png`` (written by generate.py, not committed),
 writes ``assets/images/style/*.png``. Pixel scale is 2: art is made at half resolution, then
 enlarged 2x with nearest neighbor, so one art pixel is 2x2 screen pixels (the characters are
 drawn at 1x, see docs/design/art-style.md).
@@ -34,9 +35,13 @@ INK = (
     24,
 )  # violet-black; fills keyed-out pixels so resizing never bleeds magenta
 
-# Readability grade for backgrounds: lighter and duller than the characters.
-LUMA_LO, LUMA_HI = 70.0, 205.0
-SATURATION = 0.8
+# Readability grade for backgrounds (pass 2, night): mid-dark with real saturation. In the
+# standing band (BAND rows, where the characters and platforms are) luma is held to
+# BAND_LUMA: no near-black, nothing bright, and saturated red is toned down (red is the vampire's).
+LUMA_LO, LUMA_HI = 40.0, 170.0
+BAND_LUMA = (68.0, 125.0)
+BAND = (0.4, 0.9)
+SATURATION = 1.1
 
 # Logical (half resolution) sizes.
 BG_SIZE = (400, 300)
@@ -54,10 +59,10 @@ DIGIT_HEIGHT = 40
 
 
 def raw_path(name: str) -> Path:
-    for folder in (HERE / "raw", HERE / "work" / "raw"):
-        if (folder / f"{name}.png").exists():
-            return folder / f"{name}.png"
-    raise FileNotFoundError(name)
+    path = HERE / "work" / "raw" / f"{name}.png"
+    if not path.exists():
+        raise FileNotFoundError(name)
+    return path
 
 
 def snap(rgb: Image.Image) -> Image.Image:
@@ -103,11 +108,28 @@ def enlarge(img: Image.Image) -> Image.Image:
 
 def grade(img: Image.Image) -> Image.Image:
     a = np.asarray(img.convert("RGB")).astype(np.float64)
+    h = a.shape[0]
     luma = a @ np.array([0.299, 0.587, 0.114])
     gray = luma[..., None]
     a = gray + (a - gray) * SATURATION
     target = LUMA_LO + (LUMA_HI - LUMA_LO) * (luma / 255.0)
+    # Weight 1 inside the standing band, fading out over 8% of the height on both sides.
+    rows = np.arange(h) / h
+    fade = 0.08
+    w = np.clip(
+        np.minimum((rows - (BAND[0] - fade)) / fade, ((BAND[1] + fade) - rows) / fade),
+        0,
+        1,
+    )[:, None]
+    lo, hi = BAND_LUMA
+    banded = np.clip(lo + (target - LUMA_LO) * (hi - lo) / (LUMA_HI - LUMA_LO), lo, hi)
+    target = (1 - w) * target + w * banded
     a = a * (target / np.maximum(luma, 1.0))[..., None]
+    # Tone down strong reds in the band so the cape does not blend into the scenery.
+    red = (a[..., 0] - np.maximum(a[..., 1], a[..., 2])) > 50
+    mix = np.where(red & (w > 0.5), 0.4, 1.0)[..., None]
+    g2 = a @ np.array([0.299, 0.587, 0.114])
+    a = g2[..., None] + (a - g2[..., None]) * mix
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
@@ -127,8 +149,14 @@ def key_mask(img: Image.Image) -> np.ndarray:
     return np.abs(a - KEY).sum(axis=2) > KEY_DISTANCE
 
 
+SLAB_DIM = 0.78  # night grade for platforms and ground: moonlit, not bright
+
+
 def cutout(
-    img: Image.Image, size: tuple[int, int] | None = None, height: int | None = None
+    img: Image.Image,
+    size: tuple[int, int] | None = None,
+    height: int | None = None,
+    dim: float = 1.0,
 ) -> Image.Image:
     """Crop to the non-magenta part, resize (box), hard alpha, snap to the palette."""
     mask = key_mask(img)
@@ -142,6 +170,8 @@ def cutout(
         assert height is not None
         size = (max(1, round(sub.width * height / sub.height)), height)
     sub = sub.resize(size, Image.Resampling.BOX)
+    if dim != 1.0:
+        sub = Image.fromarray((np.asarray(sub) * dim).astype(np.uint8))
     alpha = alpha.resize(size, Image.Resampling.BOX).point(
         lambda v: 255 if v >= 128 else 0
     )
@@ -189,7 +219,7 @@ def process_slab(name: str) -> None:
         ("platform", PLATFORM_HEIGHTS[level]),
         ("ground", GROUND_HEIGHT),
     ):
-        slab = cutout(raw, height=height)
+        slab = cutout(raw, height=height, dim=SLAB_DIM)
         # 3-slice sheet: left cap | middle (patch + its mirror, so it tiles seamlessly) | right cap
         patch_w = MID // 2
         mid_x = (slab.width - patch_w) // 2

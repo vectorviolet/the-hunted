@@ -1,9 +1,10 @@
 """Composite the art-style mockups: today (current main) vs proposed, plus candidate sheets.
 
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run python scripts/art_gen/shoot_today.py
-    python scripts/art_gen/mockups.py
+    uv run --group art python scripts/art_gen/mockups.py
 
-Needs Pillow and numpy. Reads assets/images/style/*, the character frames in
+Needs the ``art`` dependency group (``uv run --group art python scripts/art_gen/mockups.py``).
+Reads assets/images/style/*, the character frames in
 assets/images/{vampire,peasant}/, assets/fonts/ and scripts/art_gen/work/today_*.png; writes
 docs/devlog/img/19-*.png (all at most 1280 px wide, the devlog rule).
 """
@@ -491,7 +492,7 @@ def sheet_fonts() -> None:
 
 
 def sheet_palette() -> None:
-    img = Image.new("RGB", (1280, 360), (24, 20, 28))
+    img = Image.new("RGB", (1280, 540), (24, 20, 28))
     d = ImageDraw.Draw(img)
     d.fontmode = "1"
     y = 10
@@ -511,24 +512,77 @@ def sheet_palette() -> None:
     img.save(OUT / "19-palette.png")
 
 
+def char_spots(level: str) -> list[tuple[str, tuple[int, int], bool]]:
+    """Where the two characters stand in the in-game mockup: (role, sprite top-left, faces left)."""
+    plats = LEVELS[level]
+    v = (plats[0][0][0] + 90, plats[0][0][1] - 60)
+    p = (plats[1][0][0] + plats[1][1] - 150, plats[1][0][1] - 60)
+    return [("vampire", v, False), ("peasant", p, True)]
+
+
 def readability() -> None:
-    """Mean luma of each background's playing band vs the characters' bodies."""
+    """Measured check of the pass 2 (night) readability rule, characters rendered with outline.
+
+    Targets: in the standing band (40% to 90% of the height) luma 55 to 120 with no near-black
+    (below 40) and little saturated red; behind each character (its silhouette dilated by 6 px,
+    background only) the same, and the vampire's body tones (luma 30 to 60) must not be the
+    backdrop.
+    """
     band = (int(H * 0.4), int(H * 0.9))
-    rows = []
+    lines = []
     for lvl in ("menu", "classic", "towers", "arena"):
         for v in ("a", "b"):
-            a = np.asarray(load(f"bg_{lvl}_{v}").convert("L")).astype(float)
-            seg = a[band[0] : band[1]]
-            rows.append(
-                f"{lvl} {v}: band luma mean {seg.mean():.0f}, min {seg.min():.0f}, max {seg.max():.0f}"
+            bg = load(f"bg_{lvl}_{v}").convert("RGB")
+            a = np.asarray(bg).astype(float)
+            luma = a @ np.array([0.299, 0.587, 0.114])
+            seg = luma[band[0] : band[1]]
+            rgb = a[band[0] : band[1]]
+            red = ((rgb[..., 0] - np.maximum(rgb[..., 1], rgb[..., 2])) > 50).mean()
+            spots = (
+                [
+                    ("vampire", (120, GROUND_Y - 60), False),
+                    ("peasant", (610, GROUND_Y - 60), True),
+                ]
+                if lvl == "menu"
+                else char_spots(lvl)
+            )
+            behind_means = []
+            dark = 0.0
+            for role, (x, y), left in spots:
+                sprite = character(role, left)
+                alpha = np.asarray(sprite)[..., 3] > 0
+                pad = np.pad(alpha, 6)
+                grow = np.zeros_like(pad)
+                for dy in range(-6, 7):
+                    for dx in range(-6, 7):
+                        grow |= np.roll(np.roll(pad, dy, 0), dx, 1)
+                ys, xs = np.where(grow)
+                ys = ys + y - 6
+                xs = xs + x - 6
+                keep = (ys >= 0) & (ys < H) & (xs >= 0) & (xs < W)
+                vals = luma[ys[keep], xs[keep]]
+                behind_means.append(vals.mean())
+                dark = max(dark, ((vals >= 30) & (vals <= 60)).mean())
+            ok = (
+                55 <= seg.mean() <= 120
+                and (seg < 40).mean() < 0.01
+                and red < 0.02
+                and dark < 0.1
+            )
+            lines.append(
+                f"{lvl} {v}: band luma mean {seg.mean():.0f} (min {seg.min():.0f}, max {seg.max():.0f}), "
+                f"under 40: {(seg < 40).mean():.1%}, red: {red:.1%}, behind characters "
+                f"{min(behind_means):.0f}-{max(behind_means):.0f}, vampire-tone backdrop {dark:.1%}"
+                f" -> {'PASS' if ok else 'CHECK'}"
             )
     for role in ("vampire", "peasant"):
         c = np.asarray(character(role))
         body = c[c[..., 3] > 0][:, :3].astype(float)
         luma = body @ np.array([0.299, 0.587, 0.114])
-        inner = luma[luma < 200]
-        rows.append(f"{role} body (without rim) luma mean {inner.mean():.0f}")
-    print("\n".join(rows))
+        lines.append(
+            f"{role} body (without rim) luma mean {luma[luma < 200].mean():.0f}"
+        )
+    print(chr(10).join(lines))
 
 
 def main() -> None:

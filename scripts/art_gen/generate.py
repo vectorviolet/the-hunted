@@ -4,8 +4,8 @@
 
 Each job runs one ``codex exec`` with the three style references attached and copies the
 generated picture to ``scripts/art_gen/work/raw/<job>.png`` (skipped when it already exists).
-The pictures that were kept live in ``scripts/art_gen/raw/`` (reduced to 64 colors to keep the
-repo small); ``process.py`` prefers those.
+``work/`` is gitignored: the raw pictures are not committed (about 1.3 MB each), only the final
+assets, the prompts and these scripts.
 """
 
 from __future__ import annotations

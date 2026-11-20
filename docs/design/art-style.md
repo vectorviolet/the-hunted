@@ -9,7 +9,7 @@ same hand as the characters.**
 
 ## Palette
 
-One shared palette of 63 colors; every generated asset is reduced to exactly these colors with
+One shared palette of 82 colors; every generated asset is reduced to exactly these colors with
 hard edges (`scripts/art_gen/palette.py` is the single source of truth, `process.py` snaps to it).
 
 **Core, read off the sprites and the icon:**
@@ -26,7 +26,7 @@ hard edges (`scripts/art_gen/palette.py` is the single source of truth, `process
 | gold | `#b07f40 #e49b49 #f3be51` |
 | moss | `#4c521a` |
 
-**Scenery, lighter and duller ramps in the same hue families (dark to light):**
+**Scenery ramps in the same hue families (dark to light). The night ramps (nightblue, teal, violet, glow) are for the backgrounds; the lighter ones serve platforms, UI and accents:**
 
 | Ramp | Hex |
 |---|---|
@@ -38,6 +38,10 @@ hard edges (`scripts/art_gen/palette.py` is the single source of truth, `process
 | grass | `#6a7a3a #8a9a52 #a8b46c` |
 | torch | `#d9692a #f6e08a` |
 | banner | `#b83a45 #d86a70` |
+| nightblue | `#1e2a52 #2b3b6b #3a4e86 #4d64a0 #667db8 #8a9ed0` |
+| teal | `#1c4650 #2a6270 #3b8090 #58a0ae #82c0c8` |
+| violet | `#2c2150 #3f3270 #574a8c #7263a8 #8f80c0 #aea2d8` |
+| glow | `#8a4a2a #c07a3a` |
 
 Dark violet-black (`#1c0b18`-ish) is for outlines and shadows only, never for large areas of
 scenery. Saturated colors (crimson, torch, gold) are accents.
@@ -68,23 +72,32 @@ Upper left, from the moon. Highlights sit on top and left edges (platform tops, 
 panel borders), shadow and crimson trim on the bottom and right. Pressed buttons lose the shadow
 and move down one pixel.
 
-## Readability rule (owner, 2026-11-20)
+## Readability rule (owner, 2026-11-20, second version)
 
-Characters must stand out from every background.
+Characters must stand out from every background. The first version of this rule made every
+background pale and lighter than the characters; the owner found all of it too bright (see the
+devlog). Now that the characters carry a 1 px `#fff4d6` outline, the separation comes from the
+**outline, hue and value together**, not from a pale background.
 
-1. Backgrounds are **lighter and duller** than the characters: mid-to-light dusk tones, saturation
-   cut to 80%, luma graded into the 70 to 205 band. Characters' bodies are dark (vampire mean luma
-   about 46, peasant about 80 against backgrounds at about 160) with the light outline.
-2. **No dark band at standing height.** The strip between 40% and 90% of the height (where the
-   characters run) has no dark shapes, no tree line, no black wall. Measured by
-   `scripts/art_gen/mockups.py`: the minimum luma in that strip is 124 or more, the mean 154 to 166,
-   for all 8 candidates.
-3. Detail sits in the upper part and at the far left and right edges; the middle stays calm.
-4. Platforms and ground are the darkest and most outlined scenery, so the standing surface always
-   reads.
+1. Backgrounds are **night or deep-dusk and moody**: mid-dark values with real saturation
+   (grade: luma 40 to 170, saturation 110%), dominated by deep blue, teal and violet, with a pale
+   moon and a few warm lights as accents.
+2. **Standing band (40% to 90% of the height) and behind every platform:** luma held to about
+   68 to 125 (rule: 55 to 120). No near-black (nothing under 40), nothing near the vampire's body
+   tones (luma 30 to 60) directly behind a character, and no saturated red near the cape (red is
+   the vampire's color).
+3. **Cool against warm:** deep blue, teal and violet suit the vampire's black and red and the
+   peasant's warm browns and straw hat.
+4. Detail sits in the upper part and at the far left and right edges; the middle stays calm.
+5. Platforms and ground are dimmed to a moonlit tone and keep their dark ink outline, so the
+   standing surface always reads.
 
-Known weak spot: the Arena platforms (sandstone) sit on a sandstone background; their dark outline
-carries the contrast. Candidate B (cathedral) is more distinct from them.
+Measured by `scripts/art_gen/mockups.py` (it renders both characters with their outline at the
+mockup positions and checks the background behind them): all 8 candidates pass. Standing-band luma
+mean is 79 to 90 (minimum 59 to 78, maximum 109 to 141), 0% of the band is under 40, red is under
+1%, and the vampire-tone backdrop behind the characters is 0%. The vampire's body (luma about 46)
+is darker than the background, the peasant's (about 80) is the same value, so he separates by
+warm hue and outline, which is why cool backgrounds matter.
 
 ## Backgrounds
 
@@ -92,10 +105,10 @@ carries the contrast. Candidate B (cathedral) is more distinct from them.
 
 | Screen | A (default) | B |
 |---|---|---|
-| Menu | gothic castle on a cliff under a big moon | graveyard gate, castle far away |
-| Classic | moonlit mountain valley with a village | warm rose dusk, windmill and rooftops |
-| Towers | castle courtyard, banners, battlements | spires and flying buttresses in fog |
-| Arena | ruined stone arena with arches | cathedral ruin with a crimson rose window |
+| Menu | gothic castle on a cliff under a big moon | graveyard gate at night, castle far away |
+| Classic | moonlit snowy mountains with a village | violet dusk with a magenta horizon glow, windmill and village |
+| Towers | blue castle courtyard, torches, glowing window | spires and flying buttresses in teal fog |
+| Arena | ruined stone arena with arches, torches | cathedral ruin with a glowing rose window |
 
 They are single images, not parallax layers: the style does not need scrolling (the map never
 scrolls), and `ParallaxBackground`'s per-round re-randomizing would break the composed scenes.
@@ -137,6 +150,9 @@ Press Start 2P is the safe, more uniform alternative.
 ## How the assets are made
 
 `scripts/art_gen/`: `prompts.py` (every prompt), `generate.py` (Codex image generation with the
-sheets and icon as style references), `process.py` (crop, grade, palette snap, hard alpha, 3-slice,
-2x), `mockups.py` (the devlog mockups), `shoot_today.py` (screenshots of current main). Generation
-is not deterministic; the kept raw pictures are in `scripts/art_gen/raw/`.
+sheets and icon as style references), `process.py` (crop, night grade, palette snap, hard alpha,
+3-slice, 2x), `mockups.py` (the devlog mockups), `shoot_today.py` (screenshots of current main). Generation
+is not deterministic and the raw pictures (about 1.3 MB each) are not committed: they go to
+the gitignored `scripts/art_gen/work/`. Only the final assets, the prompts and the scripts are in
+the repo. The scripts need Pillow and numpy, in the optional `art` dependency group:
+`uv run --group art python scripts/art_gen/process.py`.
