@@ -5,6 +5,7 @@
 #         (origin not yet confirmed; then `todo` says what to do).
 # original: the file's path inside that pack. modified: what was changed.
 # todo: what still has to be done about a file.
+# generated_with: for `own` files made with an AI tool; CREDITS.md says so instead of "made by hand".
 
 packs:
   ansimuz-mountain-at-dusk:
@@ -37,15 +38,6 @@ packs:
     url: https://kenney.nl/assets/ui-pack
     license: CC0-1.0
     used_for: "menu buttons"
-  redshrike-lpc-four-characters:
-    name: "Four characters: My LPC entries"
-    author: "Stephen \"Redshrike\" Challener"
-    url: https://opengameart.org/content/four-characters-my-lpc-entries
-    license: CC-BY-3.0
-    license_note: "offered as CC BY 3.0, CC BY-SA 3.0 or OGA-BY 3.0; CC BY 3.0 chosen"
-    attribution: "Stephen \"Redshrike\" Challener, with a link to https://opengameart.org"
-    changes: "each 64x64 walking frame is cut out of the original sheet; the pixels are unchanged"
-    used_for: "the peasant (Baldric)"
   hydrogene-8-bit-truth:
     name: "8-bit - Truth"
     author: "HydroGene"
@@ -111,138 +103,152 @@ files:
     source: kenney-cursor-pack
     original: "PNG/Outline/Default/pointer_a.png"
   "images/peasant/L1.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 1 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 1, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L2.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 2 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 2, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L3.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 3 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 3, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L4.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 4 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 4, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L5.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 5 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 5, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L6.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 6 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 6, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L7.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 7 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 7, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L8.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 8 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 8, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/L9.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 2, column 9 (walking left), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 9, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R1.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 1 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R2.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 2 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R3.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 3 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R4.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 4 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R5.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 5 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R6.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 6 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R7.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 7 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R8.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 8 (walking right), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/peasant/R9.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 4, column 9 (walking right), cut out of the sheet; pixel-identical"
-  "images/peasant/standing.png":
-    source: redshrike-lpc-four-characters
-    original: "baldricfrontwalksheet copy.png"
-    modified: "the 64x64 frame in row 3, column 1 (walking down), cut out of the sheet; pixel-identical"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the peasant's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/platfor_tile.png":
     source: amir027-platform-tile4
     original: "Platform Tile Grass_0.png"
   "images/vampire/L1E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 1, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L2E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 2, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L3E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 3, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L4E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 4, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L5E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 5, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L6E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 6, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L7E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 7, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L8E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 8, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/L9E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 9, facing left. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py; this left-facing frame is the right-facing frame mirrored. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R1E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R2E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R3E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R4E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R5E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R6E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R7E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R8E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "images/vampire/R9E.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the vampire's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
   "sounds/chase_theme.ogg":
     source: hydrogene-8-bit-epic-space-shooter-music
     original: "8bit-spaceshooter.mp3"
