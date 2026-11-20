@@ -17,14 +17,15 @@ Hunted is being brought up to the project standard, where every asset has a know
 ## Decision
 
 Option 2 (owner, 2026-11-20). The look and timing stay the same: a ring around the digit fills
-clockwise from the top, alternating orange and teal each second, then "GO" without a ring.
+clockwise from the top, alternating orange and teal for each digit, then "GO" without a ring.
 
 How the frames were read, to keep the same behavior:
 
-- Each digit (3, 2, 1, 0) lasts 12 frames, then "GO" for 12 frames (countdown 48-59).
+- Each digit (3, 2, 1, 0) lasts 12 frames (0.2 s at 60 FPS), then "GO" for 12 frames (countdown 48-59).
 - The ring color alternates orange, teal, orange, teal. From the second digit on, the previous
-  second's full ring sits underneath and the new color sweeps over it.
-- The sweep eases out: roughly 25% at the first frame of a digit, full after about 9 frames.
+  digit's full ring sits underneath and the new color sweeps over it.
+- The sweep eases out: it starts at 6-43% (depending on the digit) in the first frame and is full
+  after about 9 frames. The fractions are measured from each old frame and kept in a small table.
 - Colors sampled from the PNGs: orange `(255, 100, 0)`, teal `(52, 219, 169)`, black text.
 - Same place and size: 300x300 at (250, 30). The ring is drawn at 2x and scaled down for smooth
   edges, with round caps like the originals.

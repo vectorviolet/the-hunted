@@ -7,6 +7,7 @@ from pygamine import SplashScreen, standard_splash_media
 import settings
 from audio import AudioManager
 from combat import CombatSystem
+from countdown import END_FRAME
 from cursor import Cursor
 from entities import Platform, Player
 from input_handler import AIInputHandler, KeyboardInputHandler
@@ -190,7 +191,7 @@ class Game(Application):
 
         if self._countdown < 100:
             self._countdown += 1
-        if self._countdown == 60:
+        if self._countdown == END_FRAME:
             self._audio.pause_all()
             self._audio.stop_menu()
             self._renderer.randomize_background()

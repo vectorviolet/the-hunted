@@ -17,14 +17,15 @@ TEXT_COLOR = (0, 0, 0)
 
 SIZE = 300                  # the graphic is a SIZE x SIZE square ...
 POSITION = (250, 30)        # ... blitted here
-DIGIT_FRAMES = 12           # frames per digit (one second at 12 updates a second)
+DIGIT_FRAMES = 12           # frames per digit (0.2 s at 60 FPS, one update per frame)
 GO_FRAME = 48               # first frame of "GO" (after the digits 3, 2, 1, 0)
-END_FRAME = 60              # the countdown ends here (the game moves on to level select)
+END_FRAME = 60              # the countdown ends here (the game moves on to level select); the
+                            # idle value Game uses before a countdown starts must be >= this
 _RING_COLORS = (ORANGE, TEAL)
 
 _SUPERSAMPLE = 2            # the ring is drawn at this many times the size, then scaled down
-_RING_OUTER = 123           # ring outer radius at SIZE
-_RING_WIDTH = 14
+RING_OUTER = 123           # ring outer radius at SIZE
+RING_WIDTH = 14
 _DIGIT_FONT_SIZE = 156      # the digit is about 106 px tall
 _GO_FONT_SIZE = 120
 
@@ -39,10 +40,20 @@ class CountdownStep:
     base_color: tuple[int, int, int] | None = None  # a full ring drawn underneath, if any
 
 
-def _ease_out(frame_in_digit: int) -> float:
-    """Ring progress within one digit: fast at first, slowing down, full after about 9 frames."""
-    x = min(1.0, (frame_in_digit + 1.3) / 10)
-    return 1 - (1 - x) ** 2
+# Ring progress for the first frames of each digit (3, 2, 1, 0), measured from the original frames
+# (normalized so the ring is full at the end); frames after the table are full.
+_FILL = (
+    (0.43, 0.60, 0.75, 0.82, 0.89, 0.93, 0.96, 0.98, 1.0),
+    (0.30, 0.52, 0.70, 0.78, 0.86, 0.91, 0.95, 0.97, 0.99),
+    (0.16, 0.43, 0.66, 0.75, 0.84, 0.89, 0.94, 0.96, 0.98),
+    (0.06, 0.30, 0.59, 0.70, 0.82, 0.87, 0.94, 0.96, 0.99),
+)
+
+
+def _fill(index: int, frame_in_digit: int) -> float:
+    """Ring progress within one digit (index 0 is the digit 3): fast at first, then slowing down."""
+    table = _FILL[index]
+    return table[frame_in_digit] if frame_in_digit < len(table) else 1.0
 
 
 def countdown_step(countdown: int) -> CountdownStep | None:
@@ -54,18 +65,19 @@ def countdown_step(countdown: int) -> CountdownStep | None:
     index, frame_in_digit = divmod(countdown, DIGIT_FRAMES)
     base = _RING_COLORS[(index - 1) % 2] if index > 0 else None
     return CountdownStep(
-        str(3 - index), _ease_out(frame_in_digit), _RING_COLORS[index % 2], base
+        str(3 - index), _fill(index, frame_in_digit), _RING_COLORS[index % 2], base
     )
 
 
 class CountdownGraphic:
-    """Draws a `CountdownStep` into a SIZE x SIZE square."""
+    """Draws a `CountdownStep` into a SIZE x SIZE square (each distinct step is rendered once)."""
 
     def __init__(self) -> None:
         self._digit_font = pygame.font.Font(FONT, _DIGIT_FONT_SIZE)
         self._digit_font.bold = True
         self._go_font = pygame.font.Font(FONT, _GO_FONT_SIZE)
         self._go_font.bold = True
+        self._images: dict[CountdownStep, pygame.Surface] = {}  # finished graphics, built on first use
         self._labels = {
             label: font.render(label, True, TEXT_COLOR)
             for label, font in (
@@ -75,12 +87,18 @@ class CountdownGraphic:
         }
 
     def draw(self, surface: pygame.Surface, step: CountdownStep) -> None:
-        graphic = pygame.Surface((SIZE, SIZE), pygame.SRCALPHA)
+        image = self._images.get(step)
+        if image is None:
+            image = self._images[step] = self._render(step)
+        surface.blit(image, POSITION)
+
+    def _render(self, step: CountdownStep) -> pygame.Surface:
+        image = pygame.Surface((SIZE, SIZE), pygame.SRCALPHA)
         if step.color is not None:
-            graphic.blit(self._ring(step), (0, 0))
+            image.blit(self._ring(step), (0, 0))
         text = self._labels[step.label]
-        graphic.blit(text, text.get_rect(center=(SIZE // 2, SIZE // 2)))
-        surface.blit(graphic, POSITION)
+        image.blit(text, text.get_rect(center=(SIZE // 2, SIZE // 2)))
+        return image
 
     @staticmethod
     def _ring(step: CountdownStep) -> pygame.Surface:
@@ -88,8 +106,8 @@ class CountdownGraphic:
         scale = _SUPERSAMPLE
         big = pygame.Surface((SIZE * scale, SIZE * scale), pygame.SRCALPHA)
         center = SIZE * scale // 2
-        outer = _RING_OUTER * scale
-        width = _RING_WIDTH * scale
+        outer = RING_OUTER * scale
+        width = RING_WIDTH * scale
         rect = pygame.Rect(0, 0, outer * 2, outer * 2)
         rect.center = (center, center)
         if step.base_color is not None:

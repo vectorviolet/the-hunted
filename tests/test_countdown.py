@@ -4,6 +4,8 @@ import pytest
 from countdown import (
     ORANGE,
     POSITION,
+    RING_OUTER,
+    RING_WIDTH,
     SIZE,
     TEAL,
     CountdownGraphic,
@@ -28,16 +30,16 @@ def test_digit_sequence(countdown, label):
     assert step.label == label
 
 
-def test_ring_colors_alternate_each_second_over_the_previous_ring():
+def test_ring_colors_alternate_per_digit_over_the_previous_ring():
     colors = [(countdown_step(c).color, countdown_step(c).base_color) for c in (1, 13, 25, 37)]
     assert colors == [(ORANGE, None), (TEAL, ORANGE), (ORANGE, TEAL), (TEAL, ORANGE)]
 
 
-def test_ring_fills_within_each_second_and_restarts_for_the_next_digit():
+def test_ring_fills_within_each_digit_and_restarts_for_the_next_digit():
     for first in (1, 12, 24, 36):
         fractions = [countdown_step(first + i).fraction for i in range(11 if first == 1 else 12)]
         assert fractions == sorted(fractions)
-        assert 0 < fractions[0] < 0.5
+        assert 0 < fractions[0] < 0.7
         assert fractions[-1] == 1.0
     assert countdown_step(12).fraction < countdown_step(11).fraction
 
@@ -50,7 +52,7 @@ def test_go_has_no_ring():
 def _opaque_ring_pixels(surface):
     # Pixels along the ring's mid radius, at 12, 3, 6 and 9 o'clock.
     x0, y0 = POSITION
-    c, r = SIZE // 2, 116
+    c, r = SIZE // 2, round(RING_OUTER - RING_WIDTH / 2)
     return [surface.get_at((x0 + c + dx, y0 + c + dy))[:3] for dx, dy in
             ((0, -r), (r, 0), (0, r), (-r, 0))]
 
@@ -75,3 +77,23 @@ def test_draw_go_leaves_the_ring_area_untouched():
     graphic.draw(surface, CountdownStep("GO", 0.0, None))
 
     assert set(_opaque_ring_pixels(surface)) == {(10, 20, 30)}
+
+
+@pytest.mark.parametrize(
+    "countdown, measured",
+    [(2, 0.75), (6, 0.96), (14, 0.67), (26, 0.65), (30, 0.93), (38, 0.55), (41, 0.87)],
+)
+def test_ring_fraction_matches_the_fraction_measured_from_the_original_frames(countdown, measured):
+    assert countdown_step(countdown).fraction == pytest.approx(measured, abs=0.05)
+
+
+def test_a_step_is_rendered_once_and_reused():
+    graphic = CountdownGraphic()
+    surface = pygame.Surface((800, 600))
+    step = countdown_step(14)
+
+    graphic.draw(surface, step)
+    image = graphic._images[step]
+    graphic.draw(surface, step)
+
+    assert graphic._images[step] is image
