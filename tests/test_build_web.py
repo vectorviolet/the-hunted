@@ -272,11 +272,11 @@ def test_template_removes_the_loading_page_before_the_game_starts():
     ("text", "background"),
     [
         ("#ffffff", "#000000"),  # loading status on the page
-        ("#ffffff", "#1c2040"),
-        ("#fbbc20", "#1c2040"),  # CLICK TO PLAY on its plate
-        ("#a8e063", "#1c2040"),  # progress bar on its track
-        ("#a8e063", "#000000"),
-        ("#ff6666", "#000000"),  # the title
+        ("#ffffff", "#140e14"),
+        ("#f3be51", "#140e14"),  # CLICK TO PLAY on its plate
+        ("#a8b46c", "#140e14"),  # progress bar on its track
+        ("#a8b46c", "#000000"),
+        ("#fff4d6", "#000000"),  # the title
     ],
 )
 def test_template_color_pairs_have_7_to_1_contrast(text, background):

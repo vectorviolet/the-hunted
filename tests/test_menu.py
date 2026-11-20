@@ -1,7 +1,8 @@
 import pygame
 
-from countdown import END_FRAME, ORANGE, POSITION, RING_OUTER, RING_WIDTH, SIZE
-from buttons import BTN_HOVER, BTN_NORMAL, BTN_PRESSED
+import settings
+from buttons import BTN_HOVER, BTN_NORMAL, BTN_PRESSED, LABEL_OFFSET, make_button
+from countdown import END_FRAME
 from cursor import CLICK, CLICK2, NORMAL
 from entities import Player
 from menu import Menu
@@ -19,7 +20,7 @@ class FakeCursor:
 
 
 def make_menu():
-    return Menu(800, 600, FakeCursor())
+    return Menu(960, 540, FakeCursor())
 
 
 def test_construction_builds_every_button_in_all_three_states():
@@ -66,7 +67,7 @@ def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
 ):
     menu = make_menu()
     menu.update_button_state("1p", hovered=True, pressed=False)
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=100, p1=p1)
@@ -76,7 +77,7 @@ def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
 
 def test_draw_switches_the_cursor_with_the_button_state(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.update_button_state("2p", hovered=True, pressed=True)
@@ -101,7 +102,7 @@ def test_the_three_button_states_look_different():
 
 def test_draw_supports_single_player_with_no_p2(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=100, p1=p1, p2=None)  # must not raise
@@ -109,7 +110,7 @@ def test_draw_supports_single_player_with_no_p2(world, input_handler):
 
 def test_draw_with_two_players(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
     p2 = Player(world, (200, 100), input_handler)
 
@@ -118,51 +119,39 @@ def test_draw_with_two_players(world, input_handler):
 
 def test_draw_mid_countdown_draws_the_countdown(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=30, p1=p1)  # must not raise, no start screen drawn
-
-
-def _ring_pixel(surface):
-    x = POSITION[0] + SIZE // 2 + round(RING_OUTER - RING_WIDTH / 2)
-    return tuple(surface.get_at((x, POSITION[1] + SIZE // 2)))[:3]
 
 
 def test_draw_paints_the_countdown_only_while_it_runs(world, input_handler):
     menu = make_menu()
     p1 = Player(world, (100, 100), input_handler)
 
-    drawn = pygame.Surface((800, 600))
-    menu.draw(drawn, countdown=30, p1=p1)  # digit 1, ring filled on the right
-    assert _ring_pixel(drawn) == ORANGE
+    def frame(countdown):
+        surface = pygame.Surface((960, 540))
+        menu.draw(surface, countdown=countdown, p1=p1)
+        return pygame.image.tobytes(surface, "RGB")
 
-    for countdown in (0, END_FRAME, 100):
-        idle = pygame.Surface((800, 600))
-        menu.draw(idle, countdown=countdown, p1=p1)
-        assert _ring_pixel(idle) != ORANGE
+    bare = frame(0)  # running, but no glyph yet: the buttons are gone, nothing else
+    assert frame(END_FRAME) == bare  # no glyph once it is over either
+    assert frame(100) != bare  # idle: the start buttons
+    assert frame(30) != bare  # a glyph is on screen
+    assert frame(20) != frame(50)  # and it changes as the countdown runs
 
 
 def test_draw_late_countdown_draws_go(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
 
     menu.draw(surface, countdown=55, p1=p1)  # must not raise
 
 
-def test_randomize_background_delegates_to_the_background(world):
-    menu = make_menu()
-    surface = menu._background.surface
-
-    menu.randomize_background()
-
-    assert menu._background.surface is surface  # re-baked in place
-
-
 def test_cursor_goes_back_to_normal_once_the_countdown_runs(world, input_handler):
     menu = make_menu()
-    surface = pygame.Surface((800, 600))
+    surface = pygame.Surface((960, 540))
     p1 = Player(world, (100, 100), input_handler)
     menu.update_button_state("start", hovered=True, pressed=True)
     menu.draw(surface, countdown=100, p1=p1)
@@ -173,11 +162,15 @@ def test_cursor_goes_back_to_normal_once_the_countdown_runs(world, input_handler
     assert menu.cursor.state == NORMAL
 
 
-def test_a_pressed_button_face_sits_lower_than_a_raised_one():
-    menu = make_menu()
+def test_a_pressed_buttons_label_sits_lower_than_a_raised_ones():
+    def label_top(state):
+        # The label is drawn in BONE; the first row with a BONE pixel inside the face.
+        image = make_button(state, (212, 44), "1 PLAYER", 24)
+        rows = [
+            y
+            for y in range(10, 34)
+            if any(image.get_at((x, y))[:3] == settings.BONE for x in range(40, 170))
+        ]
+        return rows[0]
 
-    def top_row(button):
-        return button.get_bounding_rect().top
-
-    assert top_row(menu._btn_1p[BTN_NORMAL]) == 0
-    assert top_row(menu._btn_1p[BTN_PRESSED]) > 0
+    assert label_top(BTN_PRESSED) == label_top(BTN_NORMAL) + LABEL_OFFSET

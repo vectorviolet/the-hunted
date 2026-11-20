@@ -1,38 +1,77 @@
 import pygame
 
 import settings
-from background import ParallaxBackground
-from entities import Platform
+from background import load_background
+from entities import Platform, level_platforms
+from pixelart import nine_slice
 from world import GameWorld
+
+CARD_BORDER = 20  # px of the card frame art that keep their pixels
+CARD_LIFT = 6  # a hovered card is drawn this much higher
+THUMB_MARGIN = 24  # a card's preview is inset this far from its sides
+PLATE_EDGE = 2  # border width of the HUD plates
+TOP_HUD_HEIGHT = 34  # the score plates and level name at the top of the screen
+TAG_RISE = 50  # a role tag's top is this far above its player's sprite
+CARD_SIZE = (240, 210)  # a level-select card
 
 
 class GameRenderer:
     def __init__(self, window: pygame.Surface, world: GameWorld) -> None:
         self._window = window
         self._world = world
+        self._size = (world.window_w, world.window_h)
 
-        self._background = ParallaxBackground(world.window_w, world.window_h)
-        self._ground = Platform(
-            (0, settings.GROUND_Y),
-            world.window_w,
-            int(world.window_h - settings.GROUND_Y),
-        )
+        self._grounds: dict[str, Platform] = {}
+        self._thumbs: dict[tuple[int, int], pygame.Surface] = {}
+        self._card = pygame.image.load("assets/images/ui/card.png").convert_alpha()
+        self._card_frames: dict[tuple[int, int], pygame.Surface] = {}
 
-        self._font_sm = pygame.font.Font(settings.FONT, 21)
-        self._font_hud = pygame.font.Font(settings.FONT, 25)
-        self._font_title = pygame.font.Font(settings.FONT, 48)
+        self._font_sm = pygame.font.Font(settings.UI_FONT, 16)
+        self._font_title = pygame.font.Font(settings.TITLE_FONT, 72)
 
-        self._lbl_vampire = self._font_sm.render("VAMPIRE", True, settings.HP_RED)
-        self._lbl_peasant = self._font_sm.render("PEASANT", True, settings.HP_GREEN)
+        self._lbl_vampire = self._font_sm.render("VAMPIRE", False, settings.HP_RED)
+        self._lbl_peasant = self._font_sm.render("PEASANT", False, settings.HP_GREEN)
+
+    # ------------------------------------------------------------------ helpers
+
+    def _ground(self, style: str) -> Platform:
+        ground = self._grounds.get(style)
+        if ground is None:
+            ground = self._grounds[style] = Platform(
+                (0, settings.GROUND_Y),
+                self._world.window_w,
+                int(self._world.window_h - settings.GROUND_Y),
+                style=style,
+                kind="ground",
+            )
+        return ground
+
+    def _plate(self, rect: pygame.Rect, edge: tuple[int, int, int]) -> None:
+        pygame.draw.rect(self._window, settings.INK, rect)
+        pygame.draw.rect(self._window, edge, rect, PLATE_EDGE)
+
+    def _text(
+        self,
+        text: str,
+        font: pygame.font.Font,
+        color: tuple[int, int, int],
+        center: tuple[int, int],
+        shadow: tuple[int, int, int] | None = settings.INK,
+        drop: int = 2,
+    ) -> None:
+        """Pixel text centered on `center`, with a hard drop shadow."""
+        face = font.render(text, False, color)
+        rect = face.get_rect(center=center)
+        if shadow is not None:
+            self._window.blit(font.render(text, False, shadow), rect.move(drop, drop))
+        self._window.blit(face, rect)
 
     # ------------------------------------------------------------------ game
 
-    def randomize_background(self) -> None:
-        self._background.randomize()
-
     def draw_game(self, p1, p2, vampire, current_level: int, score_surfs) -> None:
-        self._window.blit(self._background.surface, (0, 0))
-        self._ground.draw(self._window)
+        level = settings.LEVELS[current_level]
+        self._window.blit(load_background(level["background"], self._size), (0, 0))
+        self._ground(level["style"]).draw(self._window)
 
         for plat in self._world.platforms:
             plat.draw(self._window)
@@ -54,121 +93,117 @@ class GameRenderer:
     def _draw_role_tag(self, player, ix, iy, vampire) -> None:
         is_vampire = vampire is player
         role_lbl = self._lbl_vampire if is_vampire else self._lbl_peasant
-        tag_x = ix + (player.width - role_lbl.get_width()) // 2
-        tag_y = iy - 46
-        tag_bg = pygame.Rect(
-            tag_x - 3, tag_y - 1, role_lbl.get_width() + 6, role_lbl.get_height() + 2
-        )
-        pygame.draw.rect(self._window, (0, 0, 0, 160), tag_bg, border_radius=3)
-        self._window.blit(role_lbl, (tag_x, tag_y))
+        tag = pygame.Rect(0, 0, role_lbl.get_width() + 10, role_lbl.get_height() + 6)
+        tag.midtop = (ix + player.width // 2, iy - TAG_RISE)
+        self._plate(tag, settings.PLUM)
+        self._window.blit(role_lbl, role_lbl.get_rect(center=tag.center))
 
     def _draw_health_bar(self, player, ix, iy) -> None:
         bar_w, bar_h = 52, 7
         bar_x = ix + (player.width - bar_w) // 2
         bar_y = iy - 12
         pct = max(0.0, player.hp / player.max_hp)
-        fill = int(bar_w * pct)
+        fill = int((bar_w - 2) * pct)
         hp_color = (
             settings.HP_GREEN
             if pct > 0.5
             else (settings.HP_YELLOW if pct > 0.25 else settings.HP_RED)
         )
-        pygame.draw.rect(self._window, (40, 40, 40), (bar_x, bar_y, bar_w, bar_h))
+        pygame.draw.rect(self._window, settings.INK, (bar_x, bar_y, bar_w, bar_h))
         if fill > 0:
-            pygame.draw.rect(self._window, hp_color, (bar_x, bar_y, fill, bar_h))
-        pygame.draw.rect(
-            self._window, settings.LIGHT_GREY, (bar_x, bar_y, bar_w, bar_h), 1
-        )
+            pygame.draw.rect(
+                self._window, hp_color, (bar_x + 1, bar_y + 1, fill, bar_h - 2)
+            )
+        pygame.draw.rect(self._window, settings.RIM, (bar_x, bar_y, bar_w, bar_h), 1)
 
     def _draw_top_hud(self, p1, p2, current_level: int, score_surfs) -> None:
-        pad, panel_h = 6, 32
+        pad, panel_h = 10, TOP_HUD_HEIGHT
 
         p1_surf = score_surfs[0]
-        p1_w = p1_surf.get_width() + pad * 2
-        p1_rect = pygame.Rect(0, 0, p1_w, panel_h)
-        pygame.draw.rect(self._window, settings.PANEL_BG, p1_rect)
-        pygame.draw.rect(self._window, settings.BLUE, p1_rect, 1)
-        self._window.blit(p1_surf, (pad, (panel_h - p1_surf.get_height()) // 2))
+        p1_rect = pygame.Rect(0, 0, p1_surf.get_width() + pad * 2, panel_h)
+        self._plate(p1_rect, settings.SLATE)
+        self._window.blit(p1_surf, p1_surf.get_rect(center=p1_rect.center))
 
         if p2 is not None:
             p2_surf = score_surfs[1]
             p2_w = p2_surf.get_width() + pad * 2
             p2_rect = pygame.Rect(self._world.window_w - p2_w, 0, p2_w, panel_h)
-            pygame.draw.rect(self._window, settings.PANEL_BG, p2_rect)
-            pygame.draw.rect(self._window, settings.RED, p2_rect, 1)
-            self._window.blit(
-                p2_surf,
-                (
-                    self._world.window_w - p2_w + pad,
-                    (panel_h - p2_surf.get_height()) // 2,
-                ),
-            )
+            self._plate(p2_rect, settings.CRIMSON)
+            self._window.blit(p2_surf, p2_surf.get_rect(center=p2_rect.center))
 
-        lvl_name = settings.LEVELS[current_level]["name"]
-        lvl_surf = self._font_sm.render(lvl_name, True, settings.LIGHT_GREY)
-        self._window.blit(
-            lvl_surf, (self._world.window_w // 2 - lvl_surf.get_width() // 2, 8)
-        )
+        name = settings.LEVELS[current_level]["name"].upper()
+        self._text(name, self._font_sm, settings.RIM, (self._world.window_w // 2, 18))
 
     # ------------------------------------------------------------ level select
 
     def draw_level_select(self, pos) -> None:
-        self._window.blit(self._background.surface, (0, 0))
+        self._window.blit(load_background(settings.MENU_BACKGROUND, self._size), (0, 0))
 
-        overlay = pygame.Surface(
-            (self._world.window_w, self._world.window_h), pygame.SRCALPHA
-        )
-        overlay.fill((0, 0, 0, 120))
-        self._window.blit(overlay, (0, 0))
-
-        title = self._font_title.render("SELECT LEVEL", True, settings.WHITE)
-        self._window.blit(
-            title, (self._world.window_w // 2 - title.get_width() // 2, 60)
+        self._text(
+            "Select Level",
+            self._font_title,
+            settings.RIM,
+            (self._world.window_w // 2, 90),
+            shadow=settings.CRIMSON,
+            drop=3,
         )
 
         for i, lvl in enumerate(settings.LEVELS):
             rect = self.level_card_rect(i)
             hovered = rect.collidepoint(pos)
-            bg_col = (70, 70, 110) if hovered else (35, 35, 60)
-            border_col = settings.WHITE if hovered else settings.MID_GREY
+            if hovered:
+                rect = rect.move(0, -CARD_LIFT)
+            self._window.blit(self._card_frame(rect.size), rect)
 
-            pygame.draw.rect(self._window, bg_col, rect, border_radius=10)
-            pygame.draw.rect(self._window, border_col, rect, 2, border_radius=10)
-
-            num_surf = self._font_hud.render(
-                f"Level {i + 1}", True, settings.LIGHT_GREY
+            self._text(
+                f"LEVEL {i + 1}",
+                self._font_sm,
+                settings.BONE,
+                (rect.centerx, rect.y + 34),
             )
-            self._window.blit(
-                num_surf, (rect.centerx - num_surf.get_width() // 2, rect.y + 10)
+            self._text(
+                lvl["name"].upper(),
+                self._font_sm,
+                settings.RIM,
+                (rect.centerx, rect.y + 54),
             )
-
-            name_surf = self._font_sm.render(lvl["name"], True, settings.WHITE)
-            self._window.blit(
-                name_surf, (rect.centerx - name_surf.get_width() // 2, rect.y + 34)
-            )
-
-            preview = pygame.Rect(rect.x + 8, rect.y + 60, rect.w - 16, rect.h - 80)
-            pygame.draw.rect(self._window, (20, 20, 40), preview, border_radius=4)
-            sx = preview.w / self._world.window_w
-            sy = preview.h / self._world.window_h
-            for (px, py), pw, ph in lvl["platforms"]:
-                prect = pygame.Rect(
-                    preview.x + int(px * sx),
-                    preview.y + int(py * sy),
-                    max(4, int(pw * sx)),
-                    max(3, int(ph * sy)),
-                )
-                pygame.draw.rect(self._window, settings.MAROON, prect, border_radius=2)
+            thumb = self._thumb(i, rect.w - 2 * THUMB_MARGIN)
+            thumb_rect = thumb.get_rect(midtop=(rect.centerx, rect.y + 74))
+            self._window.blit(thumb, thumb_rect)
+            pygame.draw.rect(self._window, settings.INK, thumb_rect.inflate(4, 4), 2)
 
             if hovered:
-                hint = self._font_sm.render("Click to play", True, settings.YELLOW)
-                self._window.blit(
-                    hint, (rect.centerx - hint.get_width() // 2, rect.bottom - 22)
+                self._text(
+                    "CLICK TO PLAY",
+                    self._font_sm,
+                    settings.GOLD,
+                    (rect.centerx, rect.bottom + 22),
                 )
+
+    def _card_frame(self, size: tuple[int, int]) -> pygame.Surface:
+        frame = self._card_frames.get(size)
+        if frame is None:
+            frame = self._card_frames[size] = nine_slice(self._card, CARD_BORDER, size)
+        return frame
+
+    def _thumb(self, level: int, width: int) -> pygame.Surface:
+        """A level's whole scene (backdrop, ground, platforms) scaled to a card's preview."""
+        thumb = self._thumbs.get((level, width))
+        if thumb is None:
+            lvl = settings.LEVELS[level]
+            scene = load_background(lvl["background"], self._size).copy()
+            self._ground(lvl["style"]).draw(scene)
+            for plat in level_platforms(level):
+                plat.draw(scene)
+            height = width * self._world.window_h // self._world.window_w
+            thumb = self._thumbs[(level, width)] = pygame.transform.scale(
+                scene, (width, height)
+            )
+        return thumb
 
     def level_card_rect(self, i: int) -> pygame.Rect:
         n = len(settings.LEVELS)
-        cw, ch = 180, 210
+        cw, ch = CARD_SIZE
         gap = 25
         total_w = n * cw + (n - 1) * gap
         start_x = (self._world.window_w - total_w) // 2

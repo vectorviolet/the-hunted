@@ -4,7 +4,7 @@
 
 My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomized each round — it's a chase-and-catch party game, not a horror game.
 
-> **Note on assets:** the code and game logic are mine. The vampire and peasant sprites are my own AI-generated art (OpenAI Codex image generation), and the buttons, cursor, music and sounds come from properly licensed packs. Everything is credited in [CREDITS.md](CREDITS.md).
+> **Note on assets:** the code and game logic are mine. All the art (characters, backgrounds, platforms, buttons, cursor, countdown) is my own AI-generated pixel art (OpenAI Codex image generation, in one style: see [the style guide](docs/design/art-style.md)); the fonts are open (SIL OFL) and the music and sounds come from properly licensed packs. Everything is credited in [CREDITS.md](CREDITS.md).
 
 ![Gameplay](docs/preview.gif)
 

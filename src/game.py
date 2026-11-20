@@ -9,7 +9,7 @@ from audio import AudioManager
 from combat import CombatSystem
 from countdown import END_FRAME
 from cursor import CLICK, NORMAL, Cursor
-from entities import Platform, Player
+from entities import Player, level_platforms
 from input_handler import AIInputHandler, KeyboardInputHandler
 from menu import Menu
 from renderer import GameRenderer
@@ -56,16 +56,14 @@ class Game(Application):
         self._world = GameWorld(
             window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H
         )
-        self._world.platforms = [
-            Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]["platforms"]
-        ]
+        self._world.platforms = level_platforms(0)
 
         self._menu = Menu(settings.VIRTUAL_W, settings.VIRTUAL_H, self._cursor)
         self._audio = AudioManager()
         self._renderer = GameRenderer(self.window, self._world)
         self._combat = CombatSystem(self._world)
 
-        self._font_hud = pygame.font.Font(settings.FONT, 25)
+        self._font_hud = pygame.font.Font(settings.UI_FONT, 16)
         self._score_surfs: list[pygame.Surface] = []
 
         self._current_level = 0
@@ -108,16 +106,16 @@ class Game(Application):
 
     def _refresh_scores(self) -> None:
         self._score_surfs = [
-            self._font_hud.render(f"P1   {self._p1.score}", True, settings.WHITE),
-            self._font_hud.render(f"P2   {self._p2.score}", True, settings.WHITE),
+            self._font_hud.render(f"P1  {self._p1.score}", False, settings.BONE),
+            self._font_hud.render(f"P2  {self._p2.score}", False, settings.BONE),
         ]
 
     def _btn_rect(self, name: str) -> pygame.Rect:
         cx, cy = self._world.window_w // 2, self._world.window_h // 2
         return {
-            "1p": pygame.Rect(cx - 106, cy - 130, 212, 44),
-            "2p": pygame.Rect(cx - 106, cy - 66, 212, 44),
-            "start": pygame.Rect(cx - 155, cy - 250, 310, 100),
+            "1p": pygame.Rect(cx - 106, cy - 120, 212, 44),
+            "2p": pygame.Rect(cx - 106, cy - 56, 212, 44),
+            "start": pygame.Rect(cx - 155, cy - 240, 310, 100),
         }[name]
 
     def _reset_players(self) -> None:
@@ -161,13 +159,11 @@ class Game(Application):
             self._world.bullets.clear()
             self._reset_players()
             self._audio.play_menu()
-            self._menu.randomize_background()
             self._countdown = 100
             self._state = self.STATE_MENU
         elif self._state == self.STATE_LEVEL_SELECT:
             self._reset_players()
             self._audio.play_menu()
-            self._menu.randomize_background()
             self._countdown = 100
             self._state = self.STATE_MENU
         else:
@@ -228,7 +224,6 @@ class Game(Application):
         if self._countdown == END_FRAME:
             self._audio.pause_all()
             self._audio.stop_menu()
-            self._renderer.randomize_background()
             self._state = self.STATE_LEVEL_SELECT
 
     def _update_menu_button_states(self, pos) -> None:
@@ -241,7 +236,7 @@ class Game(Application):
         if self._world.two_players:
             if self._intro_seq == 1:
                 self._p1.intro_jump()
-                if self._p1.y <= 340:
+                if self._p1.y <= settings.FLOOR_Y - 150:
                     self._intro_flag = True
                 if self._intro_flag:
                     self._p2.intro_jump()
@@ -250,7 +245,7 @@ class Game(Application):
                 self._p2.intro_jump()
             else:
                 self._p2.intro_jump()
-                if self._p2.y <= 340:
+                if self._p2.y <= settings.FLOOR_Y - 150:
                     self._intro_flag = True
                 if self._intro_flag:
                     self._p1.intro_jump()
@@ -273,10 +268,7 @@ class Game(Application):
             for i in range(len(settings.LEVELS)):
                 if self._renderer.level_card_rect(i).collidepoint(pos):
                     self._current_level = i
-                    self._world.platforms = [
-                        Platform(loc, w, h)
-                        for loc, w, h in settings.LEVELS[i]["platforms"]
-                    ]
+                    self._world.platforms = level_platforms(i)
                     self._reset_players()
                     self._enter_game()
                     return
@@ -290,7 +282,6 @@ class Game(Application):
             p.on_ground = True
             p.hp = settings.MAX_HP
 
-        self._renderer.randomize_background()
         self._audio.play_game()
 
         vampire = random.choice((self._p1, self._p2))
@@ -311,5 +302,4 @@ class Game(Application):
             self._vampire, self._peasant = self._combat.begin_round(
                 self._vampire, self._p1, self._p2
             )
-            self._renderer.randomize_background()
             self._refresh_scores()

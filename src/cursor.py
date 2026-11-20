@@ -5,17 +5,13 @@ from pygamine import GameObject
 NORMAL = "normal"
 CLICK = "click"  # over something clickable
 CLICK2 = "click2"  # pressing it
-HELP = "help"
-WRITING = "writing"
 
 # State -> (image file, hotspot). The hotspot is the pixel of the image that sits on the
-# mouse position: the arrow's tip, the pointing finger's tip, or the middle of the others.
+# mouse position: the arrow's tip, the pointing finger's tip, or the middle of the closed hand.
 _IMAGES: dict[str, tuple[str, tuple[int, int]]] = {
-    NORMAL: ("pointer_a", (9, 6)),
-    CLICK: ("hand_point", (9, 2)),
-    CLICK2: ("hand_closed", (16, 16)),
-    HELP: ("cursor_help", (4, 1)),
-    WRITING: ("bracket_a_vertical", (16, 16)),
+    NORMAL: ("arrow", (0, 0)),
+    CLICK: ("hand", (8, 0)),
+    CLICK2: ("grab", (12, 14)),
 }
 
 

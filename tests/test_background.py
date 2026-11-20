@@ -1,34 +1,40 @@
-from background import ParallaxBackground
+import pygame
+import pytest
+
+import settings
+from background import load_background
+
+NAMES = [level["background"] for level in settings.LEVELS] + [settings.MENU_BACKGROUND]
 
 
-def test_construction_bakes_a_surface_matching_the_requested_size():
-    bg = ParallaxBackground(800, 600)
+@pytest.mark.parametrize("name", NAMES)
+def test_every_backdrop_is_a_full_screen_picture(name):
+    image = load_background(name, (960, 540))
 
-    assert bg.surface.get_size() == (800, 600)
-
-
-def test_randomize_repaints_the_same_surface_object_in_place():
-    bg = ParallaxBackground(800, 600)
-    surface = bg.surface
-
-    bg.randomize()
-
-    # Re-baked in place, not replaced -- callers (Menu/GameRenderer) hold
-    # onto `.surface` across rounds and just blit it directly each frame.
-    assert bg.surface is surface
+    assert image.get_size() == (960, 540)
+    assert image.get_alpha() is None  # opaque
 
 
-def test_randomize_can_be_called_repeatedly_without_growing_or_erroring():
-    bg = ParallaxBackground(800, 600)
-
-    for _ in range(5):
-        bg.randomize()
-
-    assert bg.surface.get_size() == (800, 600)
+def test_a_backdrop_is_loaded_once_per_size():
+    assert load_background("menu", (960, 540)) is load_background("menu", (960, 540))
 
 
-def test_horizon_layers_are_scaled_to_the_shared_on_screen_height():
-    bg = ParallaxBackground(800, 600)
+def test_another_size_is_scaled_without_inventing_colors():
+    original = load_background("menu", (960, 540))
+    small = load_background("menu", (480, 270))
 
-    assert len(bg._horizon_layers) == 4
-    assert all(layer.get_height() == 300 for layer in bg._horizon_layers)
+    assert small.get_size() == (480, 270)
+    # Nearest-neighbor: no color appears that the original picture does not have.
+    colors = {
+        tuple(original.get_at((x, y))) for x in range(960) for y in range(0, 540, 3)
+    }
+    sample = {tuple(small.get_at((x, y))) for x in range(480) for y in range(270)}
+    assert sample <= colors
+
+
+def test_each_level_has_its_own_backdrop_and_the_menu_another():
+    assert len(set(NAMES)) == len(NAMES)
+    pictures = {
+        pygame.image.tobytes(load_background(n, (960, 540)), "RGB") for n in NAMES
+    }
+    assert len(pictures) == len(NAMES)

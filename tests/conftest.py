@@ -56,4 +56,4 @@ def input_handler() -> FakeInputHandler:
 
 @pytest.fixture
 def world() -> GameWorld:
-    return GameWorld(window_w=800, window_h=600)
+    return GameWorld(window_w=960, window_h=540)

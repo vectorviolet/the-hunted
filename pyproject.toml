@@ -12,6 +12,11 @@ dependencies = [
 build = [
     "pyinstaller>=6.0",
 ]
+# Only for the art-candidate scripts in scripts/art_gen/ (not needed to run or build the game).
+art = [
+    "pillow>=10",
+    "numpy>=1.26",
+]
 dev = [
     "pytest>=8",
     "pytest-cov>=5",

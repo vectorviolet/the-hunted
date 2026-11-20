@@ -16,12 +16,14 @@ src/entities.py        Player, Platform, Projectile
 src/combat.py          CombatSystem: bullet physics, contact damage, round transitions
 src/input_handler.py   InputHandler protocol, KeyboardInputHandler, AIInputHandler
 src/menu.py            Main-menu buttons and their button-state visuals
-src/countdown.py       The pre-game countdown (3, 2, 1, 0, GO), drawn in code
+src/countdown.py       The pre-game countdown (3, 2, 1, GO) from the glyph art
 src/renderer.py        Level-select and in-game drawing
-src/background.py      ParallaxBackground, baked from the mountain layers
+src/background.py      load_background: the full-screen picture of a level or the menu
+src/pixelart.py        three_slice and nine_slice: platform strips and UI frames at any size
+src/buttons.py         Menu button images (iron art + the label in the UI font)
 src/audio.py           Menu and game music
 src/cursor.py          Custom multi-state mouse cursor
-src/settings.py        Physics, combat, colors and the three level layouts, as plain constants
+src/settings.py        Canvas size (960x540), physics, combat, colors and the three level layouts, as plain constants
 src/util/              Frozen-build resource paths, the browser check (web.py)
 src/pygamine/          Engine submodule (Application, Mouse and GameObject are used)
 assets/                Images, sounds, fonts (every file listed in assets/SOURCES.yaml)

@@ -74,7 +74,7 @@ def write_preview() -> None:
     sheet = pygame.Surface((len(names) * (cell + pad) + pad, cell + 2 * pad + 64 * 2))
     sheet.fill((40, 40, 48))
     font = pygame.font.Font(
-        str(ROOT / "assets" / "fonts" / "ComicNeue-Regular.ttf"), 24
+        str(ROOT / "assets" / "fonts" / "Silkscreen-Regular.ttf"), 24
     )
     for i, name in enumerate(names):
         x = pad + i * (cell + pad)
