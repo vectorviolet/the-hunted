@@ -16,13 +16,12 @@ from renderer import GameRenderer
 from world import GameWorld
 
 
-
 class Game(Application):
-    STATE_MENU         = "menu"
+    STATE_MENU = "menu"
     STATE_LEVEL_SELECT = "level_select"
-    STATE_GAME         = "game"
+    STATE_GAME = "game"
 
-    def __init__(self):
+    def __init__(self) -> None:
         pygame.mixer.pre_init(44100, -16, 2, 1024 * 3)
         self._cursor = Cursor()
         _mouse = Mouse()
@@ -48,30 +47,39 @@ class Game(Application):
 
         self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
 
-        self._world = GameWorld(window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H)
-        self._world.platforms = [Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]['platforms']]
+        self._world = GameWorld(
+            window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H
+        )
+        self._world.platforms = [
+            Platform(loc, w, h) for loc, w, h in settings.LEVELS[0]["platforms"]
+        ]
 
-        self._menu     = Menu(settings.VIRTUAL_W, settings.VIRTUAL_H, self._cursor)
-        self._audio    = AudioManager()
+        self._menu = Menu(settings.VIRTUAL_W, settings.VIRTUAL_H, self._cursor)
+        self._audio = AudioManager()
         self._renderer = GameRenderer(self.window, self._world)
-        self._combat   = CombatSystem(self._world)
+        self._combat = CombatSystem(self._world)
 
-        self._font_hud   = pygame.font.Font(settings.FONT, 25)
-        self._score_surfs: list[pygame.Surface] = [None, None]
+        self._font_hud = pygame.font.Font(settings.FONT, 25)
+        self._score_surfs: list[pygame.Surface] = []
 
         self._current_level = 0
-        self._state         = self.STATE_MENU
-        self._vampire       = None
-        self._peasant       = None
-        self._countdown     = 100
-        self._intro_seq     = random.choice((1, 2, 3))
-        self._intro_flag    = False
+        self._state = self.STATE_MENU
+        self._vampire: Player | None = None
+        self._peasant: Player | None = None
+        self._countdown = 100
+        self._intro_seq = random.choice((1, 2, 3))
+        self._intro_flag = False
 
         self._p1 = self._make_player(
             (self._world.platforms[1].x - 64 + 18, settings.FLOOR_Y), "R"
         )
         self._p2 = self._make_player(
-            (self._world.platforms[0].x + self._world.platforms[0].width - 17, settings.FLOOR_Y), "L", is_p2=True
+            (
+                self._world.platforms[0].x + self._world.platforms[0].width - 17,
+                settings.FLOOR_Y,
+            ),
+            "L",
+            is_p2=True,
         )
         self._p1.left = True
         self._p1.be_peasant()
@@ -92,30 +100,37 @@ class Game(Application):
         if isinstance(self._p2._input, AIInputHandler):
             self._p2._input.bind(self._p2, self._p1)
 
-    def _refresh_scores(self):
-        self._score_surfs[0] = self._font_hud.render(f"P1   {self._p1.score}", True, settings.WHITE)
-        self._score_surfs[1] = self._font_hud.render(f"P2   {self._p2.score}", True, settings.WHITE)
+    def _refresh_scores(self) -> None:
+        self._score_surfs = [
+            self._font_hud.render(f"P1   {self._p1.score}", True, settings.WHITE),
+            self._font_hud.render(f"P2   {self._p2.score}", True, settings.WHITE),
+        ]
 
     def _btn_rect(self, name: str) -> pygame.Rect:
         cx, cy = self._world.window_w // 2, self._world.window_h // 2
         return {
-            '1p':    pygame.Rect(cx - 106, cy - 130, 212,  44),
-            '2p':    pygame.Rect(cx - 106, cy -  66, 212,  44),
-            'start': pygame.Rect(cx - 155, cy - 250, 310, 100),
+            "1p": pygame.Rect(cx - 106, cy - 130, 212, 44),
+            "2p": pygame.Rect(cx - 106, cy - 66, 212, 44),
+            "start": pygame.Rect(cx - 155, cy - 250, 310, 100),
         }[name]
 
-    def _reset_players(self):
+    def _reset_players(self) -> None:
         self._p1 = self._make_player(
             (self._world.platforms[1].x - 64 + 18, settings.FLOOR_Y), "R"
         )
         self._p2 = self._make_player(
-            (self._world.platforms[0].x + self._world.platforms[0].width - 17, settings.FLOOR_Y), "L", is_p2=True
+            (
+                self._world.platforms[0].x + self._world.platforms[0].width - 17,
+                settings.FLOOR_Y,
+            ),
+            "L",
+            is_p2=True,
         )
         self._p1.left = True
         self._p1.be_peasant()
         self._p2.be_peasant()
         self._bind_ai()
-        self._intro_seq  = random.choice((1, 2, 3))
+        self._intro_seq = random.choice((1, 2, 3))
         self._intro_flag = False
         self._refresh_scores()
 
@@ -166,8 +181,13 @@ class Game(Application):
         elif self._state == self.STATE_LEVEL_SELECT:
             self._renderer.draw_level_select(pos)
         elif self._state == self.STATE_GAME:
+            assert self._vampire is not None
             self._renderer.draw_game(
-                self._p1, self._p2, self._vampire, self._current_level, self._score_surfs
+                self._p1,
+                self._p2,
+                self._vampire,
+                self._current_level,
+                self._score_surfs,
             )
 
     # -------------------------------------------------------------------- menu
@@ -175,12 +195,12 @@ class Game(Application):
     def _handle_menu_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.MOUSEBUTTONUP:
             pos = self.mouse.position
-            if self._btn_rect('start').collidepoint(pos):
+            if self._btn_rect("start").collidepoint(pos):
                 self._countdown = 0
-            elif self._btn_rect('1p').collidepoint(pos):
+            elif self._btn_rect("1p").collidepoint(pos):
                 self._world.two_players = False
                 self._p1.control = "RL"
-            elif self._btn_rect('2p').collidepoint(pos):
+            elif self._btn_rect("2p").collidepoint(pos):
                 self._world.two_players = True
                 self._p1.control = "R"
                 self._p2.control = "L"
@@ -198,7 +218,7 @@ class Game(Application):
             self._state = self.STATE_LEVEL_SELECT
 
     def _update_menu_button_states(self, pos) -> None:
-        for name in ('1p', '2p', 'start'):
+        for name in ("1p", "2p", "start"):
             hovered = self._btn_rect(name).collidepoint(pos)
             pressed = pygame.mouse.get_pressed()[0] if hovered else False
             self._menu.update_button_state(name, hovered, pressed)
@@ -241,7 +261,7 @@ class Game(Application):
                     self._current_level = i
                     self._world.platforms = [
                         Platform(loc, w, h)
-                        for loc, w, h in settings.LEVELS[i]['platforms']
+                        for loc, w, h in settings.LEVELS[i]["platforms"]
                     ]
                     self._reset_players()
                     self._enter_game()
@@ -259,15 +279,17 @@ class Game(Application):
         self._renderer.randomize_background()
         self._audio.play_game()
 
-        self._vampire = random.choice((self._p1, self._p2))
-        self._vampire.be_vampire()
-        self._peasant = self._p2 if self._vampire is self._p1 else self._p1
+        vampire = random.choice((self._p1, self._p2))
+        vampire.be_vampire()
+        self._vampire = vampire
+        self._peasant = self._p2 if vampire is self._p1 else self._p1
 
         self._state = self.STATE_GAME
 
     def _update_game(self) -> None:
         self._p1.update()
         self._p2.update()
+        assert self._vampire is not None and self._peasant is not None
         winner = self._combat.resolve(self._vampire, self._peasant)
         if winner is not None:
             winner.score += 1

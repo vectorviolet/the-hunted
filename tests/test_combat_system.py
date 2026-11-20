@@ -7,11 +7,24 @@ class _Idle:
     """A no-input FakeInputHandler stand-in, local to keep these tests
     self-contained (see tests/conftest.py's FakeInputHandler for the
     settable version used elsewhere)."""
+
     control = "idle"
-    def is_moving_right(self) -> bool: return False
-    def is_moving_left(self) -> bool: return False
-    def is_jump_pressed(self) -> bool: return False
-    def is_fire_pressed(self) -> bool: return False
+
+    @staticmethod
+    def is_moving_right() -> bool:
+        return False
+
+    @staticmethod
+    def is_moving_left() -> bool:
+        return False
+
+    @staticmethod
+    def is_jump_pressed() -> bool:
+        return False
+
+    @staticmethod
+    def is_fire_pressed() -> bool:
+        return False
 
 
 def make_player(world, x: float, y: float, role: str) -> Player:
@@ -62,7 +75,9 @@ def test_bullet_out_of_bounds_is_removed_without_damage(world):
     combat = CombatSystem(world)
     vampire = make_player(world, 400, 100, "vampire")
     peasant = make_player(world, 700, 700, "peasant")  # far from the bullet
-    bullet = Projectile(x=world.window_w - 1, y=100, radius=5, color=settings.BLACK, facing=1)
+    bullet = Projectile(
+        x=world.window_w - 1, y=100, radius=5, color=settings.BLACK, facing=1
+    )
     world.bullets.append(bullet)
     start_hp = vampire.hp
 
@@ -78,7 +93,13 @@ def test_bullet_hitting_the_vampire_deals_damage_and_is_consumed(world):
     peasant = make_player(world, 700, 700, "peasant")
     hb = vampire.hitbox
     # Positioned so bullet.x + mov_speed lands inside the vampire's hitbox.
-    bullet = Projectile(x=hb.centerx - settings.BULLET_SPEED, y=hb.centery, radius=5, color=settings.BLACK, facing=1)
+    bullet = Projectile(
+        x=hb.centerx - settings.BULLET_SPEED,
+        y=hb.centery,
+        radius=5,
+        color=settings.BLACK,
+        facing=1,
+    )
     world.bullets.append(bullet)
     start_hp = vampire.hp
 
@@ -95,7 +116,13 @@ def test_peasant_wins_when_a_bullet_drops_vampire_hp_to_zero(world):
     peasant = make_player(world, 700, 700, "peasant")
     vampire.hp = settings.BULLET_DAMAGE
     hb = vampire.hitbox
-    bullet = Projectile(x=hb.centerx - settings.BULLET_SPEED, y=hb.centery, radius=5, color=settings.BLACK, facing=1)
+    bullet = Projectile(
+        x=hb.centerx - settings.BULLET_SPEED,
+        y=hb.centery,
+        radius=5,
+        color=settings.BLACK,
+        facing=1,
+    )
     world.bullets.append(bullet)
 
     result = combat.resolve(vampire, peasant)
@@ -108,7 +135,9 @@ def test_bullet_that_misses_stays_in_the_world(world):
     combat = CombatSystem(world)
     vampire = make_player(world, 400, 100, "vampire")
     peasant = make_player(world, 700, 700, "peasant")
-    bullet = Projectile(x=10, y=10, radius=5, color=settings.BLACK, facing=1)  # nowhere near the vampire
+    bullet = Projectile(
+        x=10, y=10, radius=5, color=settings.BLACK, facing=1
+    )  # nowhere near the vampire
     world.bullets.append(bullet)
 
     combat.resolve(vampire, peasant)

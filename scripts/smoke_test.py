@@ -8,6 +8,7 @@ Requires cwd = repo root (matches how __main__.py and CI both invoke it).
 No config files or save data here (this project has neither), so unlike
 chokepoint/highrise there's nothing on disk to worry about mutating.
 """
+
 import sys
 
 sys.path.insert(0, "src")

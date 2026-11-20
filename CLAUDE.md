@@ -21,8 +21,22 @@ uv run --group dev pytest tests/ -q                      # this app's own logic 
 uv run --group dev pytest tests/ --cov --cov-report=term  # with coverage
 ```
 
-`tests/conftest.py` runs pygame headless (`SDL_VIDEODRIVER=dummy`). No lint configuration
-in this project.
+`tests/conftest.py` runs pygame headless (`SDL_VIDEODRIVER=dummy`).
+
+## Lint, Format, Spelling and Types
+
+Same setup as highrise (config in `pyproject.toml`; the pygamine submodule has its own and is skipped). CI runs all of these:
+
+```bash
+uv run --group dev ruff check .          # lint: pyflakes, return types, complexity caps
+uv run --group dev ruff format .         # format (CI uses `ruff format --check .`)
+uv run --group dev codespell             # typos + American English (.codespell-en-us.txt)
+uv run --group dev mypy                  # lenient start: src/ only, untyped functions skipped
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy uv run python scripts/smoke_test.py   # headless boot
+```
+
+The reformat commit is listed in `.git-blame-ignore-revs`; to hide it in `git blame` run
+`git config blame.ignoreRevsFile .git-blame-ignore-revs` once.
 
 ## Architecture Overview
 

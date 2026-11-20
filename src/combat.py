@@ -1,14 +1,15 @@
 import random
 
 import settings
+from entities import Player
 from world import GameWorld
 
 
 class CombatSystem:
-    def __init__(self, world: GameWorld):
+    def __init__(self, world: GameWorld) -> None:
         self._world = world
 
-    def resolve(self, vampire, peasant):
+    def resolve(self, vampire: Player, peasant: Player) -> Player | None:
         """Returns the winning player this frame, or None if the round continues."""
         if vampire.hitbox.colliderect(peasant.hitbox):
             peasant.hp -= settings.CONTACT_DAMAGE
@@ -28,7 +29,9 @@ class CombatSystem:
 
         return None
 
-    def begin_round(self, old_vampire, p1, p2):
+    def begin_round(
+        self, old_vampire: Player, p1: Player, p2: Player
+    ) -> tuple[Player, Player]:
         """Resets positions/HP for a new round. Returns (new_vampire, new_peasant)."""
         self._world.bullets.clear()
 

@@ -1,11 +1,18 @@
+from __future__ import annotations
+
 import random
-from typing import Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 import pygame
+
+if TYPE_CHECKING:
+    from entities import Player
 
 
 @runtime_checkable
 class InputHandler(Protocol):
+    control: str
+
     def is_moving_right(self) -> bool: ...
     def is_moving_left(self) -> bool: ...
     def is_jump_pressed(self) -> bool: ...
@@ -13,54 +20,61 @@ class InputHandler(Protocol):
 
 
 class KeyboardInputHandler:
-    def __init__(self, control: str):
+    def __init__(self, control: str) -> None:
         self.control = control
 
     def is_moving_right(self) -> bool:
         keys = pygame.key.get_pressed()
-        return (
-            (self.control in ("R", "RL") and keys[pygame.K_RIGHT]) or
-            (self.control in ("L", "RL") and keys[ord('d')])
+        return (self.control in ("R", "RL") and keys[pygame.K_RIGHT]) or (
+            self.control in ("L", "RL") and keys[ord("d")]
         )
 
     def is_moving_left(self) -> bool:
         keys = pygame.key.get_pressed()
-        return (
-            (self.control in ("R", "RL") and keys[pygame.K_LEFT]) or
-            (self.control in ("L", "RL") and keys[ord('a')])
+        return (self.control in ("R", "RL") and keys[pygame.K_LEFT]) or (
+            self.control in ("L", "RL") and keys[ord("a")]
         )
 
     def is_jump_pressed(self) -> bool:
         keys = pygame.key.get_pressed()
-        return (
-            (self.control in ("R", "RL") and keys[pygame.K_UP]) or
-            (self.control in ("L", "RL") and keys[pygame.K_w])
+        return (self.control in ("R", "RL") and keys[pygame.K_UP]) or (
+            self.control in ("L", "RL") and keys[pygame.K_w]
         )
 
     def is_fire_pressed(self) -> bool:
         keys = pygame.key.get_pressed()
         arrows = self.control in ("R", "RL")
-        wasd   = self.control in ("L", "RL")
-        return (
-            (arrows and (keys[pygame.K_RCTRL] or keys[pygame.K_SPACE])) or
-            (wasd   and  keys[pygame.K_SPACE])
+        wasd = self.control in ("L", "RL")
+        return (arrows and (keys[pygame.K_RCTRL] or keys[pygame.K_SPACE])) or (
+            wasd and keys[pygame.K_SPACE]
         )
 
 
 class AIInputHandler:
     """Drives a Player by reading its own state, the opponent's, and the world."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.control = "AI"
-        self._self = None
-        self._target = None
+        self._bound_self: Player | None = None
+        self._bound_target: Player | None = None
 
-    def bind(self, self_player, target_player) -> None:
-        self._self = self_player
-        self._target = target_player
+    @property
+    def _self(self) -> Player:
+        # Only read after _ready() has confirmed bind() ran.
+        assert self._bound_self is not None
+        return self._bound_self
+
+    @property
+    def _target(self) -> Player:
+        assert self._bound_target is not None
+        return self._bound_target
+
+    def bind(self, self_player: Player, target_player: Player) -> None:
+        self._bound_self = self_player
+        self._bound_target = target_player
 
     def _ready(self) -> bool:
-        return self._self is not None and self._target is not None
+        return self._bound_self is not None and self._bound_target is not None
 
     def _dx(self) -> float:
         # Wrap-aware horizontal delta (chase the short way around the screen).
@@ -115,14 +129,14 @@ class AIInputHandler:
             if dy < -40:
                 return random.random() < 0.45  # chase upward
             if self._platform_in_chase_path():
-                return random.random() < 0.3   # leap onto intermediate platform
+                return random.random() < 0.3  # leap onto intermediate platform
             return random.random() < 0.01
         # peasant
         dx = self._dx()
         if abs(dx) < 90 and abs(dy) < 60:
-            return random.random() < 0.6       # vampire is close — bail out
+            return random.random() < 0.6  # vampire is close — bail out
         if self._platform_above_self():
-            return random.random() < 0.12      # take the high ground
+            return random.random() < 0.12  # take the high ground
         return random.random() < 0.005
 
     def is_fire_pressed(self) -> bool:
@@ -144,9 +158,8 @@ class AIInputHandler:
         target_x = my_x + dx
         for plat in self._self._world.platforms:
             plat_mid = plat.x + plat.width / 2
-            in_chase = (
-                (dx > 0 and my_x < plat_mid < target_x) or
-                (dx < 0 and target_x < plat_mid < my_x)
+            in_chase = (dx > 0 and my_x < plat_mid < target_x) or (
+                dx < 0 and target_x < plat_mid < my_x
             )
             if in_chase and 20 < my_y - plat.y < 180:
                 return True

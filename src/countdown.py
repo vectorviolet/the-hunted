@@ -15,18 +15,18 @@ ORANGE = (255, 100, 0)
 TEAL = (52, 219, 169)
 TEXT_COLOR = (0, 0, 0)
 
-SIZE = 300                  # the graphic is a SIZE x SIZE square ...
-POSITION = (250, 30)        # ... blitted here
-DIGIT_FRAMES = 12           # frames per digit (0.2 s at 60 FPS, one update per frame)
-GO_FRAME = 48               # first frame of "GO" (after the digits 3, 2, 1, 0)
-END_FRAME = 60              # the countdown ends here (the game moves on to level select); the
-                            # idle value Game uses before a countdown starts must be >= this
+SIZE = 300  # the graphic is a SIZE x SIZE square ...
+POSITION = (250, 30)  # ... blitted here
+DIGIT_FRAMES = 12  # frames per digit (0.2 s at 60 FPS, one update per frame)
+GO_FRAME = 48  # first frame of "GO" (after the digits 3, 2, 1, 0)
+END_FRAME = 60  # the countdown ends here (the game moves on to level select); the
+# idle value Game uses before a countdown starts must be >= this
 _RING_COLORS = (ORANGE, TEAL)
 
-_SUPERSAMPLE = 2            # the ring is drawn at this many times the size, then scaled down
-RING_OUTER = 123           # ring outer radius at SIZE
+_SUPERSAMPLE = 2  # the ring is drawn at this many times the size, then scaled down
+RING_OUTER = 123  # ring outer radius at SIZE
 RING_WIDTH = 14
-_DIGIT_FONT_SIZE = 156      # the digit is about 106 px tall
+_DIGIT_FONT_SIZE = 156  # the digit is about 106 px tall
 _GO_FONT_SIZE = 120
 
 
@@ -35,9 +35,11 @@ class CountdownStep:
     """What the countdown shows at one frame."""
 
     label: str
-    fraction: float                       # share of the ring drawn in `color`, clockwise from the top
-    color: tuple[int, int, int] | None    # None for "GO", which has no ring
-    base_color: tuple[int, int, int] | None = None  # a full ring drawn underneath, if any
+    fraction: float  # share of the ring drawn in `color`, clockwise from the top
+    color: tuple[int, int, int] | None  # None for "GO", which has no ring
+    base_color: tuple[int, int, int] | None = (
+        None  # a full ring drawn underneath, if any
+    )
 
 
 # Ring progress for the first frames of each digit (3, 2, 1, 0), measured from the original frames
@@ -77,7 +79,9 @@ class CountdownGraphic:
         self._digit_font.bold = True
         self._go_font = pygame.font.Font(FONT, _GO_FONT_SIZE)
         self._go_font.bold = True
-        self._images: dict[CountdownStep, pygame.Surface] = {}  # finished graphics, built on first use
+        self._images: dict[
+            CountdownStep, pygame.Surface
+        ] = {}  # finished graphics, built on first use
         self._labels = {
             label: font.render(label, True, TEXT_COLOR)
             for label, font in (

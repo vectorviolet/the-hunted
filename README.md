@@ -2,7 +2,7 @@
 
 ![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/hunted/main/.github/badges/coverage.json)
 
-My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomised each round — it's a chase-and-catch party game, not a horror game.
+My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomized each round — it's a chase-and-catch party game, not a horror game.
 
 > **Note on assets:** the code and game logic are mine, but most assets (art, music, sound) are unlicensed placeholders I collected when I was starting out. My later projects use properly-licensed CC0 assets. Please don't reuse the assets here.
 
@@ -13,7 +13,7 @@ My first-ever pygame project — kept here as a learning artifact. A goofy local
 - In every round, one player becomes the **vampire** and the other a **peasant**, chosen randomly.
 - The vampire is **faster** and wins by catching/touching the peasant.
 - Only the peasant can **fire bullets**.
-- 1-player mode pits you against a built-in **AI opponent** with separate vampire / peasant behaviours.
+- 1-player mode pits you against a built-in **AI opponent** with separate vampire / peasant behaviors.
 
 ### Screenshots
 
