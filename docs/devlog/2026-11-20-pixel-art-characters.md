@@ -1,7 +1,7 @@
 # New pixel-art vampire and peasant
 <!-- index | refs: #8 -->
 
-**Date:** 2026-11-20 · **Area:** Art · **Issue:** [#8](https://github.com/vectorviolet/hunted/issues/8)
+**Date:** 2026-11-20 · **Area:** Art · **Issue:** [#8](https://github.com/vectorviolet/the-hunted/issues/8)
 
 ## Context
 

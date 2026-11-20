@@ -1,7 +1,7 @@
 # Browser build and Windows installer
 <!-- index | refs: #9, PR #17 | area: Web, packaging -->
 
-**Date:** 2026-11-20 · **Area:** Web, packaging · **Issue:** [#9](https://github.com/vectorviolet/hunted/issues/9) · **PR:** [#17](https://github.com/vectorviolet/hunted/pull/17) · **ADR:** [0001](../decisions/0001-web-build.md)
+**Date:** 2026-11-20 · **Area:** Web, packaging · **Issue:** [#9](https://github.com/vectorviolet/the-hunted/issues/9) · **PR:** [#17](https://github.com/vectorviolet/the-hunted/pull/17) · **ADR:** [0001](../decisions/0001-web-build.md)
 
 ## Context
 

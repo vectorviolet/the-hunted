@@ -1,7 +1,7 @@
 # README and store page refresh
 <!-- index | refs: #22 | area: Docs, Art -->
 
-**Date:** 2026-11-20 · **Area:** Docs, Art · **Issue:** [#22](https://github.com/vectorviolet/hunted/issues/22)
+**Date:** 2026-11-20 · **Area:** Docs, Art · **Issue:** [#22](https://github.com/vectorviolet/the-hunted/issues/22)
 
 ## Context
 

@@ -20,6 +20,7 @@ PR. "Owner" is the project owner; "Claude" is the Claude Code session that imple
 | 2026-11-20 | [Replacing the music and the jump sound](2026-11-20-music-and-jump-sound.md) | Audio | #7, PR #15 |
 | 2026-11-20 | [New pixel-art vampire and peasant](2026-11-20-pixel-art-characters.md) | Art | #8 |
 | 2026-11-20 | [README and store page refresh](2026-11-20-store-media-and-readme.md) | Docs, Art | #22 |
+| 2026-11-21 | [A pixel-art logo for the README](2026-11-21-readme-logo.md) | Docs, Art | owner request, PR #27 |
 <!-- index:end -->
 
 ## Adding an entry
@@ -49,7 +50,7 @@ date (`tests/test_devlog_index.py`).
 # Title
 <!-- index | refs: #N, PR #M -->
 
-**Date:** YYYY-MM-DD · **Area:** UI · **Issue:** [#N](https://github.com/vectorviolet/hunted/issues/N) · **PR:** [#M](https://github.com/vectorviolet/hunted/pull/M)
+**Date:** YYYY-MM-DD · **Area:** UI · **Issue:** [#N](https://github.com/vectorviolet/the-hunted/issues/N) · **PR:** [#M](https://github.com/vectorviolet/the-hunted/pull/M)
 
 ## Context
 

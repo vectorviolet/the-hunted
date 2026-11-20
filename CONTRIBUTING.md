@@ -10,7 +10,7 @@ Python 3.12+ and [uv](https://docs.astral.sh/uv/) are needed (pygame-ce is resol
 `pyproject.toml` and `uv.lock`). The engine is a git submodule:
 
 ```bash
-git clone --recurse-submodules https://github.com/vectorviolet/hunted.git
+git clone --recurse-submodules https://github.com/vectorviolet/the-hunted.git
 cd hunted
 uv sync
 uv run python __main__.py

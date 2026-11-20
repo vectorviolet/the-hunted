@@ -12,7 +12,7 @@ folder holds what goes into it:
 
 The release workflow (`.github/workflows/release.yml`) uploads the builds with Butler to the
 `windows`, `linux`, `osx` and `html5` channels; it never touches the page text. The same builds
-are on the [GitHub releases](https://github.com/vectorviolet/hunted/releases/latest).
+are on the [GitHub releases](https://github.com/vectorviolet/the-hunted/releases/latest).
 
 The [Field values](#field-values) table at the end lists what each edit-page field holds or should
 hold; the checklist items explain the reasoning. The tagline, the description wording, the tags
