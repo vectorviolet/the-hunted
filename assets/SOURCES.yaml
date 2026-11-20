@@ -13,6 +13,12 @@ packs:
     url: https://opengameart.org/content/mountain-at-dusk-background
     license: CC0-1.0
     used_for: "parallax background layers"
+  amir027-platform-tile4:
+    name: "Platform tile4"
+    author: "amir027"
+    url: https://opengameart.org/content/platform-tile4
+    license: CC0-1.0
+    used_for: "platform tile"
   font-comic-neue:
     name: "Comic Neue"
     author: "Craig Rozynski"
@@ -60,181 +66,181 @@ files:
     original: "parallax_mountain_pack/layers/parallax-mountain-trees.png"
   "images/buttons/oneplayer.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/oneplayer2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/oneplayer3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/start.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/twoplayer.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/twoplayer2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/buttons/twoplayer3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
   "images/cursor/click/L-0.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-1.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-4.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-5.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-6.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click/L-7.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-0.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-1.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-10.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-11.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-12.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-4.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-5.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-6.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-7.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-8.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/click2/L2-9.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-0.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-1.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-4.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-5.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-6.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-7.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-8.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/help/H-9.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-0.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-1.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-10.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-11.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-12.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-13.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-14.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-15.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-16.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-4.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-5.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-6.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-7.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-8.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/normal/N-9.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/writing/W-0.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/writing/W-1.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/writing/W-2.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/cursor/writing/W-3.png":
     source: unknown
-    todo: "unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
   "images/peasant/L1.png":
     source: redshrike-lpc-four-characters
     original: "baldricfrontwalksheet copy.png"
@@ -312,217 +318,217 @@ files:
     original: "baldricfrontwalksheet copy.png"
     modified: "the 64x64 frame in row 3, column 1 (walking down), cut out of the sheet; pixel-identical"
   "images/platfor_tile.png":
-    source: unknown
-    todo: "the README credits it as CC0 together with the parallax background, but it is not in that pack: find its source"
+    source: amir027-platform-tile4
+    original: "Platform Tile Grass_0.png"
   "images/vampire/L1E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L2E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L3E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L4E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L5E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L6E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L7E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L8E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/L9E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R1E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R2E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R3E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R4E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R5E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R6E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R7E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R8E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/vampire/R9E.png":
     source: unknown
-    todo: "LPC-style goblin; not in Redshrike's four LPC characters (the peasant's pack): find its source, or replace it"
+    todo: "replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style"
   "images/wait/321-0-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-1-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-10-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-11-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-12-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-13-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-14-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-15-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-16-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-17-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-18-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-19-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-2-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-20-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-21-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-22-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-23-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-24-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-25-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-26-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-27-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-28-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-29-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-3-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-30-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-31-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-32-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-33-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-34-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-35-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-36-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-37-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-38-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-39-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-4-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-40-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-41-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-42-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-43-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-44-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-45-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-46-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-47-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-48-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-5-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-6-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-7-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-8-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "images/wait/321-9-removebg-preview.png":
     source: unknown
-    todo: "loading animation, cut out with remove.bg (see the file names); unlicensed placeholder from the developer's first project (see README): find its source, or replace it"
+    todo: "remove (owner, 2026-11-20): draw the loading animation in code instead of from images"
   "sounds/chase_theme.wav":
     source: wyver9-8bit-beatem-up
     original: "Level 5 Chase"
-    todo: "CC BY-SA 4.0 is outside the pre-approved licenses (CC0, CC BY, OFL): the owner decides whether to keep it; the pack is not in the asset library yet"
+    todo: "replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses"
   "sounds/jump.wav":
     source: unknown
     todo: "replaced on 2026-07-09 (commit 4aedf04) without a recorded source: find it, or replace it"
   "sounds/menu_theme.wav":
     source: wyver9-8bit-beatem-up
     original: "Title"
-    todo: "CC BY-SA 4.0 is outside the pre-approved licenses (CC0, CC BY, OFL): the owner decides whether to keep it; the pack is not in the asset library yet"
+    todo: "replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses"
