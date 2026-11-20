@@ -1,49 +1,81 @@
 import pygame
+import pytest
 
-from cursor import Cursor
+from cursor import CLICK, CLICK2, HELP, NORMAL, WRITING, Cursor
+
+STATES = (NORMAL, CLICK, CLICK2, HELP, WRITING)
 
 
-def test_construction_loads_all_three_frame_sets_and_starts_normal():
+def test_starts_in_the_normal_state_with_the_size_of_its_image():
     cursor = Cursor()
 
-    assert len(cursor._normal) == 17
-    assert len(cursor._click) == 8
-    assert len(cursor._click2) == 13
-    assert cursor._state is cursor._normal
-    assert cursor._frame == 0
-    assert cursor.rect.size == cursor._normal[0].get_size()
+    assert cursor.state == NORMAL
+    assert cursor.rect.size == (32, 32)
 
 
-def test_draw_advances_the_frame_each_call():
+@pytest.mark.parametrize("state", STATES)
+def test_set_state_switches_to_every_known_state(state):
     cursor = Cursor()
-    surface = pygame.Surface((32, 32))
+
+    cursor.set_state(state)
+
+    assert cursor.state == state
+
+
+def test_set_state_rejects_an_unknown_state_and_keeps_the_old_one():
+    cursor = Cursor()
+    cursor.set_state(CLICK)
+
+    with pytest.raises(AssertionError):
+        cursor.set_state("pikachu")
+
+    assert cursor.state == CLICK
+
+
+@pytest.mark.parametrize(
+    ("state", "tip"),
+    [
+        (NORMAL, "topleft"),  # the arrow's tip is its top-left corner
+        (CLICK, "midtop"),  # the pointing finger is the top of the hand
+        (HELP, "topleft"),
+    ],
+)
+def test_draw_puts_the_tip_on_the_mouse_position(state, tip):
+    cursor = Cursor()
+    cursor.set_state(state)
+    cursor.rect.x, cursor.rect.y = 40, 40
+    surface = pygame.Surface((100, 100), pygame.SRCALPHA)
 
     cursor.draw(surface)
-    assert cursor._frame == 1
+
+    bounds = surface.get_bounding_rect()
+    tip_x, tip_y = getattr(bounds, tip)
+    assert abs(tip_y - 40) <= 1
+    assert abs(tip_x - 40) <= (10 if tip == "midtop" else 3)
+
+
+@pytest.mark.parametrize("state", (CLICK2, WRITING))
+def test_draw_centers_the_round_cursors_on_the_mouse_position(state):
+    cursor = Cursor()
+    cursor.set_state(state)
+    cursor.rect.x, cursor.rect.y = 40, 40
+    surface = pygame.Surface((100, 100), pygame.SRCALPHA)
 
     cursor.draw(surface)
-    assert cursor._frame == 2
+
+    cx, cy = surface.get_bounding_rect().center
+    assert abs(cx - 40) <= 2
+    assert abs(cy - 40) <= 2
 
 
-def test_draw_wraps_back_to_the_first_frame_at_the_end_of_the_current_state():
-    cursor = Cursor()
-    cursor._state = cursor._click  # shortest set, 8 frames
-    cursor._frame = 8  # one past the last valid index
+def test_each_state_draws_a_different_image():
+    drawn = {}
+    for state in STATES:
+        cursor = Cursor()
+        cursor.set_state(state)
+        cursor.rect.x, cursor.rect.y = 40, 40
+        surface = pygame.Surface((100, 100), pygame.SRCALPHA)
+        cursor.draw(surface)
+        drawn[state] = pygame.image.tobytes(surface, "RGBA")
 
-    cursor.draw(surface=pygame.Surface((32, 32)))
-
-    # draw() resets an out-of-range frame to 0 before blitting, then
-    # advances -- so one call from an overrun index lands on frame 1.
-    assert cursor._frame == 1
-
-
-def test_switching_state_takes_effect_on_the_next_draw():
-    cursor = Cursor()
-    cursor.draw(pygame.Surface((32, 32)))  # frame 1 in _normal
-
-    cursor._state = cursor._click2
-    cursor._frame = 0
-    cursor.draw(pygame.Surface((32, 32)))
-
-    assert cursor._state is cursor._click2
-    assert cursor._frame == 1
+    assert len(set(drawn.values())) == len(STATES)

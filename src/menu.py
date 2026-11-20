@@ -1,9 +1,14 @@
 import pygame
 
 from background import ParallaxBackground
+from buttons import BTN_HOVER, BTN_NORMAL, BTN_PRESSED, make_button
 from countdown import CountdownGraphic, countdown_step
+from cursor import CLICK, CLICK2, NORMAL
 from entities import Platform
 from settings import FONT, GROUND_Y, WHITE
+
+START_SIZE = (310, 100)
+BUTTON_SIZE = (212, 44)
 
 
 class Menu:
@@ -23,28 +28,23 @@ class Menu:
         self._background = ParallaxBackground(window_w, window_h)
         self._ground = Platform((0, GROUND_Y), window_w, int(window_h - GROUND_Y))
 
-        self._start_btn = pygame.transform.scale(
-            pygame.image.load("assets/images/buttons/start.png"), (310, 100)
-        )
-        self._btn_1p = [
-            pygame.transform.scale(
-                pygame.image.load(
-                    f"assets/images/buttons/oneplayer{'' if i == 0 else i + 1}.png"
-                ),
-                (212, 44),
-            )
-            for i in range(3)
-        ]
-        self._btn_2p = [
-            pygame.transform.scale(
-                pygame.image.load(
-                    f"assets/images/buttons/twoplayer{'' if i == 0 else i + 1}.png"
-                ),
-                (212, 44),
-            )
-            for i in range(3)
-        ]
+        self._start_btn = self._make_buttons(START_SIZE, "START", 52)
+        self._btn_1p = self._make_buttons(BUTTON_SIZE, "1 PLAYER", 26)
+        self._btn_2p = self._make_buttons(BUTTON_SIZE, "2 PLAYER", 26)
         self._countdown_graphic = CountdownGraphic()
+
+    @staticmethod
+    def _make_buttons(
+        size: tuple[int, int], label: str, font_size: int
+    ) -> dict[int, pygame.Surface]:
+        return {
+            state: make_button(state, size, label, font_size)
+            for state in (BTN_NORMAL, BTN_PRESSED, BTN_HOVER)
+        }
+
+    @staticmethod
+    def _state(hover: bool, click: bool) -> int:
+        return BTN_HOVER if hover else BTN_PRESSED if click else BTN_NORMAL
 
     def update_button_state(self, btn_name: str, hovered: bool, pressed: bool) -> None:
         setattr(self, f"_btn_{btn_name}_hover", hovered and not pressed)
@@ -60,29 +60,24 @@ class Menu:
         cx, cy = self.window_w // 2, self.window_h // 2
 
         if countdown == 100:
-            surface.blit(self._start_btn, (cx - 155, cy - 250))
+            start = self._start_btn[
+                self._state(self._btn_start_hover, self._btn_start_click)
+            ]
+            surface.blit(start, (cx - 155, cy - 250))
+            btn_1p = self._btn_1p[self._state(self._btn_1p_hover, self._btn_1p_click)]
+            btn_2p = self._btn_2p[self._state(self._btn_2p_hover, self._btn_2p_click)]
+            surface.blit(btn_1p, (cx - 106, cy - 130))
+            surface.blit(btn_2p, (cx - 106, cy - 66))
 
-            state_1p = 2 if self._btn_1p_hover else (1 if self._btn_1p_click else 0)
-            state_2p = 2 if self._btn_2p_hover else (1 if self._btn_2p_click else 0)
-            surface.blit(self._btn_1p[state_1p], (cx - 106, cy - 130))
-            surface.blit(self._btn_2p[state_2p], (cx - 106, cy - 66))
-
-            any_hover = (
-                self._btn_1p_hover or self._btn_2p_hover or self._btn_start_hover
+        # The buttons only exist before the countdown starts; afterwards it is a plain arrow.
+        any_hover = self._btn_1p_hover or self._btn_2p_hover or self._btn_start_hover
+        any_click = self._btn_1p_click or self._btn_2p_click or self._btn_start_click
+        if countdown != 100:
+            self.cursor.set_state(NORMAL)
+        else:
+            self.cursor.set_state(
+                CLICK if any_hover else CLICK2 if any_click else NORMAL
             )
-            any_click = (
-                self._btn_1p_click or self._btn_2p_click or self._btn_start_click
-            )
-            new_state = (
-                self.cursor._click
-                if any_hover
-                else self.cursor._click2
-                if any_click
-                else self.cursor._normal
-            )
-            if new_state is not self.cursor._state:
-                self.cursor._state = new_state
-                self.cursor._frame = 0
 
         players = [(p1, self._lbl_p1)]
         if p2 is not None:

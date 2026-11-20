@@ -14,6 +14,7 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- The menu buttons and the mouse cursor use Kenney CC0 art (UI Pack and Cursor Pack) instead of images with no known license. The buttons keep their positions, sizes and hover/pressed states, with the labels drawn in the game font; the cursor is now one static image per state instead of animated frames.
 - The menu music, chase music and jump sound are replaced with CC0 audio (Ogg Vorbis): the two
   CC BY-SA 4.0 tracks by wyver9 and the jump sound of unknown origin are gone. Same places in the game.
 - Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.

@@ -8,7 +8,7 @@ import settings
 from audio import AudioManager
 from combat import CombatSystem
 from countdown import END_FRAME
-from cursor import Cursor
+from cursor import CLICK, NORMAL, Cursor
 from entities import Platform, Player
 from input_handler import AIInputHandler, KeyboardInputHandler
 from menu import Menu
@@ -251,7 +251,7 @@ class Game(Application):
             self._renderer.level_card_rect(i).collidepoint(pos)
             for i in range(len(settings.LEVELS))
         )
-        self._cursor._state = self._cursor._click if any_hover else self._cursor._normal
+        self._cursor.set_state(CLICK if any_hover else NORMAL)
 
     def _handle_level_select_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.MOUSEBUTTONUP:
@@ -284,6 +284,7 @@ class Game(Application):
         self._vampire = vampire
         self._peasant = self._p2 if vampire is self._p1 else self._p1
 
+        self._cursor.set_state(NORMAL)
         self._state = self.STATE_GAME
 
     def _update_game(self) -> None:

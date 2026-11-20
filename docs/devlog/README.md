@@ -13,6 +13,7 @@ PR. "Owner" is the project owner; "Claude" is the Claude Code session that imple
 | Date | Title | Area | Issues / PRs |
 |---|---|---|---|
 | 2026-11-20 | [Drawing the pre-game countdown in code](2026-11-20-countdown-in-code.md) | UI, Art | PR #11 |
+| 2026-11-20 | [Kenney buttons and cursor](2026-11-20-kenney-buttons-and-cursor.md) | UI, Art | #5, PR #14 |
 | 2026-11-20 | [Replacing the music and the jump sound](2026-11-20-music-and-jump-sound.md) | Audio | #7, PR #15 |
 <!-- index:end -->
 

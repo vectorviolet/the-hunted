@@ -16,6 +16,8 @@ under "Pending replacement" and are not covered by the MIT license.
 |---|---|---|---|---|
 | [Four characters: My LPC entries](https://opengameart.org/content/four-characters-my-lpc-entries) | Stephen "Redshrike" Challener | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | the peasant (Baldric) | 19 |
 | [Mountain at Dusk Background](https://opengameart.org/content/mountain-at-dusk-background) | Luis Zuno (ansimuz) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | parallax background layers | 5 |
+| [Cursor Pack](https://kenney.nl/assets/cursor-pack) | Kenney | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | mouse cursor | 5 |
+| [UI Pack](https://kenney.nl/assets/ui-pack) | Kenney | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | menu buttons | 3 |
 | [Platform tile4](https://opengameart.org/content/platform-tile4) | amir027 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | platform tile | 1 |
 | [Comic Neue](https://fonts.google.com/specimen/Comic+Neue) | Craig Rozynski | [SIL OFL 1.1](https://openfontlicense.org) | UI font | 1 |
 | [8-bit Epic Space Shooter Music](https://opengameart.org/content/8-bit-epic-space-shooter-music) | HydroGene | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | chase music | 1 |
@@ -34,15 +36,13 @@ under "Pending replacement" and are not covered by the MIT license.
 
 ### Pending replacement
 
-These files are waiting for a source or a replacement. Files marked credited above are replaced for license reasons while their pack stays credited. The other 77 have no confirmed source or license: they are not credited to anyone and are not covered by the MIT license.
+These files are waiting for a source or a replacement. Files marked credited above are replaced for license reasons while their pack stays credited. The other 18 have no confirmed source or license: they are not credited to anyone and are not covered by the MIT license.
 
-- `assets/images/buttons/` (7 files): replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image
-- `assets/images/cursor/` (52 files): replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)
 - `assets/images/vampire/` (18 files): replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style
 
 CC0 assets need no attribution; they are credited here anyway. The OFL font is
 bundled unmodified. CC BY and CC BY-SA assets require
-attribution (see above). Each pack's own license text ships with the game: `licenses/assets/amir027-platform-tile4.txt`, `licenses/assets/ansimuz-mountain-at-dusk.txt`, `licenses/assets/font-comic-neue.txt`, `licenses/assets/hydrogene-8-bit-epic-space-shooter-music.txt`, `licenses/assets/hydrogene-8-bit-truth.txt`, `licenses/assets/kenney-interface-sounds.txt`, `licenses/assets/redshrike-lpc-four-characters.txt`.
+attribution (see above). Each pack's own license text ships with the game: `licenses/assets/amir027-platform-tile4.txt`, `licenses/assets/ansimuz-mountain-at-dusk.txt`, `licenses/assets/font-comic-neue.txt`, `licenses/assets/hydrogene-8-bit-epic-space-shooter-music.txt`, `licenses/assets/hydrogene-8-bit-truth.txt`, `licenses/assets/kenney-cursor-pack.txt`, `licenses/assets/kenney-interface-sounds.txt`, `licenses/assets/kenney-ui-pack.txt`, `licenses/assets/redshrike-lpc-four-characters.txt`.
 [assets/SOURCES.yaml](https://github.com/vectorviolet/hunted/blob/main/assets/SOURCES.yaml) in the source repository lists every asset
 file with its pack and its original file name there.
 <!-- assets:end -->
