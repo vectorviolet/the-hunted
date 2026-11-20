@@ -1,6 +1,7 @@
 import pygame
 
 from background import ParallaxBackground
+from countdown import CountdownGraphic, countdown_step
 from entities import Platform
 from settings import FONT, GROUND_Y, WHITE
 
@@ -39,9 +40,7 @@ class Menu:
             )
             for i in range(3)
         ]
-        self._wait_frames = [
-            pygame.image.load(f"assets/images/wait/321-{i}-removebg-preview.png") for i in range(49)
-        ]
+        self._countdown_graphic = CountdownGraphic()
 
     def update_button_state(self, btn_name: str, hovered: bool, pressed: bool):
         setattr(self, f'_btn_{btn_name}_hover', hovered and not pressed)
@@ -83,9 +82,6 @@ class Menu:
             surface.blit(lbl, (int(p.x) + p.width // 4 + 8, int(p.y) - p.height // 2))
             p.draw(surface)
 
-        if 0 < countdown < 48:
-            scaled = pygame.transform.scale(self._wait_frames[countdown], (300, 300))
-            surface.blit(scaled, (250, 30))
-        elif 48 <= countdown < 60:
-            scaled = pygame.transform.scale(self._wait_frames[48], (300, 300))
-            surface.blit(scaled, (250, 30))
+        step = countdown_step(countdown)
+        if step is not None:
+            self._countdown_graphic.draw(surface, step)

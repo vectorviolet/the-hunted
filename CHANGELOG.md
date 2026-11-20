@@ -10,6 +10,8 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
+- The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so
+  the unlicensed remove.bg frames are gone from the repo. Same look and timing.
 
 ## [0.2.1] – 2026-10-24
 
