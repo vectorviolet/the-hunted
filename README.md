@@ -123,7 +123,7 @@ Some **assets** (vampire sprites, buttons, cursor, jump sound) are **not** cover
 
 ## Credits
 
-Every pack, font, track and library the game uses, with its author and license, is in [CREDITS.md](CREDITS.md), which also ships with every build. The license texts are in [`licenses/`](licenses/). The peasant is by Stephen "Redshrike" Challener and the menu and chase music by wyver9; both need attribution, which CREDITS.md carries.
+Every pack, font, track and library the game uses, with its author and license, is in [CREDITS.md](CREDITS.md), which also ships with every build. The asset packs' license texts are in [`licenses/assets/`](licenses/assets/); the software's texts (pygame-ce and its libraries) come from [`src/pygamine/pygamine/licenses/`](src/pygamine/pygamine/licenses/) and are bundled into each build's `licenses/` folder. The peasant is by Stephen "Redshrike" Challener and the menu and chase music by wyver9; both need attribution, which CREDITS.md carries.
 
 ## Contributing and security
 

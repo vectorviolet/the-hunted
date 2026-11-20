@@ -6,6 +6,7 @@ section is exactly what scripts/gen_credits.py builds from it."""
 from __future__ import annotations
 
 import importlib.util
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -29,10 +30,27 @@ def sources() -> dict[str, Any]:
 
 
 def _asset_files() -> set[str]:
+    """The files git tracks (or would) under assets/, so stray OS files such as
+    Thumbs.db or .DS_Store, which .gitignore covers, don't count."""
+    out = subprocess.run(
+        [
+            "git",
+            "ls-files",
+            "-z",
+            "--cached",
+            "--others",
+            "--exclude-standard",
+            "assets",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout
     return {
-        p.relative_to(ASSETS).as_posix()
-        for p in ASSETS.rglob("*")
-        if p.is_file() and p.name != "SOURCES.yaml"
+        name.removeprefix("assets/")
+        for name in out.split("\0")
+        if name and name != "assets/SOURCES.yaml"
     }
 
 
@@ -111,7 +129,7 @@ def test_unknown_files_are_listed_as_pending_and_never_credited():
         )
     )
     assert "### Pending replacement" in text
-    assert "3 files have no confirmed source" in text
+    assert "The other 3 have no confirmed source" in text
     assert "- `assets/images/b/` (2 files): replace it" in text
     assert "- `assets/sounds/s.wav` (1 file): origin not confirmed" in text
     # The one known file is the only one in the pack table.
@@ -124,3 +142,37 @@ def test_no_pending_section_when_every_source_is_known():
     )
     assert "Pending replacement" not in text
     assert "- Pack ([CC BY 3.0]" in text and "Au, with a link" in text
+
+
+def test_every_pack_with_modified_files_says_what_changed(sources):
+    modified = {e["source"] for e in sources["files"].values() if "modified" in e}
+    for slug in modified:
+        assert sources["packs"][slug].get("changes"), slug
+
+
+def test_pending_lists_known_sources_with_a_todo_as_credited():
+    text = gen_credits.render(
+        _fake(
+            {
+                "sounds/m.wav": {"source": "p", "original": "x", "todo": "swap it"},
+                "images/b/1.png": {"source": "unknown", "todo": "replace it"},
+            }
+        )
+    )
+    assert "- `assets/sounds/m.wav` (1 file, credited above): swap it" in text
+    assert "- `assets/images/b/` (1 file): replace it" in text
+    assert "The other 1 have no confirmed source" in text
+
+
+def test_changes_are_rendered_per_pack():
+    data = _fake({"images/a/1.png": {"source": "p", "original": "x", "modified": "m"}})
+    data["packs"]["p"]["changes"] = "frames cut from the sheet"
+    text = gen_credits.render(data)
+    assert "### Changes to the original files" in text
+    assert "- Pack: frames cut from the sheet" in text
+
+
+def test_updated_credits_names_the_file_when_markers_are_misplaced():
+    for text in ("no markers", f"{gen_credits.END}\n{gen_credits.BEGIN}"):
+        with pytest.raises(ValueError, match="CREDITS.md"):
+            gen_credits.updated_credits(text, "x")

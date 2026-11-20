@@ -16,26 +16,32 @@ under "Pending replacement" and are not covered by the MIT license.
 |---|---|---|---|---|
 | [Four characters: My LPC entries](https://opengameart.org/content/four-characters-my-lpc-entries) | Stephen "Redshrike" Challener | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | the peasant (Baldric) | 19 |
 | [Mountain at Dusk Background](https://opengameart.org/content/mountain-at-dusk-background) | Luis Zuno (ansimuz) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | parallax background layers | 5 |
-| [Comic Neue](https://fonts.google.com/specimen/Comic+Neue) | Craig Rozynski | [SIL OFL 1.1](https://openfontlicense.org) | UI font | 2 |
 | [8-Bit Beat'em Up Soundtrack](https://wyver9.bandcamp.com/album/8-bit-beatem-up-soundtrack/) | wyver9 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | menu and chase music | 2 |
 | [Platform tile4](https://opengameart.org/content/platform-tile4) | amir027 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | platform tile | 1 |
+| [Comic Neue](https://fonts.google.com/specimen/Comic+Neue) | Craig Rozynski | [SIL OFL 1.1](https://openfontlicense.org) | UI font | 1 |
 
 ### Attribution
 
 - Four characters: My LPC entries ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)): Stephen "Redshrike" Challener, with a link to https://opengameart.org
 - 8-Bit Beat'em Up Soundtrack ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)): "8-Bit Beat'em Up Soundtrack" by wyver9
 
+### Changes to the original files
+
+- Four characters: My LPC entries: each 64x64 walking frame is cut out of the original sheet; the pixels are unchanged
+
 ### Pending replacement
 
-78 files have no confirmed source or license. They are not credited to anyone and are not covered by the MIT license; each is being replaced or tracked down:
+These files are waiting for a source or a replacement. Files marked credited above are replaced for license reasons while their pack stays credited. The other 78 have no confirmed source or license: they are not credited to anyone and are not covered by the MIT license.
 
 - `assets/images/buttons/` (7 files): replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image
 - `assets/images/cursor/` (52 files): replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)
 - `assets/images/vampire/` (18 files): replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style
+- `assets/sounds/chase_theme.wav` (1 file, credited above): replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses
 - `assets/sounds/jump.wav` (1 file): replaced on 2026-07-09 (commit 4aedf04) without a recorded source: find it, or replace it
+- `assets/sounds/menu_theme.wav` (1 file, credited above): replace (owner, 2026-11-20): CC BY-SA 4.0 is outside the pre-approved licenses
 
 CC0 assets need no attribution; they are credited here anyway. The OFL font is
-bundled unmodified with its license text. CC BY and CC BY-SA assets require
+bundled unmodified. CC BY and CC BY-SA assets require
 attribution (see above). Each pack's own license text ships with the game: `licenses/assets/amir027-platform-tile4.txt`, `licenses/assets/ansimuz-mountain-at-dusk.txt`, `licenses/assets/font-comic-neue.txt`, `licenses/assets/redshrike-lpc-four-characters.txt`, `licenses/assets/wyver9-8bit-beatem-up.txt`.
 [assets/SOURCES.yaml](https://github.com/vectorviolet/hunted/blob/main/assets/SOURCES.yaml) in the source repository lists every asset
 file with its pack and its original file name there.

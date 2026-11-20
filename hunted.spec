@@ -31,6 +31,10 @@ datas = [
     # The asset packs' own license texts (licenses/assets/<pack>.txt, see
     # assets/SOURCES.yaml), into the same licenses/ folder.
     (str(ROOT / "licenses"), "licenses"),
+    # Attribution and the game's own license, inside the bundle (on macOS,
+    # inside the .app); the copies below also sit next to the executable.
+    (str(ROOT / "CREDITS.md"), "."),
+    (str(ROOT / "LICENSE"), "."),
 ]
 
 a = Analysis(

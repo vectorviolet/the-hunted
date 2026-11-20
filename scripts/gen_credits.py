@@ -51,16 +51,28 @@ def _group_label(rel: str) -> str:
 
 
 def pending_lines(files: dict[str, Any]) -> list[str]:
-    """One bullet per (folder, todo) for the files with an unknown source."""
-    groups: dict[tuple[str, str], int] = {}
+    """One bullet per (folder, todo) for the files that still have a `todo`:
+    an unknown source, or a known one that is being replaced."""
+    groups: dict[tuple[str, str, bool], int] = {}
     for rel, entry in sorted(files.items()):
-        if entry["source"] != UNKNOWN:
+        unknown = entry["source"] == UNKNOWN
+        if not unknown and "todo" not in entry:
             continue
-        key = (_group_label(rel), entry.get("todo", "origin not confirmed"))
+        key = (_group_label(rel), entry.get("todo", "origin not confirmed"), unknown)
         groups[key] = groups.get(key, 0) + 1
     return [
-        f"- `{label}` ({count} file{'s' if count != 1 else ''}): {todo}"
-        for (label, todo), count in groups.items()
+        f"- `{label}` ({count} file{'s' if count != 1 else ''}"
+        f"{'' if unknown else ', credited above'}): {todo}"
+        for (label, todo, unknown), count in groups.items()
+    ]
+
+
+def change_lines(packs: dict[str, Any]) -> list[str]:
+    """One bullet per pack whose files were changed (CC BY asks to say so)."""
+    return [
+        f"- {pack['name']}: {pack['changes']}"
+        for _, pack in sorted(packs.items())
+        if "changes" in pack
     ]
 
 
@@ -94,21 +106,26 @@ def render(data: dict[str, Any]) -> str:
     attributions = attribution_lines(packs)
     if attributions:
         lines += ["### Attribution", "", *attributions, ""]
+    changes = change_lines(packs)
+    if changes:
+        lines += ["### Changes to the original files", "", *changes, ""]
     pending = pending_lines(files)
     if pending:
         lines += [
             "### Pending replacement",
             "",
-            f"{counts[UNKNOWN]} files have no confirmed source or license. They are not "
-            "credited to anyone and are not covered by the MIT license; each is being "
-            "replaced or tracked down:",
+            "These files are waiting for a source or a replacement. Files marked "
+            "credited above are replaced for license reasons while their pack stays "
+            f"credited. The other {counts[UNKNOWN]} have no confirmed source or "
+            "license: they are not credited to anyone and are not covered by the MIT "
+            "license.",
             "",
             *pending,
             "",
         ]
     lines += [
         "CC0 assets need no attribution; they are credited here anyway. The OFL font is",
-        "bundled unmodified with its license text. CC BY and CC BY-SA assets require",
+        "bundled unmodified. CC BY and CC BY-SA assets require",
         "attribution (see above). Each pack's own license text ships with the game: "
         + ", ".join(f"`licenses/assets/{slug}.txt`" for slug in sorted(packs))
         + ".",
@@ -119,8 +136,10 @@ def render(data: dict[str, Any]) -> str:
 
 
 def updated_credits(text: str, section: str) -> str:
-    start, end = text.index(BEGIN), text.index(END)
-    return text[: start + len(BEGIN)] + "\n" + section + "\n" + text[end:]
+    start, end = text.find(BEGIN), text.find(END)
+    if start == -1 or end == -1 or end < start:
+        raise ValueError(f"{CREDITS.name}: missing or misplaced assets markers")
+    return f"{text[: start + len(BEGIN)]}\n{section}\n{text[end:]}"
 
 
 def main() -> int:
