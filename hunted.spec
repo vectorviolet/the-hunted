@@ -28,6 +28,13 @@ datas = [
     # License texts of pygame-ce and the native libraries it bundles: inside
     # the bundle (on macOS, inside the .app) and, below, next to the executable.
     (str(ROOT / "src" / "pygamine" / "pygamine" / "licenses"), "licenses"),
+    # The asset packs' own license texts (licenses/assets/<pack>.txt, see
+    # assets/SOURCES.yaml), into the same licenses/ folder.
+    (str(ROOT / "licenses"), "licenses"),
+    # Attribution and the game's own license, inside the bundle (on macOS,
+    # inside the .app); the copies below also sit next to the executable.
+    (str(ROOT / "CREDITS.md"), "."),
+    (str(ROOT / "LICENSE"), "."),
 ]
 
 a = Analysis(
@@ -76,8 +83,11 @@ coll = COLLECT(
 # src/pygamine/pygamine/licenses/README.md) next to the executable, where
 # players look -- the datas copy above sits inside _internal/.
 import shutil  # noqa: E402
-shutil.copytree(ROOT / "src" / "pygamine" / "pygamine" / "licenses",
-                Path(DISTPATH) / "hunted" / "licenses", dirs_exist_ok=True)  # noqa: F821 -- injected by PyInstaller
+_top = Path(DISTPATH) / "hunted"  # noqa: F821 -- injected by PyInstaller
+for doc in ("CREDITS.md", "LICENSE"):
+    shutil.copy2(ROOT / doc, _top / doc)
+shutil.copytree(ROOT / "src" / "pygamine" / "pygamine" / "licenses", _top / "licenses", dirs_exist_ok=True)
+shutil.copytree(ROOT / "licenses", _top / "licenses", dirs_exist_ok=True)
 
 # On macOS, also wrap the onedir bundle as a .app for a native double-click.
 if sys.platform == "darwin":

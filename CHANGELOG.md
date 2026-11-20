@@ -9,11 +9,14 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- CREDITS.md (its asset table is generated from `assets/SOURCES.yaml` and lists the assets still waiting for a source or replacement), the asset packs' license texts in `licenses/assets/` (shipped with every build), CONTRIBUTING.md, SECURITY.md, an architecture guide and the devlog and decisions indexes. No change to how the game plays.
 - CI runs ruff (lint and format), codespell (American English) and mypy next to the tests. No change to how the game plays.
 
 ### Changed
 
 - The menu buttons and the mouse cursor use Kenney CC0 art (UI Pack and Cursor Pack) instead of images with no known license. The buttons keep their positions, sizes and hover/pressed states, with the labels drawn in the game font; the cursor is now one static image per state instead of animated frames.
+- The menu music, chase music and jump sound are replaced with CC0 audio (Ogg Vorbis): the two
+  CC BY-SA 4.0 tracks by wyver9 and the jump sound of unknown origin are gone. Same places in the game.
 - Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
 - The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so
