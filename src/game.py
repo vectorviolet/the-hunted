@@ -13,6 +13,7 @@ from entities import Platform, Player
 from input_handler import AIInputHandler, KeyboardInputHandler
 from menu import Menu
 from renderer import GameRenderer
+from util import web
 from world import GameWorld
 
 
@@ -26,6 +27,8 @@ class Game(Application):
         self._cursor = Cursor()
         _mouse = Mouse()
         _mouse.cursor = self._cursor
+        # Before the first set_mode(): X11 and macOS apply the icon only if it is set first.
+        pygame.display.set_icon(pygame.image.load(settings.WINDOW_ICON))
 
         super().__init__(
             size=(settings.VIRTUAL_W, settings.VIRTUAL_H),
@@ -45,7 +48,10 @@ class Game(Application):
         # step is needed here anymore (see the previous, hand-rolled
         # _fit_rect/_present_canvas/_authored_mouse_pos this replaced).
 
-        self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
+        # The splash decodes its video frames on a thread; the browser build has
+        # none and goes straight to the menu (Application skips a None splash).
+        if not web.is_web():
+            self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
 
         self._world = GameWorld(
             window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H
@@ -140,6 +146,14 @@ class Game(Application):
         super().show_splash()
         # Only now: the splash plays the publisher clip's own audio first.
         self._audio.play_menu()
+
+    def cycle_window_mode(self, step: int = 1) -> None:
+        # F11. The browser has no window modes; it toggles the page's fullscreen. Kept here
+        # for now; the engine-level version is vectorviolet/pygamine#58.
+        if web.is_web():
+            web.toggle_fullscreen()
+        else:
+            super().cycle_window_mode(step)
 
     def on_exit_request(self) -> None:
         if self._state == self.STATE_GAME:

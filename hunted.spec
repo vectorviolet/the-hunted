@@ -67,7 +67,8 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,
+    # The Windows exe icon (other platforms ignore a .ico); made by scripts/make_icon.py.
+    icon=str(ROOT / "packaging" / "icon.ico") if sys.platform == "win32" else None,
 )
 coll = COLLECT(
     exe,

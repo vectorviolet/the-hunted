@@ -11,6 +11,7 @@ TITLE = "The Hunted"
 # size, so call sites use their old Comic Sans sizes x1.15 (18->21, 22->25,
 # 42->48) to keep the layout.
 FONT = "assets/fonts/ComicNeue-Regular.ttf"
+WINDOW_ICON = "assets/images/icon/icon_64.png"
 FLOOR_Y = 490.0
 GROUND_Y = (
     550  # visual ground-tile top; matches the player foot line when standing on FLOOR_Y

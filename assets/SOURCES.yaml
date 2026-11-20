@@ -102,6 +102,10 @@ files:
   "images/cursor/pointer_a.png":
     source: kenney-cursor-pack
     original: "PNG/Outline/Default/pointer_a.png"
+  "images/icon/icon_64.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "the app and window icon, a vampire face. AI-generated with OpenAI Codex (image generation) from a text prompt with the vampire sprite sheet as style reference, then scaled to 64 px by scripts/make_icon.py (which also makes packaging/icon.ico and web/icon.png). Not CC0; the owner picked candidate A and approved shipping it (2026-11-20)"
   "images/peasant/L1.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"

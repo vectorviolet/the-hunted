@@ -263,3 +263,59 @@ def test_on_exit_request_from_the_menu_delegates_to_the_real_quit(game, monkeypa
     game.on_exit_request()
 
     assert calls == [True]
+
+
+def test_browser_build_has_no_splash(monkeypatch):
+    # The splash decodes video frames on a thread, which the browser build lacks.
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    assert Game().splash is None
+
+
+def test_desktop_build_shows_the_splash():
+    assert Game().splash is not None
+
+
+def _fake_browser(monkeypatch, fullscreen):
+    from types import SimpleNamespace
+    from unittest.mock import Mock
+
+    document = SimpleNamespace(
+        fullscreenElement=object() if fullscreen else None,
+        documentElement=SimpleNamespace(requestFullscreen=Mock()),
+        exitFullscreen=Mock(),
+    )
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    monkeypatch.setattr("util.web._window", lambda: SimpleNamespace(document=document))
+    return document
+
+
+@pytest.mark.parametrize("fullscreen", [False, True])
+def test_f11_toggles_browser_fullscreen(game, monkeypatch, fullscreen):
+    document = _fake_browser(monkeypatch, fullscreen)
+    game._handle_core_event(pygame.event.Event(pygame.KEYDOWN, key=pygame.K_F11))
+    entered = document.documentElement.requestFullscreen
+    assert entered.called is (not fullscreen)
+    assert document.exitFullscreen.called is fullscreen
+
+
+def test_f11_cycles_window_modes_on_desktop(game, monkeypatch):
+    modes = []
+    monkeypatch.setattr(
+        "pygamine.Application.cycle_window_mode",
+        lambda self, step=1: modes.append(step),
+    )
+    game._handle_core_event(pygame.event.Event(pygame.KEYDOWN, key=pygame.K_F11))
+    assert modes == [1]
+
+
+@pytest.mark.parametrize("fullscreen", [False, True])
+def test_is_fullscreen_reads_the_page(monkeypatch, fullscreen):
+    from util import web
+
+    _fake_browser(monkeypatch, fullscreen)
+    assert web.is_fullscreen() is fullscreen
+
+
+def test_window_icon_file_exists_and_is_small_square():
+    icon = pygame.image.load(settings.WINDOW_ICON)
+    assert icon.get_width() == icon.get_height() == 64

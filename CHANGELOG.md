@@ -12,6 +12,9 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - CREDITS.md (its asset table is generated from `assets/SOURCES.yaml` and lists the assets still waiting for a source or replacement), the asset packs' license texts in `licenses/assets/` (shipped with every build), CONTRIBUTING.md, SECURITY.md, an architecture guide and the devlog and decisions indexes. No change to how the game plays.
 - CI runs ruff (lint and format), codespell (American English) and mypy next to the tests. No change to how the game plays.
 
+- Hunted in the browser: the release workflow builds an HTML5 bundle with pygbag, pushes it to the itch.io `html5` channel and attaches `hunted-web.zip` to the GitHub release once the desktop release succeeded; F11 toggles fullscreen and the browser skips the splash screen ([ADR 0001](docs/decisions/0001-web-build.md), [devlog](docs/devlog/2026-11-20-browser-build-and-installer.md)).
+- A Windows installer, `hunted-windows-setup.exe` (English or Turkish setup, you pick the folder; Start Menu shortcut, optional desktop shortcut), next to the zips on the GitHub release. The game has an app icon (a vampire face, AI-generated, pending the owner's choice among three candidates): the window, the Windows exe, the installer and the browser tab show it.
+
 ### Changed
 
 - The vampire and the peasant have new pixel-art sprites (AI-generated with OpenAI Codex, then cleaned up with a script) in one shared style. Same 64x64 frames, names and counts, so the animation and hitboxes are unchanged. The old vampire (no known source) and the peasant by Redshrike (CC BY 3.0) are gone, and the unused `peasant/standing.png` was removed.
