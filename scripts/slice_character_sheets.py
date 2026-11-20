@@ -6,7 +6,7 @@ flat magenta background. Output: ``assets/images/vampire/{R,L}{1-9}E.png`` and
 
 Cleanup: magenta is keyed out, the frames are scaled by one factor per character (so the size
 stays consistent), alpha is hard (0 or 255), the colors are reduced to a small shared palette,
-and every frame sits on the same baseline, at the same horizontal position relative to its
+a 1 px light outline is added, and every frame sits on the same baseline, at the same horizontal position relative to its
 source cell. No dependencies besides pygame.
 
     uv run python scripts/slice_character_sheets.py
@@ -31,6 +31,9 @@ KEY_DISTANCE = (
 )
 OUTLINE = (24, 14, 28)  # fills keyed-out pixels so the scaler does not bleed magenta
 PALETTE_SIZE = 20
+# 1 px light outline around the whole character (owner decision after play-testing: the dark
+# vampire disappeared against the dark tree line). A pale warm off-white, close to the moon.
+RIM = (255, 244, 214)
 
 # Horizontal center of each character's hitbox in src/entities.py (_HITBOX: x offset + width / 2).
 # Every frame is placed so the mean of the frames' centers lands here (R frames; the mirrored L
@@ -90,6 +93,17 @@ def nearest(c: Color, palette: list[Color]) -> Color:
     return min(palette, key=lambda p: sum((p[i] - c[i]) ** 2 for i in range(3)))
 
 
+def add_rim(cell: pygame.Surface) -> None:
+    """Draw a 1 px (4-neighbor) RIM-colored outline on the transparent pixels touching the art."""
+    solid = {
+        (x, y) for y in range(CELL) for x in range(CELL) if cell.get_at((x, y)).a == 255
+    }
+    for x, y in solid:
+        for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+            if (nx, ny) not in solid and 0 <= nx < CELL and 0 <= ny < CELL:
+                cell.set_at((nx, ny), (*RIM, 255))
+
+
 def build(name: str) -> list[pygame.Surface]:
     sheet_name, _, _, height, baseline = CHARACTERS[name]
     sheet = pygame.image.load(ROOT / "scripts" / "sheets" / sheet_name)
@@ -128,6 +142,7 @@ def build(name: str) -> list[pygame.Surface]:
                 px, py = left + x, top + y
                 if c.a >= 128 and 0 <= px < CELL and 0 <= py < CELL:
                     cell.set_at((px, py), (*nearest((c.r, c.g, c.b), palette), 255))
+        add_rim(cell)
         out.append(cell)
     return out
 

@@ -28,7 +28,8 @@ One sprite sheet per character, so the character stays the same in every frame, 
    anti-aliasing left.
 4. Put every frame on the same baseline (feet at row 58 for the vampire, 62 for the peasant, like
    the old frames) and at one shared horizontal center per character, the center of that character's hitbox in `src/entities.py`, so the art sits in the unchanged hitbox (`tests/test_sprite_frames.py` checks it).
-5. The left frames are the right frames mirrored.
+5. A 1 px pale warm off-white outline (`#FFF4D6`, near the moon color) goes around the whole character. Added after the owner's play-test (see below).
+6. The left frames are the right frames mirrored.
 
 The original sheets are kept in `scripts/sheets/` so the script can be re-run.
 
@@ -75,6 +76,18 @@ Old and new frames at 2x, right-facing walk (rows: old vampire, old peasant, new
   `assets/SOURCES.yaml`, not CC0. The Redshrike LPC pack and its license text are removed because
   nothing else used them.
 - The owner approves the art before the PR is merged.
+
+## Outline after play-testing
+
+The owner play-tested the first version: the vampire's dark body blended into the near-black tree
+line and the dark purple mountains. Decision (owner): a 1 px light outline around both characters,
+all 36 frames, drawn by `scripts/slice_character_sheets.py` (hard alpha, 4-neighbor, so it grows the
+frame by 1 px). The background is not touched. Top two strips: before; bottom two: after (the two
+strips of each are two random backgrounds, characters standing in front of the tree line, 2x):
+
+![Characters on the background, before and after the outline](img/characters-on-background-before-after.png)
+
+The outline also adds a light edge to the peasant, who was already readable.
 
 ## Rejected attempts
 
