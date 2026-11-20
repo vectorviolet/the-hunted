@@ -167,3 +167,4 @@ cython_debug/
 
 # PyCharm
 .idea/
+scripts/art_gen/work/
