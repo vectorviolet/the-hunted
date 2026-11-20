@@ -7,8 +7,10 @@ The section sits between the two MARKERS in CREDITS.md; everything outside
 them is hand-written. tests/test_sources.py runs the check, so the credits
 can't drift from the data.
 
-Files whose `source` is `unknown` are not credited to anyone: the section lists
-them under "Pending replacement" with the `todo` from SOURCES.yaml instead.
+`own` files are credited to the developer, with the AI tool named when the entry has
+`generated_with`. Files whose `source` is `unknown` are not credited to anyone: the
+section lists them under "Pending replacement" (only when there are any) with the `todo`
+from SOURCES.yaml instead.
 """
 
 from __future__ import annotations
@@ -93,7 +95,7 @@ def own_credit_lines(files: dict[str, Any]) -> list[str]:
     for rel, entry in sorted(files.items()):
         if entry["source"] != "own":
             continue
-        folder, name = rel.rsplit("/", 1)
+        folder, _, name = rel.rpartition("/")
         groups.setdefault((entry.get("generated_with", ""), folder), []).append(name)
     return [
         (
@@ -101,7 +103,7 @@ def own_credit_lines(files: dict[str, Any]) -> list[str]:
             if tool
             else "Made for this game by its developer"
         )
-        + f": {', '.join(names)} (in assets/{folder})."
+        + f": {', '.join(names)} (in assets{'/' + folder if folder else ''})."
         for (tool, folder), names in groups.items()
     ]
 
@@ -147,8 +149,13 @@ def render(data: dict[str, Any]) -> str:
         ]
     lines += [
         "CC0 assets need no attribution; they are credited here anyway. The OFL font is",
-        "bundled unmodified. CC BY and CC BY-SA assets require",
-        "attribution (see above). Each pack's own license text ships with the game: "
+        "bundled unmodified."
+        + (
+            " CC BY and CC BY-SA assets require attribution (see above)."
+            if attributions
+            else ""
+        )
+        + " Each pack's own license text ships with the game: "
         + ", ".join(f"`licenses/assets/{slug}.txt`" for slug in sorted(packs))
         + ".",
         f"[assets/SOURCES.yaml]({REPO_SOURCES}) in the source repository lists every asset",

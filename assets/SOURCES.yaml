@@ -141,39 +141,39 @@ files:
   "images/peasant/R1.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R2.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R3.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R4.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R5.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R6.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R7.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R8.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/peasant/R9.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the peasant's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the peasant's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/platfor_tile.png":
     source: amir027-platform-tile4
     original: "Platform Tile Grass_0.png"
@@ -216,39 +216,39 @@ files:
   "images/vampire/R1E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 1, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R2E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 2, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R3E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 3, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R4E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 4, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R5E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 5, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R6E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 6, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R7E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 7, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R8E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 8, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "images/vampire/R9E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "the vampire's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py; L frames are the R frames mirrored. Not CC0"
+    note: "the vampire's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/vampire_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha and aligned by scripts/slice_character_sheets.py. Not CC0. Pending owner approval"
   "sounds/chase_theme.ogg":
     source: hydrogene-8-bit-epic-space-shooter-music
     original: "8bit-spaceshooter.mp3"

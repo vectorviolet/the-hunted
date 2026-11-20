@@ -32,6 +32,11 @@ KEY_DISTANCE = (
 OUTLINE = (24, 14, 28)  # fills keyed-out pixels so the scaler does not bleed magenta
 PALETTE_SIZE = 20
 
+# Horizontal center of each character's hitbox in src/entities.py (_HITBOX: x offset + width / 2).
+# Every frame is placed so the mean of the frames' centers lands here (R frames; the mirrored L
+# frames land at CELL minus this), so the art sits in the unchanged hitbox like the old frames did.
+ANCHOR_X = {"vampire": 17 + 31 / 2, "peasant": 17 + 29 / 2}
+
 # name -> (sheet, output folder, file suffix, character height in px, baseline row (exclusive))
 CHARACTERS = {
     "vampire": ("vampire_sheet.png", "vampire", "E", 53, 58),
@@ -68,11 +73,11 @@ def cut_frames(sheet: pygame.Surface) -> list[tuple[pygame.Surface, int]]:
 def median_cut(colors: list[Color], n: int) -> list[Color]:
     boxes = [colors]
     while len(boxes) < n:
-        boxes.sort(key=len, reverse=True)
-        box = boxes.pop(0)
-        if len(set(box)) < 2:
-            boxes.append(box)
+        splittable = [b for b in boxes if len(set(b)) >= 2]
+        if not splittable:
             break
+        box = max(splittable, key=len)
+        boxes.remove(box)
         spans = [max(c[i] for c in box) - min(c[i] for c in box) for i in range(3)]
         ch = spans.index(max(spans))
         box.sort(key=lambda c: c[ch])
@@ -112,9 +117,10 @@ def build(name: str) -> list[pygame.Surface]:
     ]
     palette = median_cut(pixels, PALETTE_SIZE)
     out = []
+    mean_dx = sum(dx for _, dx in scaled) / len(scaled)
     for frame, dx in scaled:
         cell = pygame.Surface((CELL, CELL), pygame.SRCALPHA)
-        left = CELL // 2 - frame.get_width() // 2 + dx
+        left = round(ANCHOR_X[name] - frame.get_width() / 2 + dx - mean_dx)
         top = baseline - frame.get_height()
         for y in range(frame.get_height()):
             for x in range(frame.get_width()):

@@ -4,7 +4,7 @@
 
 My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomized each round — it's a chase-and-catch party game, not a horror game.
 
-> **Note on assets:** the code and game logic are mine, but some assets (the vampire sprites, buttons, cursor and jump sound) are old placeholders with no confirmed license; they are being replaced. The rest is credited in [CREDITS.md](CREDITS.md). Please don't reuse the placeholders.
+> **Note on assets:** the code and game logic are mine. The vampire and peasant sprites are my own AI-generated art (OpenAI Codex image generation), and the buttons, cursor, music and sounds come from properly licensed packs. Everything is credited in [CREDITS.md](CREDITS.md).
 
 ![Gameplay](docs/preview.gif)
 
@@ -119,11 +119,11 @@ See also the [contributors](https://github.com/vectorviolet/hunted/contributors)
 
 The **code** in this repository is licensed under the MIT License — see the [LICENSE](LICENSE) file.
 
-Some **assets** (vampire sprites, buttons, cursor) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace them. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
+The **vampire and peasant sprites** are AI-generated (OpenAI Codex image generation) for this game and are not CC0; the rest of the assets come from third-party packs under their own licenses (CC0, CC BY or OFL), credited in [CREDITS.md](CREDITS.md). [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source.
 
 ## Credits
 
-Every pack, font, track and library the game uses, with its author and license, is in [CREDITS.md](CREDITS.md), which also ships with every build. The asset packs' license texts are in [`licenses/assets/`](licenses/assets/); the software's texts (pygame-ce and its libraries) come from [`src/pygamine/pygamine/licenses/`](src/pygamine/pygamine/licenses/) and are bundled into each build's `licenses/` folder. The peasant is by Stephen "Redshrike" Challener and the menu and chase music by wyver9; both need attribution, which CREDITS.md carries.
+Every pack, font, track and library the game uses, with its author and license, is in [CREDITS.md](CREDITS.md), which also ships with every build. The asset packs' license texts are in [`licenses/assets/`](licenses/assets/); the software's texts (pygame-ce and its libraries) come from [`src/pygamine/pygamine/licenses/`](src/pygamine/pygamine/licenses/) and are bundled into each build's `licenses/` folder. The vampire and peasant sprites are AI-generated for this game (see CREDITS.md).
 
 ## Contributing and security
 

@@ -27,7 +27,7 @@ One sprite sheet per character, so the character stays the same in every frame, 
 3. Hard alpha (0 or 255) and a 20-color palette per character (median cut), so there is no
    anti-aliasing left.
 4. Put every frame on the same baseline (feet at row 58 for the vampire, 62 for the peasant, like
-   the old frames) and at the same horizontal place relative to its source cell.
+   the old frames) and at one shared horizontal center per character, the center of that character's hitbox in `src/entities.py`, so the art sits in the unchanged hitbox (`tests/test_sprite_frames.py` checks it).
 5. The left frames are the right frames mirrored.
 
 The original sheets are kept in `scripts/sheets/` so the script can be re-run.
