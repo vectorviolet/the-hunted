@@ -1,5 +1,6 @@
 import pygame
 
+from countdown import END_FRAME, ORANGE, POSITION, RING_OUTER, RING_WIDTH, SIZE
 from entities import Player
 from menu import Menu
 
@@ -21,14 +22,13 @@ def make_menu():
     return Menu(800, 600, FakeCursor())
 
 
-def test_construction_loads_the_expected_button_and_wait_frame_counts():
+def test_construction_loads_the_expected_button_counts():
     menu = make_menu()
 
     assert menu._start_btn.get_size() == (310, 100)
     assert len(menu._btn_1p) == 3
     assert len(menu._btn_2p) == 3
     assert all(f.get_size() == (212, 44) for f in menu._btn_1p + menu._btn_2p)
-    assert len(menu._wait_frames) == 49
 
 
 def test_update_button_state_hover_without_press():
@@ -87,7 +87,7 @@ def test_draw_with_two_players(world, input_handler):
     menu.draw(surface, countdown=100, p1=p1, p2=p2)  # must not raise
 
 
-def test_draw_mid_countdown_shows_a_wait_frame(world, input_handler):
+def test_draw_mid_countdown_draws_the_countdown(world, input_handler):
     menu = make_menu()
     surface = pygame.Surface((800, 600))
     p1 = Player(world, (100, 100), input_handler)
@@ -95,9 +95,26 @@ def test_draw_mid_countdown_shows_a_wait_frame(world, input_handler):
     menu.draw(surface, countdown=30, p1=p1)  # must not raise, no start screen drawn
 
 
-def test_draw_late_countdown_holds_the_last_wait_frame(world, input_handler):
-    # 48-59 deliberately reuses _wait_frames[48] (the countdown clip only has
-    # 49 frames, 0-48) instead of indexing past the end of the list.
+def _ring_pixel(surface):
+    x = POSITION[0] + SIZE // 2 + round(RING_OUTER - RING_WIDTH / 2)
+    return tuple(surface.get_at((x, POSITION[1] + SIZE // 2)))[:3]
+
+
+def test_draw_paints_the_countdown_only_while_it_runs(world, input_handler):
+    menu = make_menu()
+    p1 = Player(world, (100, 100), input_handler)
+
+    drawn = pygame.Surface((800, 600))
+    menu.draw(drawn, countdown=30, p1=p1)  # digit 1, ring filled on the right
+    assert _ring_pixel(drawn) == ORANGE
+
+    for countdown in (0, END_FRAME, 100):
+        idle = pygame.Surface((800, 600))
+        menu.draw(idle, countdown=countdown, p1=p1)
+        assert _ring_pixel(idle) != ORANGE
+
+
+def test_draw_late_countdown_draws_go(world, input_handler):
     menu = make_menu()
     surface = pygame.Surface((800, 600))
     p1 = Player(world, (100, 100), input_handler)

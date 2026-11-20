@@ -55,7 +55,7 @@ State transitions happen in-band inside the handlers (e.g. `_update_menu` flips 
 | Attribute | Class | Responsibility |
 |-----------|-------|----------------|
 | `_world` | `GameWorld` (dataclass, `src/world.py`) | Window size, platforms list, bullets list, `two_players` flag |
-| `_menu` | `Menu` (`src/menu.py`) | Main-menu buttons + countdown frames + button-state visuals |
+| `_menu` | `Menu` (`src/menu.py`) | Main-menu buttons + countdown (drawn by `src/countdown.py`) + button-state visuals |
 | `_audio` | `AudioManager` (`src/audio.py`) | Two music tracks (menu / game) on the default mixer |
 | `_renderer` | `GameRenderer` (`src/renderer.py`) | Level-select and in-game drawing |
 | `_combat` | `CombatSystem` (`src/combat.py`) | Bullet physics, contact damage, round transitions |
