@@ -22,8 +22,10 @@ frame at 60 FPS, the same as the browser's frame rate, so no catch-up stepping i
 - **Loop:** `web/main.py` awaits `Game().run_async()`; the desktop entry point stays
   `__main__.py` and `Game.run()`. A start-up failure is shown on the page instead of a blank canvas.
 - **Splash:** the splash decodes video frames on a thread, which the browser lacks, so `Game` sets
-  no splash when `util.web.is_web()` (`sys.platform == "emscripten"`). `util/web.py` holds only that
-  check; there is nothing else browser-specific to wrap.
+  no splash when `util.web.is_web()` (`sys.platform == "emscripten"`).
+- **Fullscreen:** the browser has no window modes, so `Game.cycle_window_mode` (pygamine maps F11
+  to it) toggles the page's fullscreen through `util/web.py` in the browser and keeps the
+  engine's behavior on desktop.
 - **Page:** `web/template.tmpl` is Highrise's loader page (click to play, so the music may start)
   with the title drawn as text instead of a logo image, and `web/icon.png` as favicon and pygbag
   icon. The store cover art is not shipped in the bundle.

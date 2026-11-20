@@ -47,7 +47,7 @@ Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch
 >
 > Windows SmartScreen: the app is unsigned, so the first launch shows **"Windows protected your PC."** Click **More info → Run anyway**. This is Microsoft's download-reputation check, not a virus warning — brand-new unsigned executables always trigger it. The installer is unsigned too and shows the same warning.
 
-**In the browser.** Play it on [itch.io](https://umutcanekinci.itch.io/the-hunted) without installing anything (desktop browser with a keyboard; click the page to start). The same build is attached to each GitHub release as `hunted-web.zip`; to build and test it yourself see [CONTRIBUTING.md](CONTRIBUTING.md#browser-build).
+**In the browser.** Play it on [itch.io](https://umutcanekinci.itch.io/the-hunted) without installing anything (desktop browser with a keyboard; click the page to start; F11 toggles fullscreen). The same build is attached to each GitHub release as `hunted-web.zip`; to build and test it yourself see [CONTRIBUTING.md](CONTRIBUTING.md#browser-build).
 
 ## Requirements (from source)
 

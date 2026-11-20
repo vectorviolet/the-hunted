@@ -145,6 +145,13 @@ class Game(Application):
         # Only now: the splash plays the publisher clip's own audio first.
         self._audio.play_menu()
 
+    def cycle_window_mode(self, step: int = 1) -> None:
+        # F11. The browser has no window modes; it toggles the page's fullscreen.
+        if web.is_web():
+            web.toggle_fullscreen()
+        else:
+            super().cycle_window_mode(step)
+
     def on_exit_request(self) -> None:
         if self._state == self.STATE_GAME:
             self._audio.stop_game()
