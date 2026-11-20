@@ -4,7 +4,7 @@
 
 My first-ever pygame project — kept here as a learning artifact. A goofy local 1-or-2-player couch platformer: one player is the vampire, the other the peasant, roles randomized each round — it's a chase-and-catch party game, not a horror game.
 
-> **Note on assets:** the code and game logic are mine, but most assets (art, music, sound) are unlicensed placeholders I collected when I was starting out. My later projects use properly-licensed CC0 assets. Please don't reuse the assets here.
+> **Note on assets:** the code and game logic are mine, but some assets (the vampire sprites, buttons, cursor and jump sound) are old placeholders with no confirmed license; they are being replaced. The rest is credited in [CREDITS.md](CREDITS.md). Please don't reuse the placeholders.
 
 ![Gameplay](docs/preview.gif)
 
@@ -107,7 +107,7 @@ src/pygamine/       Engine submodule (used only for Application + Mouse + GameOb
 assets/                Images and sounds
 ```
 
-See [CLAUDE.md](CLAUDE.md) for the full architecture overview.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the architecture overview.
 
 ## Author
 
@@ -119,14 +119,12 @@ See also the [contributors](https://github.com/vectorviolet/hunted/contributors)
 
 The **code** in this repository is licensed under the MIT License — see the [LICENSE](LICENSE) file.
 
-Most remaining **assets** (vampire sprites, loading animation, buttons, cursor) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace these with properly-licensed assets — see below for what's already been swapped in. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
+Some **assets** (vampire sprites, buttons, cursor) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace them. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
 
-### Credits
+## Credits
 
-- **Peasant sprites** (`assets/images/peasant/`) — Baldric from "[Four characters: My LPC entries](https://opengameart.org/content/four-characters-my-lpc-entries)" by Stephen "Redshrike" Challener, hosted by [OpenGameArt.org](https://opengameart.org), licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
-- **Background art** (`assets/images/bg_layers/`) — "[Mountain at Dusk Background](https://opengameart.org/content/mountain-at-dusk-background)" by Luis Zuno ([ansimuz](https://ansimuz.com)), CC0.
-- **Platform tile** (`assets/images/platfor_tile.png`) — CC0; its source is still being confirmed.
-- **Menu music** (`assets/sounds/menu_theme.ogg`) — "[forgotten path](https://opengameart.org/content/forgotten-path)" by johndekale, CC0.
-- **Chase music** (`assets/sounds/chase_theme.ogg`) — "[8-bit Epic Space Shooter Music](https://opengameart.org/content/8-bit-epic-space-shooter-music)" by HydroGene, CC0.
-- **Jump sound** (`assets/sounds/jump.ogg`) — "[Interface Sounds](https://kenney.nl/assets/interface-sounds)" by Kenney, CC0.
-- **Font** (`assets/fonts/ComicNeue-Regular.ttf`) — [Comic Neue](https://fonts.google.com/specimen/Comic+Neue), licensed under the [SIL Open Font License 1.1](assets/fonts/OFL-ComicNeue.txt).
+Every pack, font, track and library the game uses, with its author and license, is in [CREDITS.md](CREDITS.md), which also ships with every build. The asset packs' license texts are in [`licenses/assets/`](licenses/assets/); the software's texts (pygame-ce and its libraries) come from [`src/pygamine/pygamine/licenses/`](src/pygamine/pygamine/licenses/) and are bundled into each build's `licenses/` folder. The peasant is by Stephen "Redshrike" Challener and the menu and chase music by wyver9; both need attribution, which CREDITS.md carries.
+
+## Contributing and security
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, checks and the asset rules, [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the code fits together and [SECURITY.md](SECURITY.md) to report a vulnerability.

@@ -9,6 +9,7 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- CREDITS.md (its asset table is generated from `assets/SOURCES.yaml` and lists the assets still waiting for a source or replacement), the asset packs' license texts in `licenses/assets/` (shipped with every build), CONTRIBUTING.md, SECURITY.md, an architecture guide and the devlog and decisions indexes. No change to how the game plays.
 - CI runs ruff (lint and format), codespell (American English) and mypy next to the tests. No change to how the game plays.
 
 ### Changed

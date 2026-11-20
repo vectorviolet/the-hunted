@@ -1,6 +1,7 @@
 # Drawing the pre-game countdown in code
+<!-- index | refs: PR #11 -->
 
-2026-11-20
+**Date:** 2026-11-20 · **Area:** UI, Art · **PR:** [#11](https://github.com/vectorviolet/hunted/pull/11)
 
 ## Context
 

@@ -32,18 +32,21 @@ packs:
     license: CC-BY-3.0
     license_note: "offered as CC BY 3.0, CC BY-SA 3.0 or OGA-BY 3.0; CC BY 3.0 chosen"
     attribution: "Stephen \"Redshrike\" Challener, with a link to https://opengameart.org"
+    changes: "each 64x64 walking frame is cut out of the original sheet; the pixels are unchanged"
     used_for: "the peasant (Baldric)"
-  johndekale-forgotten-path:
-    name: "forgotten path"
-    author: "johndekale"
-    url: https://opengameart.org/content/forgotten-path
+  hydrogene-8-bit-truth:
+    name: "8-bit - Truth"
+    author: "HydroGene"
+    url: https://opengameart.org/content/8-bit-truth
     license: CC0-1.0
+    changes: "converted from MP3 to Ogg Vorbis (quality 5); the sound is unchanged"
     used_for: "menu music"
   hydrogene-8-bit-epic-space-shooter-music:
     name: "8-bit Epic Space Shooter Music"
     author: "HydroGene"
     url: https://opengameart.org/content/8-bit-epic-space-shooter-music
     license: CC0-1.0
+    changes: "converted from MP3 to Ogg Vorbis (quality 5); the sound is unchanged"
     used_for: "chase music"
   kenney-interface-sounds:
     name: "Interface Sounds"
@@ -56,10 +59,6 @@ files:
   "fonts/ComicNeue-Regular.ttf":
     source: font-comic-neue
     original: "ofl/comicneue/ComicNeue-Regular.ttf"
-  "fonts/OFL-ComicNeue.txt":
-    source: font-comic-neue
-    original: "ofl/comicneue/OFL.txt"
-    modified: "whitespace only"
   "images/bg_layers/parallax-mountain-bg.png":
     source: ansimuz-mountain-at-dusk
     original: "parallax_mountain_pack/layers/parallax-mountain-bg.png"
@@ -393,6 +392,6 @@ files:
     source: kenney-interface-sounds
     original: "Audio/maximize_006.ogg"
   "sounds/menu_theme.ogg":
-    source: johndekale-forgotten-path
-    original: "forgotten_path_0.ogg"
-    modified: "volume raised by 5 dB and re-encoded as Ogg Vorbis (quality 5), to match the old track's loudness"
+    source: hydrogene-8-bit-truth
+    original: "16._truth_0.mp3"
+    modified: "converted from MP3 to Ogg Vorbis (quality 5)"

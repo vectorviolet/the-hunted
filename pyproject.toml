@@ -19,6 +19,8 @@ dev = [
     "mypy==2.4.1",
     # Same version as `uvx codespell@...` in ci.yml's spelling job.
     "codespell==2.4.3",
+    # scripts/gen_credits.py and tests/test_sources.py read assets/SOURCES.yaml.
+    "pyyaml>=6",
 ]
 
 [tool.uv.sources]
@@ -83,12 +85,13 @@ dictionary = "./.codespell-en-us.txt,-"
 # .github too (hidden folders are skipped by default); .git and .venv aren't ours.
 check-hidden = true
 # Not ours or not text: the pygamine submodule (its own repo), assets and
-# binaries, the lock file, and local files (virtualenv, tool caches, builds).
+# binaries, the lock file, the verbatim license texts in licenses/, and local files (virtualenv, tool caches, builds).
 # Also the project dictionary itself (it lists British forms).
-skip = "./.codespell-en-us.txt,./.git,./.venv,.*_cache,__pycache__,./dist,./build,./htmlcov,./src/pygamine,./assets,./uv.lock,*.png,*.gif,*.ico,*.ogg,*.mp3,*.wav,*.ttf"
+skip = "./.codespell-en-us.txt,./.git,./.venv,.*_cache,__pycache__,./dist,./build,./htmlcov,./src/pygamine,./assets,./licenses,./uv.lock,*.png,*.gif,*.ico,*.ogg,*.mp3,*.wav,*.ttf"
 # Real words codespell flags, one per line with why:
 #   datas: PyInstaller's Analysis(datas=...) argument (hunted.spec, util/paths.py)
-ignore-words-list = "datas"
+#   challener: surname of the peasant sprites' author (CREDITS.md, README.md)
+ignore-words-list = "datas,challener"
 
 [tool.mypy]
 # A lenient start: the app's own code under src/, default (non-strict)

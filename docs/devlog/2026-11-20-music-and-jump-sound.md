@@ -1,6 +1,7 @@
 # Replacing the music and the jump sound
+<!-- index | refs: #7, PR #15 -->
 
-2026-11-20
+**Date:** 2026-11-20 · **Area:** Audio · **PR:** [#15](https://github.com/vectorviolet/hunted/pull/15)
 
 ## Context
 
@@ -19,8 +20,8 @@ All pages were checked for the license on the page itself. Anything BY-SA, NonCo
 
 | Track | Author | License | Why |
 |---|---|---|---|
-| [forgotten path](https://opengameart.org/content/forgotten-path) (picked) | johndekale | CC0 | Melancholic chiptune loop, 40 s, ships as .ogg |
-| [8-bit - Truth](https://opengameart.org/content/8-bit-truth) | HydroGene | CC0 | Calm, sad NES-style theme that loops seamlessly, 111 s (MP3) |
+| [forgotten path](https://opengameart.org/content/forgotten-path) (first pick) | johndekale | CC0 | Melancholic chiptune loop, 40 s, ships as .ogg |
+| [8-bit - Truth](https://opengameart.org/content/8-bit-truth) (final pick) | HydroGene | CC0 | Calm, sad NES-style theme that loops seamlessly, 111 s (MP3) |
 | [Lonely Night](https://opengameart.org/content/lonely-night) | Centurion_of_war | CC0 | Small, slight calm tune, 64 s, ships as .ogg |
 
 ### Chase music (tense, fast 8-bit loop)
@@ -42,12 +43,10 @@ at a similar level, which was the closest match among the pack's sounds.
 
 ## Decision
 
-- Menu: "forgotten path", for the mood and because it is CC0 and already an .ogg.
+- Menu: "8-bit - Truth" (owner's pick after listening). My first pick was "forgotten path", for
+  the mood and because it was already an .ogg; the owner preferred Truth.
 - Chase: "8-bit Epic Space Shooter Music", because it loops seamlessly and has the pace of a chase.
 - Jump: `maximize_006.ogg` from Kenney's Interface Sounds.
-
-The picks are the lead's best guess from the descriptions and the audio analysis; the owner
-listens and can swap any of them for another candidate in the tables above.
 
 Rejected: keeping the wyver9 tracks with attribution and a ShareAlike notice (the gray area),
 and Vigour for the chase (CC BY is allowed, but it adds a credit and a second license).
@@ -56,7 +55,7 @@ and Vigour for the chase (CC BY is allowed, but it adds a credit and a second li
 
 - Files are Ogg Vorbis: `assets/sounds/menu_theme.ogg`, `chase_theme.ogg`, `jump.ogg`. The
   repo is about 17 MB smaller because the old WAVs are gone.
-- The chase track was converted from MP3 and the menu track got +5 dB, so both sit near the old
-  tracks' loudness (about -12 to -15 dB mean, against -11 dB before).
+- Both music tracks were converted from MP3 without a volume change; they average about -15 dB,
+  against -11 dB for the old tracks.
 - No code changes beyond the three file names in `src/audio.py` and `src/entities.py`.
 - The WAVs are still in git history, so the wyver9 audio remains downloadable from old commits.
