@@ -5,6 +5,12 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
+
 ## [0.2.1] – 2026-10-24
 
 ### Added
