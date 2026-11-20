@@ -32,6 +32,7 @@ packs:
     license: CC-BY-3.0
     license_note: "offered as CC BY 3.0, CC BY-SA 3.0 or OGA-BY 3.0; CC BY 3.0 chosen"
     attribution: "Stephen \"Redshrike\" Challener, with a link to https://opengameart.org"
+    changes: "each 64x64 walking frame is cut out of the original sheet; the pixels are unchanged"
     used_for: "the peasant (Baldric)"
   wyver9-8bit-beatem-up:
     name: "8-Bit Beat'em Up Soundtrack"
@@ -45,10 +46,6 @@ files:
   "fonts/ComicNeue-Regular.ttf":
     source: font-comic-neue
     original: "ofl/comicneue/ComicNeue-Regular.ttf"
-  "fonts/OFL-ComicNeue.txt":
-    source: font-comic-neue
-    original: "ofl/comicneue/OFL.txt"
-    modified: "whitespace only"
   "images/bg_layers/parallax-mountain-bg.png":
     source: ansimuz-mountain-at-dusk
     original: "parallax_mountain_pack/layers/parallax-mountain-bg.png"

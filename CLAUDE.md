@@ -89,10 +89,24 @@ Input is dispatched through `InputHandler` (Protocol in `src/input_handler.py`):
 
 ### Assets
 
-All images and sounds live under `assets/` (`assets/images/`, `assets/sounds/`). Loaded directly with `pygame.image.load()` / `pygame.mixer.Sound()` — there is no asset manifest. Naming conventions:
+All images, sounds and the font live under `assets/`. Loaded directly with `pygame.image.load()` / `pygame.mixer.Sound()` — there is no asset loader in code. Naming conventions:
 - `assets/images/vampire/R{i}E.png`, `L{i}E.png` for vampire walk frames (1-9)
 - `assets/images/peasant/R{i}.png`, `L{i}.png` for peasant walk frames
 - `assets/images/cursor/{normal,click,click2,help,writing}/N-{i}.png` etc.
+
+**Asset sources:** every file under `assets/` must be listed in `assets/SOURCES.yaml` with its
+source pack (or `own`, or `unknown` with a `todo`) and its original file name. Each pack needs its
+license text in `licenses/assets/<slug>.txt`. CREDITS.md's asset section is generated from
+`SOURCES.yaml` by `scripts/gen_credits.py`; don't edit it by hand. `tests/test_sources.py` enforces
+all of this. Never add an asset whose origin and license you can't state.
+
+**Devlog and ADRs:** every feature or design-decision PR adds or updates an entry in
+`docs/devlog/` (`YYYY-MM-DD-short-title.md`); architecture choices get an ADR in
+`docs/decisions/` (`NNNN-short-title.md`). Each entry carries an `<!-- index | refs: #N, PR #M -->`
+comment right under its heading (see the READMEs' templates). The index tables in both READMEs are
+generated: add your entry file, run `uv run python scripts/gen_devlog_index.py`, and never edit
+the tables by hand. `tests/test_devlog_index.py` fails in CI if a table is out of date.
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) is the human-facing version of this overview.
 
 ### Persistence
 
