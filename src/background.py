@@ -1,4 +1,4 @@
-"""The full-screen backdrops: one finished 800x600 picture per level and for the menu."""
+"""The full-screen backdrops: one finished 960x540 picture per level and for the menu."""
 
 import functools
 
@@ -11,7 +11,7 @@ _DIR = "assets/images/background"
 def load_background(name: str, size: tuple[int, int]) -> pygame.Surface:
     """`assets/images/background/<name>.png`, as an opaque surface of `size`.
 
-    The art is already 800x600; any other size is scaled with nearest-neighbor.
+    The art is already 960x540; any other size is scaled with nearest-neighbor.
     Cached per name and size, so a picture is read from disk once.
     """
     image = pygame.image.load(f"{_DIR}/{name}.png").convert()

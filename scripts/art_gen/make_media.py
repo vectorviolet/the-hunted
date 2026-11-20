@@ -185,11 +185,15 @@ def devlog_comparisons() -> None:
     out = ROOT / "docs" / "devlog" / "img"
     scale = 0.7
     for name in ("menu", "level_select", "level0", "level1", "level2"):
-        old = WORK / f"p43_{name}.png"
-        if not old.exists():
-            continue
+        old, new = WORK / f"p43_{name}.png", WORK / f"after_{name}.png"
+        missing = [p.name for p in (old, new) if not p.exists()]
+        if missing:
+            raise SystemExit(
+                f"missing {missing} in {WORK}: run scripts/art_gen/shoot.py first (the p43_* "
+                "frames are the 800x600 shots from before the 16:9 change, kept by hand)"
+            )
         left = Image.open(old).convert("RGB")
-        right = Image.open(WORK / f"after_{name}.png").convert("RGB")
+        right = Image.open(new).convert("RGB")
         left = left.resize((round(w * scale) for w in left.size), Image.Resampling.BOX)
         right = right.resize(
             (round(w * scale) for w in right.size), Image.Resampling.BOX

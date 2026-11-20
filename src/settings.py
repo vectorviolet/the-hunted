@@ -68,8 +68,11 @@ BULLET_COLOR = GOLD
 
 
 # Levels  — platform y must end in 0 so velocity steps land cleanly. Laid out on the 960x540
-# canvas: the old 800x600 layouts moved up 60 px (the ground is 60 px higher) and stretched 1.2x
-# sideways, so every vertical step is unchanged and the platforms span the whole width.
+# canvas: the old 800x600 layouts stretched 1.2x sideways so the platforms span the whole width.
+# The tiers are spaced evenly between the ground (490) and the top platform, which sits at 150 or
+# lower: a player standing on it has its role tag and health bar (110 px above the platform) clear
+# of the HUD at the top (34 px). Every step is at most 150 px (Classic's, as always), under the
+# jump's 189 px apex.
 class Level(TypedDict):
     name: str
     background: str  # assets/images/background/<background>.png
@@ -93,11 +96,11 @@ LEVELS: list[Level] = [
         "background": "towers",
         "style": "towers",
         "platforms": [
-            ((0, 370), 264, 30),
-            ((696, 370), 264, 30),
-            ((180, 240), 264, 30),
-            ((516, 240), 264, 30),
-            ((372, 110), 216, 30),
+            ((0, 380), 264, 30),
+            ((696, 380), 264, 30),
+            ((180, 260), 264, 30),
+            ((516, 260), 264, 30),
+            ((372, 150), 216, 30),
         ],
     },
     {
@@ -105,13 +108,13 @@ LEVELS: list[Level] = [
         "background": "arena",
         "style": "arena",
         "platforms": [
-            ((60, 420), 192, 20),
-            ((708, 420), 192, 20),
-            ((240, 310), 216, 20),
-            ((504, 310), 216, 20),
-            ((0, 200), 240, 20),
-            ((720, 200), 240, 20),
-            ((360, 130), 240, 20),
+            ((60, 410), 192, 20),
+            ((708, 410), 192, 20),
+            ((240, 330), 216, 20),
+            ((504, 330), 216, 20),
+            ((0, 240), 240, 20),
+            ((720, 240), 240, 20),
+            ((360, 150), 240, 20),
         ],
     },
 ]

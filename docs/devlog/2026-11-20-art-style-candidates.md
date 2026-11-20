@@ -209,23 +209,27 @@ canvas instead of 800x600. Everything is in this PR (still #19).
   the same way, so the look is unchanged and the sides show more scenery. Art pixel size is still
   2x2 screen pixels (the art is 480x270). The readability check holds (standing band, nothing
   near-black, no red).
-- **Heights.** The ground strip is still 50 px, now at y 490 (`settings.GROUND_Y`), so the whole
-  scene moved up 60 px: `FLOOR_Y` 430 and every platform 60 px higher. Every vertical step is
-  therefore the same as before.
+- **Heights.** The ground strip is still 50 px, now at y 490 (`settings.GROUND_Y`), so the scene
+  moved up 60 px: `FLOOR_Y` 430. Classic's platforms moved up with it, so its steps are exactly
+  the old ones. Towers and Arena needed more: a first version that only moved everything up 60 px
+  put the top platforms at y 110 and 130, so a player standing on one had its role tag (50 px
+  above the sprite, which stands 60 px above the platform) under the level name and score plates.
+  The top platforms are now at y 150 or lower, and the tiers between them and the ground are
+  spaced evenly (see below), so the tag clears the 34 px HUD with a margin.
 - **Levels.** Platform x positions and widths are stretched 1.2x so the platforms span the whole
-  960 px and stay symmetric: Classic (0 to 360, 600 to 960, and the top one 300 to 660), Towers
-  (264-wide low and mid platforms, a 216-wide top one) and Arena (the low platforms 192 wide, 60
-  px in from the edges, the others 216 to 240). Judgment calls: the Arena's low platforms keep
-  their 60 px inset like before; the gaps between platforms grew by 20% but stay far below the
-  jump's reach (about 275 px for the peasant, 358 for the vampire), and the highest platform is
-  150 px above the ground, under the jump's 189 px apex.
+  960 px and stay symmetric. Final layouts (platform y; ground 490): Classic 340 and 190 (steps
+  150), Towers 380, 260 and 150 (steps 110, 120, 110), Arena 410, 330, 240 and 150 (steps 80, 80,
+  90, 90). Widths: Classic 360; Towers 264 and a 216-wide top one; Arena 192 for the low pair
+  (kept 60 px in from the edges), 216 and 240 for the others. Every step is at most 150 px, under
+  the jump's 189 px apex (about 275 px of horizontal reach for the peasant, 358 for the vampire).
 - **Checks.** `tests/test_levels.py` measures the real jump arc from the game's physics and runs a
   reachability search on every level for both characters (including the screen wrap), checks the
-  layouts stay inside the canvas and symmetric, and plays two AIs against each other on every
+  layouts stay inside the canvas and symmetric, that a player standing on any platform has its tag
+  clear of the HUD, that the tiers are evenly spaced, and plays two AIs against each other on every
   level: rounds keep ending, none drags on, and the chaser is never stuck. In a longer run (3
-  seeds x 30000 frames per level) the new layouts behave like the old: 160 to 180 rounds on Classic
-  and Towers, 107 to 133 on Arena (the old Arena: 117 to 142), longest round 2344 frames (old:
-  3817).
+  seeds x 30000 frames per level): Classic 178 to 180 rounds (old 4:3 layout: 176 to 178), Towers
+  158 to 169 (old: 158 to 163) and Arena 147 to 154 (old: 117 to 142), with the longest round at
+  630 frames on Arena (old: 3817) and 452 on Towers (old: 629).
 - **Everything else follows the canvas:** the menu buttons and the countdown glyph moved to the
   new center (the START block keeps its distance from the top), level-select cards are 240x210 so
   their previews are 16:9, the HUD plates anchor to the new corners, `combat.begin_round` spawns

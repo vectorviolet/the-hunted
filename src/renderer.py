@@ -10,6 +10,8 @@ CARD_BORDER = 20  # px of the card frame art that keep their pixels
 CARD_LIFT = 6  # a hovered card is drawn this much higher
 THUMB_MARGIN = 24  # a card's preview is inset this far from its sides
 PLATE_EDGE = 2  # border width of the HUD plates
+TOP_HUD_HEIGHT = 34  # the score plates and level name at the top of the screen
+TAG_RISE = 50  # a role tag's top is this far above its player's sprite
 CARD_SIZE = (240, 210)  # a level-select card
 
 
@@ -92,7 +94,7 @@ class GameRenderer:
         is_vampire = vampire is player
         role_lbl = self._lbl_vampire if is_vampire else self._lbl_peasant
         tag = pygame.Rect(0, 0, role_lbl.get_width() + 10, role_lbl.get_height() + 6)
-        tag.midtop = (ix + player.width // 2, iy - 50)
+        tag.midtop = (ix + player.width // 2, iy - TAG_RISE)
         self._plate(tag, settings.PLUM)
         self._window.blit(role_lbl, role_lbl.get_rect(center=tag.center))
 
@@ -115,7 +117,7 @@ class GameRenderer:
         pygame.draw.rect(self._window, settings.RIM, (bar_x, bar_y, bar_w, bar_h), 1)
 
     def _draw_top_hud(self, p1, p2, current_level: int, score_surfs) -> None:
-        pad, panel_h = 10, 34
+        pad, panel_h = 10, TOP_HUD_HEIGHT
 
         p1_surf = score_surfs[0]
         p1_rect = pygame.Rect(0, 0, p1_surf.get_width() + pad * 2, panel_h)

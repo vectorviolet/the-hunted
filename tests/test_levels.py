@@ -9,20 +9,50 @@ import settings
 from combat import CombatSystem
 from entities import Player, level_platforms
 from input_handler import AIInputHandler
+from renderer import TAG_RISE, TOP_HUD_HEIGHT
 from world import GameWorld
 
 W, H = settings.VIRTUAL_W, settings.VIRTUAL_H
 LEVEL_IDS = range(len(settings.LEVELS))
 APEX_MARGIN = 12  # a platform must be this far below the jump's apex to land on it
+HUD_MARGIN = 6  # px between the HUD and a standing player's role tag
+STAND_HEIGHT = settings.GROUND_Y - int(
+    settings.FLOOR_Y
+)  # sprite top above its platform (60)
 
 
 @pytest.mark.parametrize("level", LEVEL_IDS)
 def test_platforms_sit_inside_the_canvas_above_the_ground(level):
     for (x, y), w, h in settings.LEVELS[level]["platforms"]:
         assert 0 <= x and x + w <= W
-        assert y >= 100  # below the HUD
         assert y + h <= settings.GROUND_Y  # not inside the ground
         assert y % 10 == 0  # "platform y must end in 0" (settings.py)
+
+
+@pytest.mark.parametrize("level", LEVEL_IDS)
+def test_a_player_standing_on_any_platform_clears_the_top_hud(level):
+    """The role tag sits TAG_RISE above the sprite, and the sprite stands STAND_HEIGHT above the
+    platform: the tag must be below the HUD with a margin."""
+    for (x, y), _, _ in settings.LEVELS[level]["platforms"]:
+        tag_top = y - STAND_HEIGHT - TAG_RISE
+        assert tag_top >= TOP_HUD_HEIGHT + HUD_MARGIN, (
+            settings.LEVELS[level]["name"],
+            y,
+        )
+
+
+@pytest.mark.parametrize("level", LEVEL_IDS)
+def test_the_tiers_are_evenly_spaced_between_the_ground_and_the_top(level):
+    ys = sorted(
+        {y for (_, y), _, _ in settings.LEVELS[level]["platforms"]}
+        | {settings.GROUND_Y},
+        reverse=True,
+    )
+    steps = [a - b for a, b in zip(ys, ys[1:])]
+    assert (
+        max(steps) <= 150
+    )  # the steps Classic always had; under the jump's 189 px apex
+    assert max(steps) - min(steps) <= 40  # no tier is squeezed against another
 
 
 @pytest.mark.parametrize("level", LEVEL_IDS)

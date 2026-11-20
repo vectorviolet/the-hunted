@@ -162,6 +162,7 @@ def process_bg(name: str) -> None:
     # 16:9 from the 3:2 picture: all of the width, and the top part of the height (the sky and
     # the scenery are on top; the bottom is calm ground haze that the ground strip covers).
     ch = round(w * 9 / 16)
+    assert ch <= h, f"{name}: a {w}x{h} picture is too short for a 16:9 crop"
     top = round((h - ch) * CROP_TOP)
     img = img.crop((0, top, w, top + ch))
     img = img.resize(BG_SIZE, Image.Resampling.BOX)

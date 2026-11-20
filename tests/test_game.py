@@ -111,7 +111,7 @@ def test_step_intro_two_player_seq_1_holds_p2_until_p1_descends_past_the_thresho
     game._p2.y = settings.FLOOR_Y
     p2_y_before = game._p2.y
 
-    game._step_intro()  # p1 still above the 340 gate -- p2 must not move yet
+    game._step_intro()  # p1 still above the gate (FLOOR_Y - 150) -- p2 must not move yet
     assert game._p2.y == p2_y_before
     assert game._intro_flag is False
 
@@ -132,7 +132,7 @@ def test_step_intro_two_player_seq_3_holds_p1_until_p2_descends_past_the_thresho
     game._p2.y = settings.FLOOR_Y
     p1_y_before = game._p1.y
 
-    game._step_intro()  # p2 still above the 340 gate -- p1 must not move yet
+    game._step_intro()  # p2 still above the gate (FLOOR_Y - 150) -- p1 must not move yet
     assert game._p1.y == p1_y_before
     assert game._intro_flag is False
 
