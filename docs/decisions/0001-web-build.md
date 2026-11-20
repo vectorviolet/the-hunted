@@ -1,9 +1,9 @@
 # 0001. Browser build using Highrise's pygbag recipe
-<!-- index | refs: #9 -->
+<!-- index | refs: #9, PR #17 -->
 
 - **Status:** Proposed
 - **Date:** 2026-11-20
-- **Issues / PRs:** [#9](https://github.com/vectorviolet/hunted/issues/9)
+- **Issues / PRs:** [#9](https://github.com/vectorviolet/hunted/issues/9), [PR #17](https://github.com/vectorviolet/hunted/pull/17)
 
 ## Context
 
