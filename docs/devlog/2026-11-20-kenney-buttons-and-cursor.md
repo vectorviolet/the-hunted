@@ -1,7 +1,7 @@
 # Kenney buttons and cursor
 <!-- index | refs: #5, PR #14 -->
 
-**Date:** 2026-11-20 · **Area:** UI, Art · **PR:** [#14](https://github.com/vectorviolet/hunted/pull/14)
+**Date:** 2026-11-20 · **Area:** UI, Art · **PR:** [#14](https://github.com/vectorviolet/the-hunted/pull/14)
 
 ## Context
 

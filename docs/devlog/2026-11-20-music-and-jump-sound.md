@@ -1,7 +1,7 @@
 # Replacing the music and the jump sound
 <!-- index | refs: #7, PR #15 -->
 
-**Date:** 2026-11-20 · **Area:** Audio · **PR:** [#15](https://github.com/vectorviolet/hunted/pull/15)
+**Date:** 2026-11-20 · **Area:** Audio · **PR:** [#15](https://github.com/vectorviolet/the-hunted/pull/15)
 
 ## Context
 

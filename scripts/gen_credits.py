@@ -38,7 +38,9 @@ LICENSE_LINKS = {
     "CC-BY-3.0": "[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)",
     "CC-BY-SA-4.0": "[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)",
 }
-REPO_SOURCES = "https://github.com/vectorviolet/hunted/blob/main/assets/SOURCES.yaml"
+REPO_SOURCES = (
+    "https://github.com/vectorviolet/the-hunted/blob/main/assets/SOURCES.yaml"
+)
 UNKNOWN = "unknown"
 
 

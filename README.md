@@ -1,6 +1,16 @@
-# The Hunted
+<h1 align="center">
+  <img src="docs/logo.png" alt="The Hunted" width="100%">
+</h1>
 
-![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/hunted/main/.github/badges/coverage.json)
+<div align="center">
+
+[![CI](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/vectorviolet/the-hunted)](https://github.com/vectorviolet/the-hunted/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/vectorviolet/the-hunted)](LICENSE)
+[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/the-hunted/main/.github/badges/coverage.json)](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml)
+[![Python 3.12+ | pygame-ce](https://img.shields.io/badge/python-3.12%2B%20%7C%20pygame--ce-3776AB?logo=python&logoColor=white)](https://github.com/pygame-community/pygame-ce)
+
+</div>
 
 My first-ever pygame project — kept here as a learning artifact. A goofy couch platformer for one player against the AI (VS AI) or two on one keyboard (PVP): one player is the vampire, the other the peasant, roles randomized each round. It's a chase-and-catch party game, not a horror game.
 
@@ -46,7 +56,7 @@ In VS AI mode you control **both keysets** and play against the AI.
 
 [![Available on itch.io](https://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://umutcanekinci.itch.io/the-hunted)
 
-Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/vectorviolet/hunted/releases/latest) — no Python required. On Windows, run the installer, or unzip and run:
+Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/vectorviolet/the-hunted/releases/latest) — no Python required. On Windows, run the installer, or unzip and run:
 
 | OS | Run |
 |----|-----|
@@ -69,8 +79,8 @@ Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch
 ## Running
 
 ```bash
-git clone --recurse-submodules https://github.com/vectorviolet/hunted.git
-cd hunted
+git clone --recurse-submodules https://github.com/vectorviolet/the-hunted.git
+cd the-hunted
 uv sync
 uv run python __main__.py
 ```
@@ -131,7 +141,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the architecture overview.
 
 Umutcan Ekinci — [umutcannekinci@gmail.com](mailto:umutcannekinci@gmail.com)
 
-See also the [contributors](https://github.com/vectorviolet/hunted/contributors).
+See also the [contributors](https://github.com/vectorviolet/the-hunted/contributors).
 
 ## License
 

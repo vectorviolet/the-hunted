@@ -8,7 +8,7 @@ Only the latest release of The Hunted gets fixes. Please update before reporting
 
 Please do not open a public issue for a security problem. Report it privately instead:
 
-1. Open the [Security tab](https://github.com/vectorviolet/hunted/security) of this repository.
+1. Open the [Security tab](https://github.com/vectorviolet/the-hunted/security) of this repository.
 2. Choose **Report a vulnerability** and describe what you found, how to reproduce it and what it
    could affect.
 

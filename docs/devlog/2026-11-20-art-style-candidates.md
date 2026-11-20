@@ -1,7 +1,7 @@
 # One art style: guide and generated candidates
 <!-- index | refs: #19 -->
 
-**Date:** 2026-11-20 · **Area:** Art · **Issue:** [#19](https://github.com/vectorviolet/hunted/issues/19)
+**Date:** 2026-11-20 · **Area:** Art · **Issue:** [#19](https://github.com/vectorviolet/the-hunted/issues/19)
 
 Phase 1 of #19 made a style guide and generated candidates for the owner to pick from (no game
 code); phase 2, at the end of this entry, applies the owner's picks in the game. The style guide

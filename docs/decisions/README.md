@@ -37,7 +37,7 @@ keys override what is read from the ADR).
 
 - **Status:** Accepted
 - **Date:** YYYY-MM-DD
-- **Issues / PRs:** [#N](https://github.com/vectorviolet/hunted/issues/N), [PR #M](https://github.com/vectorviolet/hunted/pull/M)
+- **Issues / PRs:** [#N](https://github.com/vectorviolet/the-hunted/issues/N), [PR #M](https://github.com/vectorviolet/the-hunted/pull/M)
 
 ## Context
 
