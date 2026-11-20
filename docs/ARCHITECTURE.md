@@ -22,11 +22,13 @@ src/background.py      ParallaxBackground, baked from the mountain layers
 src/audio.py           Menu and game music
 src/cursor.py          Custom multi-state mouse cursor
 src/settings.py        Physics, combat, colors and the three level layouts, as plain constants
-src/util/              Frozen-build resource paths
+src/util/              Frozen-build resource paths, the browser check (web.py)
 src/pygamine/          Engine submodule (Application, Mouse and GameObject are used)
 assets/                Images, sounds, fonts (every file listed in assets/SOURCES.yaml)
 licenses/              License texts of the asset packs (the software's come with pygamine)
-scripts/               Smoke test, credits and devlog generators, submodule sync
+scripts/               Smoke test, credits and devlog generators, web build, icon, submodule sync
+web/                   Browser build (pygbag): entry point, loader page, icon
+packaging/             Windows installer script (Inno Setup) and icon
 tests/                 The app's own pytest suite
 docs/                  Devlog, decision records, screenshots, store art
 ```

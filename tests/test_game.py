@@ -263,3 +263,13 @@ def test_on_exit_request_from_the_menu_delegates_to_the_real_quit(game, monkeypa
     game.on_exit_request()
 
     assert calls == [True]
+
+
+def test_browser_build_has_no_splash(monkeypatch):
+    # The splash decodes video frames on a thread, which the browser build lacks.
+    monkeypatch.setattr("util.web.is_web", lambda: True)
+    assert Game().splash is None
+
+
+def test_desktop_build_shows_the_splash():
+    assert Game().splash is not None

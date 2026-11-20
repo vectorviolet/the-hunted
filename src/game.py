@@ -13,6 +13,7 @@ from entities import Platform, Player
 from input_handler import AIInputHandler, KeyboardInputHandler
 from menu import Menu
 from renderer import GameRenderer
+from util import web
 from world import GameWorld
 
 
@@ -45,7 +46,10 @@ class Game(Application):
         # step is needed here anymore (see the previous, hand-rolled
         # _fit_rect/_present_canvas/_authored_mouse_pos this replaced).
 
-        self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
+        # The splash decodes its video frames on a thread; the browser build has
+        # none and goes straight to the menu (Application skips a None splash).
+        if not web.is_web():
+            self.splash = SplashScreen(standard_splash_media(), skip_completely=True)
 
         self._world = GameWorld(
             window_w=settings.VIRTUAL_W, window_h=settings.VIRTUAL_H
