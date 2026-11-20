@@ -34,10 +34,10 @@ def main(prefix: str) -> None:
 
     game._world.two_players = True
     game.update()
-    # The hovered START button (the real cursor is drawn by the engine, not here).
-    game._menu.update_button_state("1p", True, False)
+    # The hovered PLAY button (the real cursor is drawn by the engine, not here).
+    game._menu.update_pointer(game._menu.button_rects()["play"].center, False)
     save("menu")
-    game._menu.update_button_state("1p", False, False)
+    game._menu.update_pointer((0, 0), False)
     game._countdown = 20
     save("countdown")
     game._countdown = 100

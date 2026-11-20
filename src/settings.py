@@ -13,6 +13,7 @@ TITLE = "The Hunted"
 # and in mixed case, Silkscreen (8 px grid, capitals) for everything else: sizes 16, 24, 48.
 TITLE_FONT = "assets/fonts/Jacquard12-Regular.ttf"
 UI_FONT = "assets/fonts/Silkscreen-Regular.ttf"
+ITCH_URL = "https://umutcanekinci.itch.io/the-hunted"  # the "Thanks for playing" popup links here
 WINDOW_ICON = "assets/images/icon/icon_64.png"
 GROUND_HEIGHT = 50  # the ground strip, drawn at the bottom of the canvas
 GROUND_Y = VIRTUAL_H - GROUND_HEIGHT  # visual ground-tile top (490)

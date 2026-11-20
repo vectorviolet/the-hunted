@@ -18,6 +18,17 @@ IMAGE_FILES = {
 }
 LABEL_OFFSET = 2  # a pressed button's label sits this much lower (one art pixel)
 
+BUTTON_SIZE = (212, 44)  # the size of every menu button but the wide ones
+BUTTON_FONT = 24  # Silkscreen size of a button's label: a multiple of its 8 px grid
+BACK_TOP = (
+    425  # the level select's BACK button (menu.py places the others page by page)
+)
+
+
+def centered_button_rect(top: int, size: tuple[int, int] = BUTTON_SIZE) -> pygame.Rect:
+    """The rect of a button of `size` centered on the canvas, `top` px from its top."""
+    return pygame.Rect((settings.VIRTUAL_W - size[0]) // 2, top, *size)
+
 
 @functools.cache
 def _source(state: int) -> pygame.Surface:

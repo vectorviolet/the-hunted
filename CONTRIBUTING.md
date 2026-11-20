@@ -55,8 +55,8 @@ author, URL, license and what the game uses it for. Each pack's own license text
 When you add, replace or remove an asset:
 
 1. Update `assets/SOURCES.yaml`, and add `licenses/assets/<slug>.txt` for any new pack.
-2. Run `uv run python scripts/gen_credits.py` to regenerate CREDITS.md's asset section. Don't edit
-   that section by hand.
+2. Run `uv run python scripts/gen_credits.py` to regenerate CREDITS.md's asset section and
+   `src/credits_data.py` (the credits page's text). Don't edit either by hand.
 3. Run the tests. `tests/test_sources.py` fails if a file is missing from `SOURCES.yaml`, if a
    listed file doesn't exist, if a pack has no license text, or if CREDITS.md is out of date.
 
@@ -114,7 +114,9 @@ uv run python scripts/build_web.py
 python -m http.server 8000 --bind 127.0.0.1 -d build/web
 ```
 
-Open `http://127.0.0.1:8000` in a focused desktop browser and click the page to start.
+Open `http://127.0.0.1:8000` in a focused desktop browser and click the page to start. Use
+`127.0.0.1`, not `localhost`: on a `localhost:` URL pygbag assumes its own dev server and fetches
+pygame from `/cdn/` on it, which `http.server` doesn't serve (black screen, 404 on the wheel).
 `--stage-only` stages the files without pygbag (CI does this). After the first release, enable
 **This file will be played in the browser** on the itch.io upload and pick the embed size
 (960x540, 16:9, is the game's canvas). Design: [ADR 0001](docs/decisions/0001-web-build.md).
