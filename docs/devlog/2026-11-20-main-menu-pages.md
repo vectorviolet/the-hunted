@@ -1,7 +1,7 @@
 # Main menu pages: play, credits and exit
-<!-- index | refs: #18 | area: UI -->
+<!-- index | refs: #18, PR #23 | area: UI -->
 
-**Date:** 2026-11-20 · **Area:** UI · **Issue:** [#18](https://github.com/vectorviolet/hunted/issues/18)
+**Date:** 2026-11-20 · **Area:** UI · **Issue:** [#18](https://github.com/vectorviolet/hunted/issues/18) · **PR:** [#23](https://github.com/vectorviolet/hunted/pull/23)
 
 ## Context
 
