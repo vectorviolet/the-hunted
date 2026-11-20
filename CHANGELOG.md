@@ -13,6 +13,7 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- The menu buttons and the mouse cursor use Kenney CC0 art (UI Pack and Cursor Pack) instead of images with no known license. The buttons keep their positions, sizes and hover/pressed states, with the labels drawn in the game font; the cursor is now one static image per state instead of animated frames.
 - Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
 - The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so

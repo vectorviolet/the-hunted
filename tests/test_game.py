@@ -10,6 +10,7 @@ import pygame
 import pytest
 
 import settings
+from cursor import CLICK, NORMAL
 from game import Game
 from input_handler import AIInputHandler
 
@@ -198,11 +199,11 @@ def test_update_level_select_switches_the_cursor_state_when_hovering_a_card(game
 
     game.mouse.position = rect.center
     game._update_level_select()
-    assert game._cursor._state is game._cursor._click
+    assert game._cursor.state == CLICK
 
     game.mouse.position = (0, 0)  # outside every card
     game._update_level_select()
-    assert game._cursor._state is game._cursor._normal
+    assert game._cursor.state == NORMAL
 
 
 def test_update_game_awards_a_point_and_starts_a_new_round_on_a_kill(game, monkeypatch):

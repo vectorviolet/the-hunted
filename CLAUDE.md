@@ -73,7 +73,7 @@ State transitions happen in-band inside the handlers (e.g. `_update_menu` flips 
 | `_audio` | `AudioManager` (`src/audio.py`) | Two music tracks (menu / game) on the default mixer |
 | `_renderer` | `GameRenderer` (`src/renderer.py`) | Level-select and in-game drawing |
 | `_combat` | `CombatSystem` (`src/combat.py`) | Bullet physics, contact damage, round transitions |
-| `_cursor` | `Cursor` (`src/cursor.py`, extends `pygamine.GameObject`) | Custom mouse cursor with normal/click/click2/help/writing states |
+| `_cursor` | `Cursor` (`src/cursor.py`, extends `pygamine.GameObject`) | Custom mouse cursor (one static image per state; switch with `set_state`) |
 
 ### Players and Input
 
@@ -92,7 +92,7 @@ Input is dispatched through `InputHandler` (Protocol in `src/input_handler.py`):
 All images and sounds live under `assets/` (`assets/images/`, `assets/sounds/`). Loaded directly with `pygame.image.load()` / `pygame.mixer.Sound()` — there is no asset manifest. Naming conventions:
 - `assets/images/vampire/R{i}E.png`, `L{i}E.png` for vampire walk frames (1-9)
 - `assets/images/peasant/R{i}.png`, `L{i}.png` for peasant walk frames
-- `assets/images/cursor/{normal,click,click2,help,writing}/N-{i}.png` etc.
+- `assets/images/cursor/*.png` and `assets/images/buttons/*.png` are Kenney CC0 images (see `assets/SOURCES.yaml`); `Cursor` shows one static image per state, `src/buttons.py` draws the menu buttons from them and the labels in the game font
 
 ### Persistence
 

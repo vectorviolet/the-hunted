@@ -25,6 +25,18 @@ packs:
     url: https://fonts.google.com/specimen/Comic+Neue
     license: OFL-1.1
     used_for: "UI font"
+  kenney-cursor-pack:
+    name: "Cursor Pack"
+    author: Kenney
+    url: https://kenney.nl/assets/cursor-pack
+    license: CC0-1.0
+    used_for: "mouse cursor"
+  kenney-ui-pack:
+    name: "UI Pack"
+    author: Kenney
+    url: https://kenney.nl/assets/ui-pack
+    license: CC0-1.0
+    used_for: "menu buttons"
   redshrike-lpc-four-characters:
     name: "Four characters: My LPC entries"
     author: "Stephen \"Redshrike\" Challener"
@@ -64,183 +76,30 @@ files:
   "images/bg_layers/parallax-mountain-trees.png":
     source: ansimuz-mountain-at-dusk
     original: "parallax_mountain_pack/layers/parallax-mountain-trees.png"
-  "images/buttons/oneplayer.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/oneplayer2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/oneplayer3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/start.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/twoplayer.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/twoplayer2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/buttons/twoplayer3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): made with an online button generator, and the start button is a free-PNG-site image"
-  "images/cursor/click/L-0.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-1.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-4.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-5.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-6.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click/L-7.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-0.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-1.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-10.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-11.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-12.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-4.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-5.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-6.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-7.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-8.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/click2/L2-9.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-0.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-1.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-4.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-5.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-6.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-7.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-8.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/help/H-9.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-0.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-1.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-10.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-11.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-12.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-13.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-14.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-15.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-16.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-4.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-5.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-6.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-7.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-8.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/normal/N-9.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/writing/W-0.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/writing/W-1.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/writing/W-2.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
-  "images/cursor/writing/W-3.png":
-    source: unknown
-    todo: "replace (owner, 2026-11-20): source not found (a Pikachu cursor, so not usable)"
+  "images/buttons/button_rectangle_depth_gloss.png":
+    source: kenney-ui-pack
+    original: "PNG/Green/Default/button_rectangle_depth_gloss.png"
+  "images/buttons/button_rectangle_depth_gradient.png":
+    source: kenney-ui-pack
+    original: "PNG/Green/Default/button_rectangle_depth_gradient.png"
+  "images/buttons/button_rectangle_gradient.png":
+    source: kenney-ui-pack
+    original: "PNG/Green/Default/button_rectangle_gradient.png"
+  "images/cursor/bracket_a_vertical.png":
+    source: kenney-cursor-pack
+    original: "PNG/Outline/Default/bracket_a_vertical.png"
+  "images/cursor/cursor_help.png":
+    source: kenney-cursor-pack
+    original: "PNG/Outline/Default/cursor_help.png"
+  "images/cursor/hand_closed.png":
+    source: kenney-cursor-pack
+    original: "PNG/Outline/Default/hand_closed.png"
+  "images/cursor/hand_point.png":
+    source: kenney-cursor-pack
+    original: "PNG/Outline/Default/hand_point.png"
+  "images/cursor/pointer_a.png":
+    source: kenney-cursor-pack
+    original: "PNG/Outline/Default/pointer_a.png"
   "images/peasant/L1.png":
     source: redshrike-lpc-four-characters
     original: "baldricfrontwalksheet copy.png"

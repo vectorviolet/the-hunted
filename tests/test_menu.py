@@ -1,21 +1,20 @@
 import pygame
 
 from countdown import END_FRAME, ORANGE, POSITION, RING_OUTER, RING_WIDTH, SIZE
+from cursor import CLICK, CLICK2, NORMAL
 from entities import Player
 from menu import Menu
 
 
 class FakeCursor:
-    """Menu only reads/writes _state/_frame and compares against the three
-    frame-set sentinels -- a real Cursor's actual sprite frames are
-    irrelevant to Menu's own hover/click-state logic under test here."""
+    """Records the states Menu asks for; a real Cursor's images are irrelevant to
+    Menu's own hover/click-state logic under test here."""
 
     def __init__(self):
-        self._normal = "normal"
-        self._click = "click"
-        self._click2 = "click2"
-        self._state = self._normal
-        self._frame = 0
+        self.state = NORMAL
+
+    def set_state(self, state):
+        self.state = state
 
 
 def make_menu():
@@ -68,8 +67,32 @@ def test_draw_at_full_countdown_shows_the_start_screen_and_hovered_cursor(
 
     menu.draw(surface, countdown=100, p1=p1)
 
-    assert menu.cursor._state == "click"  # any_hover -> _click
-    assert menu.cursor._frame == 0  # state changed -> frame reset
+    assert menu.cursor.state == CLICK
+
+
+def test_draw_switches_the_cursor_with_the_button_state(world, input_handler):
+    menu = make_menu()
+    surface = pygame.Surface((800, 600))
+    p1 = Player(world, (100, 100), input_handler)
+
+    menu.update_button_state("2p", hovered=True, pressed=True)
+    menu.draw(surface, countdown=100, p1=p1)
+    assert menu.cursor.state == CLICK2
+
+    menu.update_button_state("2p", hovered=False, pressed=False)
+    menu.draw(surface, countdown=100, p1=p1)
+    assert menu.cursor.state == NORMAL
+
+
+def test_the_three_button_states_look_different():
+    menu = make_menu()
+
+    for buttons in (menu._btn_1p, menu._btn_2p):
+        images = {pygame.image.tobytes(b, "RGBA") for b in buttons}
+        assert len(images) == 3
+    assert pygame.image.tobytes(menu._btn_1p[0], "RGBA") != pygame.image.tobytes(
+        menu._btn_2p[0], "RGBA"
+    )  # the labels differ
 
 
 def test_draw_supports_single_player_with_no_p2(world, input_handler):
