@@ -31,6 +31,10 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The unlicensed remove.bg countdown frames (49 PNGs) are gone from the repo; the countdown is now
   drawn from the new glyph art (see the art style entry above).
 
+### Fixed
+
+- Space no longer fires for Player 1 in PVP: the arrow keys player fires with Right Ctrl only, and Space belongs to Player 2 (VS AI still accepts both).
+
 ## [0.2.1] – 2026-10-24
 
 ### Added

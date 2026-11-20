@@ -45,9 +45,7 @@ class KeyboardInputHandler:
         keys = pygame.key.get_pressed()
         arrows = self.control in ("R", "RL")
         wasd = self.control in ("L", "RL")
-        return (arrows and (keys[pygame.K_RCTRL] or keys[pygame.K_SPACE])) or (
-            wasd and keys[pygame.K_SPACE]
-        )
+        return (arrows and keys[pygame.K_RCTRL]) or (wasd and keys[pygame.K_SPACE])
 
 
 class AIInputHandler:
