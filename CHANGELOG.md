@@ -13,6 +13,8 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- The menu music, chase music and jump sound are replaced with CC0 audio (Ogg Vorbis): the two
+  CC BY-SA 4.0 tracks by wyver9 and the jump sound of unknown origin are gone. Same places in the game.
 - Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
 - The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so

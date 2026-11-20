@@ -119,12 +119,14 @@ See also the [contributors](https://github.com/vectorviolet/hunted/contributors)
 
 The **code** in this repository is licensed under the MIT License — see the [LICENSE](LICENSE) file.
 
-Most remaining **assets** (vampire sprites, loading animation, buttons, cursor, jump sound) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace these with properly-licensed assets — see below for what's already been swapped in. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
+Most remaining **assets** (vampire sprites, loading animation, buttons, cursor) are **not** covered by that license. They're placeholders gathered from various third-party sources during my first project, before I understood asset licensing, and are not licensed for reuse or redistribution. If you fork this repo, swap them for your own or for properly-licensed alternatives (e.g. [Kenney](https://kenney.nl), CC0). Work is ongoing to replace these with properly-licensed assets — see below for what's already been swapped in. [`assets/SOURCES.yaml`](assets/SOURCES.yaml) lists every asset file with its source, or marks it `unknown` with what is left to do.
 
 ### Credits
 
 - **Peasant sprites** (`assets/images/peasant/`) — Baldric from "[Four characters: My LPC entries](https://opengameart.org/content/four-characters-my-lpc-entries)" by Stephen "Redshrike" Challener, hosted by [OpenGameArt.org](https://opengameart.org), licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - **Background art** (`assets/images/bg_layers/`) — "[Mountain at Dusk Background](https://opengameart.org/content/mountain-at-dusk-background)" by Luis Zuno ([ansimuz](https://ansimuz.com)), CC0.
 - **Platform tile** (`assets/images/platfor_tile.png`) — CC0; its source is still being confirmed.
-- **Music** (`menu_theme.wav`, `chase_theme.wav`) — "8-Bit Beat'em Up Soundtrack" by [wyver9](https://wyver9.bandcamp.com/album/8-bit-beatem-up-soundtrack/), licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Also on [OpenGameArt](https://opengameart.org/).
+- **Menu music** (`assets/sounds/menu_theme.ogg`) — "[forgotten path](https://opengameart.org/content/forgotten-path)" by johndekale, CC0.
+- **Chase music** (`assets/sounds/chase_theme.ogg`) — "[8-bit Epic Space Shooter Music](https://opengameart.org/content/8-bit-epic-space-shooter-music)" by HydroGene, CC0.
+- **Jump sound** (`assets/sounds/jump.ogg`) — "[Interface Sounds](https://kenney.nl/assets/interface-sounds)" by Kenney, CC0.
 - **Font** (`assets/fonts/ComicNeue-Regular.ttf`) — [Comic Neue](https://fonts.google.com/specimen/Comic+Neue), licensed under the [SIL Open Font License 1.1](assets/fonts/OFL-ComicNeue.txt).

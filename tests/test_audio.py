@@ -45,3 +45,18 @@ def test_pause_all_pauses_every_currently_playing_channel():
     pygame.mixer.unpause()  # don't leak paused global mixer state to other tests
     audio.stop_menu()
     audio.stop_game()
+
+
+def test_both_songs_are_real_loops_not_stubs():
+    audio = AudioManager()
+
+    assert audio._menu_song.get_length() > 10
+    assert audio._game_song.get_length() > 10
+
+
+def test_player_loads_a_non_empty_jump_sound(world, input_handler):
+    from entities import Player
+
+    player = Player(world, (400.0, 0.0), input_handler)
+
+    assert player._jump_sound.get_length() > 0.1
