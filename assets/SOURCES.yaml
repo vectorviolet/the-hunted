@@ -8,54 +8,18 @@
 # generated_with: for `own` files made with an AI tool; CREDITS.md says so instead of "made by hand".
 
 packs:
-  ansimuz-mountain-at-dusk:
-    name: "Mountain at Dusk Background"
-    author: "Luis Zuno (ansimuz)"
-    url: https://opengameart.org/content/mountain-at-dusk-background
-    license: CC0-1.0
-    used_for: "parallax background layers"
-  amir027-platform-tile4:
-    name: "Platform tile4"
-    author: "amir027"
-    url: https://opengameart.org/content/platform-tile4
-    license: CC0-1.0
-    used_for: "platform tile"
-  font-comic-neue:
-    name: "Comic Neue"
-    author: "Craig Rozynski"
-    url: https://fonts.google.com/specimen/Comic+Neue
-    license: OFL-1.1
-    used_for: "UI font"
   font-jacquard-12:
     name: "Jacquard 12"
     author: "Sarah Cadigan-Fried (Soft Type Project)"
     url: https://fonts.google.com/specimen/Jacquard+12
     license: OFL-1.1
-    used_for: "title font (art candidate, not wired in yet)"
+    used_for: "title font"
   font-silkscreen:
     name: "Silkscreen"
     author: "Jason Kottke"
     url: https://fonts.google.com/specimen/Silkscreen
     license: OFL-1.1
-    used_for: "UI font (art candidate, not wired in yet)"
-  font-press-start-2p:
-    name: "Press Start 2P"
-    author: "CodeMan38"
-    url: https://fonts.google.com/specimen/Press+Start+2P
-    license: OFL-1.1
-    used_for: "UI font (art candidate B, not wired in yet)"
-  kenney-cursor-pack:
-    name: "Cursor Pack"
-    author: Kenney
-    url: https://kenney.nl/assets/cursor-pack
-    license: CC0-1.0
-    used_for: "mouse cursor"
-  kenney-ui-pack:
-    name: "UI Pack"
-    author: Kenney
-    url: https://kenney.nl/assets/ui-pack
-    license: CC0-1.0
-    used_for: "menu buttons"
+    used_for: "UI font"
   hydrogene-8-bit-truth:
     name: "8-bit - Truth"
     author: "HydroGene"
@@ -78,57 +42,68 @@ packs:
     used_for: "jump sound"
 
 files:
-  "fonts/ComicNeue-Regular.ttf":
-    source: font-comic-neue
-    original: "ofl/comicneue/ComicNeue-Regular.ttf"
   "fonts/Jacquard12-Regular.ttf":
     source: font-jacquard-12
     original: "ofl/jacquard12/Jacquard12-Regular.ttf"
-  "fonts/PressStart2P-Regular.ttf":
-    source: font-press-start-2p
-    original: "ofl/pressstart2p/PressStart2P-Regular.ttf"
   "fonts/Silkscreen-Regular.ttf":
     source: font-silkscreen
     original: "ofl/silkscreen/Silkscreen-Regular.ttf"
-  "images/bg_layers/parallax-mountain-bg.png":
-    source: ansimuz-mountain-at-dusk
-    original: "parallax_mountain_pack/layers/parallax-mountain-bg.png"
-  "images/bg_layers/parallax-mountain-foreground-trees.png":
-    source: ansimuz-mountain-at-dusk
-    original: "parallax_mountain_pack/layers/parallax-mountain-foreground-trees.png"
-  "images/bg_layers/parallax-mountain-montain-far.png":
-    source: ansimuz-mountain-at-dusk
-    original: "parallax_mountain_pack/layers/parallax-mountain-montain-far.png"
-  "images/bg_layers/parallax-mountain-mountains.png":
-    source: ansimuz-mountain-at-dusk
-    original: "parallax_mountain_pack/layers/parallax-mountain-mountains.png"
-  "images/bg_layers/parallax-mountain-trees.png":
-    source: ansimuz-mountain-at-dusk
-    original: "parallax_mountain_pack/layers/parallax-mountain-trees.png"
-  "images/buttons/button_rectangle_depth_gloss.png":
-    source: kenney-ui-pack
-    original: "PNG/Green/Default/button_rectangle_depth_gloss.png"
-  "images/buttons/button_rectangle_depth_gradient.png":
-    source: kenney-ui-pack
-    original: "PNG/Green/Default/button_rectangle_depth_gradient.png"
-  "images/buttons/button_rectangle_gradient.png":
-    source: kenney-ui-pack
-    original: "PNG/Green/Default/button_rectangle_gradient.png"
-  "images/cursor/bracket_a_vertical.png":
-    source: kenney-cursor-pack
-    original: "PNG/Outline/Default/bracket_a_vertical.png"
-  "images/cursor/cursor_help.png":
-    source: kenney-cursor-pack
-    original: "PNG/Outline/Default/cursor_help.png"
-  "images/cursor/hand_closed.png":
-    source: kenney-cursor-pack
-    original: "PNG/Outline/Default/hand_closed.png"
-  "images/cursor/hand_point.png":
-    source: kenney-cursor-pack
-    original: "PNG/Outline/Default/hand_point.png"
-  "images/cursor/pointer_a.png":
-    source: kenney-cursor-pack
-    original: "PNG/Outline/Default/pointer_a.png"
+  "images/background/arena.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Arena level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_arena_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/background/classic.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Classic level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_classic_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/background/menu.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "main-menu background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_menu_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/background/towers.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Towers level background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_towers_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/countdown/1.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "countdown glyph 1. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/countdown/2.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "countdown glyph 2. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/countdown/3.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "countdown glyph 3. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/countdown/go.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "countdown glyph GO!. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/cursor/arrow.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "mouse cursor, arrow. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/cursor/grab.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "mouse cursor, grabbing hand. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/cursor/hand.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "mouse cursor, pointing hand. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ground/arena.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Arena ground strip art, a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_arena` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ground/classic.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Classic ground strip art, a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_classic` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ground/towers.png":
+    source: own
+    generated_with: "OpenAI Codex (image generation)"
+    note: "Towers ground strip art (also the menu's), a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_towers` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/icon/icon_64.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
@@ -205,133 +180,38 @@ files:
     source: own
     generated_with: "OpenAI Codex (image generation)"
     note: "the peasant's walk frame 9, facing right. AI-generated with OpenAI Codex (image generation) from a text prompt as one sprite sheet (scripts/sheets/peasant_sheet.png), then sliced, scaled, reduced to a 20-color palette with hard alpha, given a 1 px light outline and aligned by scripts/slice_character_sheets.py. Not CC0; the owner approved shipping it (2026-11-20)"
-  "images/platfor_tile.png":
-    source: amir027-platform-tile4
-    original: "Platform Tile Grass_0.png"
-  "images/style/bg_arena_a.png":
+  "images/platform/arena.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "arena level (candidate A) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_arena_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_arena_b.png":
+    note: "Arena platform art, a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_arena` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/platform/classic.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "arena level (candidate B) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_arena_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_classic_a.png":
+    note: "Classic platform art, a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_classic` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/platform/towers.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "classic level (candidate A) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_classic_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_classic_b.png":
+    note: "Towers platform art, a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_towers` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ui/button_hover.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "classic level (candidate B) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_classic_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_menu_a.png":
+    note: "menu button, hover state. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ui/button_normal.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "main-menu (candidate A) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_menu_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_menu_b.png":
+    note: "menu button, normal state. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ui/button_pressed.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "main-menu (candidate B) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_menu_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_towers_a.png":
+    note: "menu button, pressed state. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ui/card.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "towers level (candidate A) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_towers_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/bg_towers_b.png":
+    note: "level-select card frame, 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+  "images/ui/panel.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"
-    note: "towers level (candidate B) background (800x600). AI-generated with OpenAI Codex (image generation) from the text prompt `bg_towers_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/cursor_arrow.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "mouse cursor (arrow). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/cursor_grab.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "mouse cursor (grab). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/cursor_hand.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "mouse cursor (hand). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_cursor` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/digit_1.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "countdown glyph (1). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/digit_2.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "countdown glyph (2). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/digit_3.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "countdown glyph (3). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/digit_go.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "countdown glyph (GO). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_digits` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ground_arena.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "arena level ground art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_arena` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ground_classic.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "classic level ground art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_classic` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ground_towers.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "towers level ground art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_towers` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/platform_arena.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "arena level platform art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_arena` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/platform_classic.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "classic level platform art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_classic` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/platform_towers.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "towers level platform art as a cap | tiled middle | cap sheet. AI-generated with OpenAI Codex (image generation) from the text prompt `slab_towers` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_a_hover.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (A, hover). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_a_normal.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (A, normal). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_a_pressed.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (A, pressed). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_b_hover.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (B, hover). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_b_normal.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (B, normal). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_button_b_pressed.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "menu button (B, pressed). AI-generated with OpenAI Codex (image generation) from the text prompt `ui_buttons_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_card_a.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "level-select card frame (candidate A), 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_card_b.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "level-select card frame (candidate B), 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_panel_a.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "popup panel frame (candidate A), 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
-  "images/style/ui_panel_b.png":
-    source: own
-    generated_with: "OpenAI Codex (image generation)"
-    note: "popup panel frame (candidate B), 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_b` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Art candidate for #19, not wired into the game yet. Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
+    note: "popup panel frame, 9-slice with a 20 px border. AI-generated with OpenAI Codex (image generation) from the text prompt `ui_panel_a` in scripts/art_gen/prompts.py and cleaned up by scripts/art_gen/process.py (shared palette, hard edges, 2x pixel scale). Not CC0; the owner approved AI-generated art for Hunted (2026-11-20)"
   "images/vampire/L1E.png":
     source: own
     generated_with: "OpenAI Codex (image generation)"

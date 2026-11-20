@@ -1,7 +1,6 @@
 # Hunted art style guide
 
-Status: proposal for the owner's pick (issue #19, phase 1). Nothing here is wired into the game
-yet. The anchors are the new characters (`assets/images/vampire/`, `assets/images/peasant/`, PR #16)
+Status: picked by the owner (2026-11-20) and applied in the game (issue #19). The anchors are the new characters (`assets/images/vampire/`, `assets/images/peasant/`, PR #16)
 and icon A (PR #17). The one rule above all others: **everything looks like it was drawn by the
 same hand as the characters.**
 
@@ -101,58 +100,59 @@ warm hue and outline, which is why cool backgrounds matter.
 
 ## Backgrounds
 
-800x600, one per level plus the menu, two moods each so the owner can pick:
+800x600, one per level plus the menu. The owner's picks, from two moods each (the rejected
+candidates are in the devlog, `docs/devlog/2026-11-20-art-style-candidates.md`):
 
-| Screen | A (default) | B |
+| Screen | File | Scene |
 |---|---|---|
-| Menu | gothic castle on a cliff under a big moon | graveyard gate at night, castle far away |
-| Classic | moonlit snowy mountains with a village | violet dusk with a magenta horizon glow, windmill and village |
-| Towers | blue castle courtyard, torches, glowing window | spires and flying buttresses in teal fog |
-| Arena | ruined stone arena with arches, torches | cathedral ruin with a glowing rose window |
+| Menu | `background/menu.png` | gothic castle on a cliff under a big moon |
+| Classic | `background/classic.png` | violet dusk with a magenta horizon glow, windmill and village |
+| Towers | `background/towers.png` | blue castle courtyard, torches, a glowing window |
+| Arena | `background/arena.png` | cathedral ruin with a glowing rose window |
 
-They are single images, not parallax layers: the style does not need scrolling (the map never
-scrolls), and `ParallaxBackground`'s per-round re-randomizing would break the composed scenes.
+They are single images, not parallax layers: the map never scrolls, so layers would add nothing,
+and composed scenes read better. Which picture a level uses is `background` in `settings.LEVELS`.
 The scene continues to the bottom edge; the ground strip is overlaid at `settings.GROUND_Y`.
 
 ## Platforms and ground
 
 Per level, one material that matches its background: Classic mossy earth, Towers castle brick,
-Arena sandstone. Each is a **3-slice sheet** (left cap 16 px, tiled middle 32 px that is a patch
-plus its mirror so it repeats seamlessly, right cap 16 px) at the height that level's platforms use
-in `settings.LEVELS`: Classic 50, Towers 30, Arena 20 px, plus a 50 px ground strip
-(`platform_<level>.png`, `ground_<level>.png` in `assets/images/style/`). Any width in the level
-tables works: caps plus as many middles as fit.
+Arena sandstone (kept on purpose; its dark outline separates it from the Arena backdrop). Each is a
+**3-slice sheet** (left cap 16 px, tiled middle 32 px that is a patch plus its mirror so it repeats
+seamlessly, right cap 16 px) at the height that level's platforms use in `settings.LEVELS`:
+Classic 50, Towers 30, Arena 20 px (`platform/<style>.png`), plus a 50 px ground strip
+(`ground/<style>.png`). `entities.Platform` builds any width with `pixelart.three_slice`; `style`
+in `settings.LEVELS` names the art.
 
 ## UI
 
-- **Buttons:** normal, hover, pressed, 224x64 px, no text (the label is drawn in code with the
-  font). Candidate A is a forged iron plate, B a carved stone slab with gothic ends.
-- **Panel/popup frame** and **level-select card frame:** 9-slice, 20 px border, flat interior.
-  Candidate A iron with crimson gems, B stone with arch ornaments.
+- **Buttons:** forged iron, normal, hover, pressed, 224x64 px, no text (the label is drawn in code
+  in Silkscreen). `buttons.make_button` stretches them with `pixelart.nine_slice` (14 px corners).
+- **Panel/popup frame** and **level-select card frame:** iron with crimson gems, 9-slice with a
+  20 px border, flat interior (`ui/panel.png`, `ui/card.png`).
 - **Cursor:** arrow, pointing hand, grabbing hand, about 28 px.
-- **Countdown:** the glyphs 3, 2, 1, GO!, bone-white with a crimson lower edge and fang drips.
-- **HUD** (drawn in code, palette colors only): ink boxes with a 2 px plum or crimson edge, a bar
-  with a 1 px `#fff4d6` outline, labels in Silkscreen.
+- **Countdown:** the glyphs 3, 2, 1, GO!, bone-white with a crimson lower edge and fang drips; each
+  shows for 15 frames and drops in over the first five.
+- **HUD** (drawn in code, palette colors only): ink plates with a 2 px edge (slate for P1, crimson
+  for P2, plum for the role tags), a bar with a 1 px `#fff4d6` outline, labels in Silkscreen.
+- **Bullets:** gold with a 1 px ink outline (they used to be black, which vanishes at night).
 
 ## Font
 
-| | Candidate A (default) | Candidate B | Today |
-|---|---|---|---|
-| Titles | Jacquard 12 (gothic pixel blackletter) | Press Start 2P | Comic Neue |
-| Buttons, HUD, labels | Silkscreen | Press Start 2P | Comic Neue |
-
-All three are SIL OFL 1.1 static TTFs from Google Fonts (`google/fonts`, `ofl/`), license texts in
-`licenses/assets/` and entries in `assets/SOURCES.yaml`. Jacquard 12 is only legible in mixed
-case and at 24 px or larger, so it is for titles only ("The Hunted", "Select Level", "Credits");
-everything the player has to read quickly is Silkscreen (caps, 8 px grid, used at 16 and 24).
-Press Start 2P is the safe, more uniform alternative.
+Titles ("The Hunted", "Select Level", "Credits"): **Jacquard 12** (a gothic pixel blackletter).
+Everything else (buttons, HUD, labels, hints): **Silkscreen**. Both are SIL OFL 1.1 static TTFs from
+Google Fonts (`google/fonts`, `ofl/`), with license texts in `licenses/assets/` and entries in
+`assets/SOURCES.yaml`. Jacquard 12 is only legible in mixed case and at 24 px or larger, so it is
+for titles only (used at 72); Silkscreen is capitals on an 8 px grid, used at 16, 24 and 48. Both
+are drawn without anti-aliasing. Comic Neue and the candidate Press Start 2P are gone.
 
 ## How the assets are made
 
 `scripts/art_gen/`: `prompts.py` (every prompt), `generate.py` (Codex image generation with the
 sheets and icon as style references), `process.py` (crop, night grade, palette snap, hard alpha,
-3-slice, 2x), `mockups.py` (the devlog mockups), `shoot_today.py` (screenshots of current main). Generation
-is not deterministic and the raw pictures (about 1.3 MB each) are not committed: they go to
-the gitignored `scripts/art_gen/work/`. Only the final assets, the prompts and the scripts are in
-the repo. The scripts need Pillow and numpy, in the optional `art` dependency group:
+3-slice, 2x; writes the owner's picks to `assets/images/`), `shoot.py` (screenshots of the game),
+`make_media.py` (README screenshots, preview.gif, store covers, devlog comparisons). Generation is
+not deterministic and the raw pictures (about 1.3 MB each) are not committed: they go to the
+gitignored `scripts/art_gen/work/`. Only the final assets, the prompts and the scripts are in the
+repo. The scripts need Pillow and numpy, in the optional `art` dependency group:
 `uv run --group art python scripts/art_gen/process.py`.

@@ -22,7 +22,7 @@ RAW = HERE / "work" / "raw"
 REFS = [
     HERE.parent / "sheets" / "vampire_sheet.png",
     HERE.parent / "sheets" / "peasant_sheet.png",
-    HERE / "refs" / "cand_a.png",  # icon A (PR #17)
+    HERE.parent / "icons" / "cand_a.png",  # icon A (PR #17)
 ]
 PARALLEL = 4
 

@@ -1,14 +1,16 @@
 import pygame
 
-from background import ParallaxBackground
+from background import load_background
 from buttons import BTN_HOVER, BTN_NORMAL, BTN_PRESSED, make_button
 from countdown import CountdownGraphic, countdown_step
 from cursor import CLICK, CLICK2, NORMAL
 from entities import Platform
-from settings import FONT, GROUND_Y, WHITE
+import settings
+from settings import BONE, GROUND_Y
 
 START_SIZE = (310, 100)
 BUTTON_SIZE = (212, 44)
+START_FONT, BUTTON_FONT = 48, 24  # Silkscreen sizes: whole multiples of its 8 px grid
 
 
 class Menu:
@@ -21,16 +23,24 @@ class Menu:
         self._btn_2p_hover = self._btn_2p_click = False
         self._btn_start_hover = self._btn_start_click = False
 
-        self._font_sm = pygame.font.Font(FONT, 21)
-        self._lbl_p1 = self._font_sm.render("P1", True, WHITE)
-        self._lbl_p2 = self._font_sm.render("P2", True, WHITE)
+        self._font_sm = pygame.font.Font(settings.UI_FONT, 16)
+        self._lbl_p1 = self._font_sm.render("P1", False, BONE)
+        self._lbl_p2 = self._font_sm.render("P2", False, BONE)
 
-        self._background = ParallaxBackground(window_w, window_h)
-        self._ground = Platform((0, GROUND_Y), window_w, int(window_h - GROUND_Y))
+        self._background = load_background(
+            settings.MENU_BACKGROUND, (window_w, window_h)
+        )
+        self._ground = Platform(
+            (0, GROUND_Y),
+            window_w,
+            int(window_h - GROUND_Y),
+            style=settings.MENU_STYLE,
+            kind="ground",
+        )
 
-        self._start_btn = self._make_buttons(START_SIZE, "START", 52)
-        self._btn_1p = self._make_buttons(BUTTON_SIZE, "1 PLAYER", 26)
-        self._btn_2p = self._make_buttons(BUTTON_SIZE, "2 PLAYER", 26)
+        self._start_btn = self._make_buttons(START_SIZE, "START", START_FONT)
+        self._btn_1p = self._make_buttons(BUTTON_SIZE, "1 PLAYER", BUTTON_FONT)
+        self._btn_2p = self._make_buttons(BUTTON_SIZE, "2 PLAYER", BUTTON_FONT)
         self._countdown_graphic = CountdownGraphic()
 
     @staticmethod
@@ -50,12 +60,9 @@ class Menu:
         setattr(self, f"_btn_{btn_name}_hover", hovered and not pressed)
         setattr(self, f"_btn_{btn_name}_click", hovered and pressed)
 
-    def randomize_background(self) -> None:
-        self._background.randomize()
-
     def draw(self, surface: pygame.Surface, countdown: int, p1, p2=None) -> None:
         """Draw the main menu. Pass p2=None for single-player mode."""
-        surface.blit(self._background.surface, (0, 0))
+        surface.blit(self._background, (0, 0))
         self._ground.draw(surface)
         cx, cy = self.window_w // 2, self.window_h // 2
 

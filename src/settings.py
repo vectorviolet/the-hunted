@@ -5,12 +5,12 @@ VIRTUAL_H = 600
 FPS = 60
 TITLE = "The Hunted"
 
-# UI font, bundled in assets/fonts/ (SIL OFL, license alongside) so text looks
-# the same on every OS: Comic Neue, an open lookalike of the Comic Sans MS the
-# game used to ask the system for. It renders ~13% smaller at the same point
-# size, so call sites use their old Comic Sans sizes x1.15 (18->21, 22->25,
-# 42->48) to keep the layout.
-FONT = "assets/fonts/ComicNeue-Regular.ttf"
+# Pixel fonts bundled in assets/fonts/ (SIL OFL, licenses alongside) so text looks the same on
+# every OS. Both are drawn without anti-aliasing and only at whole multiples of their native
+# pixel grid, or the pixels blur: Jacquard 12 (12 px grid, a gothic blackletter) for titles only
+# and in mixed case, Silkscreen (8 px grid, capitals) for everything else: sizes 16, 24, 48.
+TITLE_FONT = "assets/fonts/Jacquard12-Regular.ttf"
+UI_FONT = "assets/fonts/Silkscreen-Regular.ttf"
 WINDOW_ICON = "assets/images/icon/icon_64.png"
 FLOOR_Y = 490.0
 GROUND_Y = (
@@ -46,22 +46,36 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 DARK_BG = (15, 15, 25)
 PANEL_BG = (20, 20, 35)
-HP_GREEN = (50, 210, 80)
-HP_YELLOW = (230, 200, 30)
-HP_RED = (220, 40, 40)
+HP_GREEN = (138, 154, 82)
+HP_YELLOW = (243, 190, 81)
+HP_RED = (216, 106, 112)
 LIGHT_GREY = (180, 180, 180)
 MID_GREY = (90, 90, 110)
+
+# The art style's palette (docs/design/art-style.md) for everything drawn in code.
+INK = (28, 11, 24)  # violet-black: plates, outlines, shadows
+RIM = (255, 244, 214)  # the characters' outline color; also bar outlines and titles
+BONE = (217, 215, 220)  # text
+PLUM = (108, 77, 110)  # plate edges
+CRIMSON = (159, 27, 41)  # P2's plate edge, title shadows
+SLATE = (79, 88, 112)  # P1's plate edge
+GOLD = (243, 190, 81)  # hints, bullets
+BULLET_COLOR = GOLD
 
 
 # Levels  — platform y must end in 0 so velocity steps land cleanly
 class Level(TypedDict):
     name: str
+    background: str  # assets/images/background/<background>.png
+    style: str  # platform and ground art: assets/images/{platform,ground}/<style>.png
     platforms: list[tuple[tuple[int, int], int, int]]
 
 
 LEVELS: list[Level] = [
     {
         "name": "Classic",
+        "background": "classic",
+        "style": "classic",
         "platforms": [
             ((0, 400), 300, 50),
             ((500, 400), 300, 50),
@@ -70,6 +84,8 @@ LEVELS: list[Level] = [
     },
     {
         "name": "Towers",
+        "background": "towers",
+        "style": "towers",
         "platforms": [
             ((0, 430), 220, 30),
             ((580, 430), 220, 30),
@@ -80,6 +96,8 @@ LEVELS: list[Level] = [
     },
     {
         "name": "Arena",
+        "background": "arena",
+        "style": "arena",
         "platforms": [
             ((50, 480), 160, 20),
             ((590, 480), 160, 20),
@@ -91,6 +109,10 @@ LEVELS: list[Level] = [
         ],
     },
 ]
+
+# The menu's backdrop and ground art (assets/images/{background,ground}/).
+MENU_BACKGROUND = "menu"
+MENU_STYLE = "towers"
 
 # Keep for backwards-compat during transition
 PLATFORM_DEFS = LEVELS[0]["platforms"]

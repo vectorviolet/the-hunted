@@ -1,6 +1,7 @@
 import pygame
 
 import settings
+from pixelart import three_slice
 from input_handler import InputHandler
 from world import GameWorld
 
@@ -140,7 +141,7 @@ class Player:
                     int(self.x) + self.width // 2,
                     int(self.y) + self.height // 2,
                     settings.BULLET_RADIUS,
-                    settings.BLACK,
+                    settings.BULLET_COLOR,
                     self.facing,
                 )
             )
@@ -214,39 +215,51 @@ class Player:
 
 
 class Platform:
-    _tile_cache: dict[int, pygame.Surface] = {}
+    """A platform, or the ground strip, drawn from the 3-slice art of one level style.
 
-    def __init__(self, location: tuple, width: int, height: int) -> None:
+    `style` names the art (`assets/images/<kind>/<style>.png`, see `settings.LEVELS`); `kind`
+    is "platform" or "ground". The art is built at the requested size once and shared.
+    """
+
+    _art_cache: dict[tuple[str, str, int, int], pygame.Surface] = {}
+
+    def __init__(
+        self,
+        location: tuple,
+        width: int,
+        height: int,
+        style: str = "classic",
+        kind: str = "platform",
+    ) -> None:
         self.x, self.y = location
         self.width = width
         self.height = height
-        self.tile = self._get_tile(height)
+        self.art = self._get_art(kind, style, width, height)
 
     @classmethod
-    def _get_tile(cls, size: int) -> pygame.Surface:
-        """A square tile scaled to `size`, cached per platform height.
-
-        platfor_tile.png is a seamless 128x128 tile, not a stretchable
-        banner -- scaling it non-uniformly to a platform's full w x h would
-        squash the grass top, so it's kept square and tiled edge-to-edge
-        across the platform width instead.
-        """
-        tile = cls._tile_cache.get(size)
-        if tile is None:
-            img = pygame.image.load("assets/images/platfor_tile.png").convert_alpha()
-            tile = pygame.transform.scale(img, (size, size))
-            cls._tile_cache[size] = tile
-        return tile
+    def _get_art(cls, kind: str, style: str, width: int, height: int) -> pygame.Surface:
+        key = (kind, style, width, height)
+        art = cls._art_cache.get(key)
+        if art is None:
+            sheet = pygame.image.load(
+                f"assets/images/{kind}/{style}.png"
+            ).convert_alpha()
+            art = three_slice(sheet, width)
+            if art.get_height() != height:
+                art = pygame.transform.scale(art, (width, height))
+            cls._art_cache[key] = art
+        return art
 
     def draw(self, surface: pygame.Surface) -> None:
-        tile_w = self.tile.get_width()
-        x = self.x
-        remaining = self.width
-        while remaining > 0:
-            w = min(tile_w, remaining)
-            surface.blit(self.tile, (x, self.y), (0, 0, w, self.height))
-            x += w
-            remaining -= w
+        surface.blit(self.art, (self.x, self.y))
+
+
+def level_platforms(level: int) -> list[Platform]:
+    """The platforms of `settings.LEVELS[level]`, in that level's art style."""
+    style = settings.LEVELS[level]["style"]
+    return [
+        Platform(loc, w, h, style) for loc, w, h in settings.LEVELS[level]["platforms"]
+    ]
 
 
 class Projectile:
@@ -263,4 +276,6 @@ class Projectile:
         return pygame.Rect(int(self.x) - r, int(self.y) - r, r * 2, r * 2)
 
     def draw(self, surface: pygame.Surface) -> None:
-        pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), self.radius)
+        center = (int(self.x), int(self.y))
+        pygame.draw.circle(surface, settings.INK, center, self.radius + 1)
+        pygame.draw.circle(surface, self.color, center, self.radius)

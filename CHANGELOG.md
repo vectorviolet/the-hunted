@@ -9,7 +9,7 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- An art style guide (`docs/design/art-style.md`) and AI-generated art candidates (backgrounds, platforms, buttons, frames, cursor, countdown, three OFL pixel fonts) for the owner to choose from, with scripts to regenerate and composite them. None of it is in the game yet; no change to how the game plays.
+- An art style guide (`docs/design/art-style.md`) and the scripts that generate and clean up the art (`scripts/art_gen/`, optional `art` dependency group).
 - CREDITS.md (its asset table is generated from `assets/SOURCES.yaml` and lists the assets still waiting for a source or replacement), the asset packs' license texts in `licenses/assets/` (shipped with every build), CONTRIBUTING.md, SECURITY.md, an architecture guide and the devlog and decisions indexes. No change to how the game plays.
 - CI runs ruff (lint and format), codespell (American English) and mypy next to the tests. No change to how the game plays.
 
@@ -18,14 +18,14 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- One consistent pixel-art style for everything (AI-generated with OpenAI Codex, cleaned up to one shared palette): a night background for each level and the menu (the old mountain parallax is gone), new platform and ground art per level, iron menu buttons, panel and level-select card frames, a new cursor, a countdown of pixel glyphs (3, 2, 1, GO, each 15 frames; it replaces the ring and its 0) and a HUD in the palette. The text uses the pixel fonts Jacquard 12 (titles) and Silkscreen (SIL OFL) instead of Comic Neue. The browser loader page uses the same palette. The peasant's bullets are gold with a dark outline so they show on the dark backgrounds. The README screenshots, the preview and the store covers are retaken (the old cover had a third-party character). No change to how the game plays.
 - The vampire and the peasant have new pixel-art sprites (AI-generated with OpenAI Codex, then cleaned up with a script) in one shared style. Same 64x64 frames, names and counts, so the animation and hitboxes are unchanged. The old vampire (no known source) and the peasant by Redshrike (CC BY 3.0) are gone, and the unused `peasant/standing.png` was removed.
-- The menu buttons and the mouse cursor use Kenney CC0 art (UI Pack and Cursor Pack) instead of images with no known license. The buttons keep their positions, sizes and hover/pressed states, with the labels drawn in the game font; the cursor is now one static image per state instead of animated frames.
 - The menu music, chase music and jump sound are replaced with CC0 audio (Ogg Vorbis): the two
   CC BY-SA 4.0 tracks by wyver9 and the jump sound of unknown origin are gone. Same places in the game.
 - Code style: return types on every function, a few types tightened, and the code reformatted with ruff. No behavior change.
 - pygamine updated to 1.0.0+14 (`0049da0`, the commit Chokepoint and Highrise use). No API changes affected Hunted; the game looks and plays the same.
-- The pre-game countdown (3, 2, 1, 0, GO) is drawn in code instead of playing 49 PNG frames, so
-  the unlicensed remove.bg frames are gone from the repo. Same look and timing.
+- The unlicensed remove.bg countdown frames (49 PNGs) are gone from the repo; the countdown is now
+  drawn from the new glyph art (see the art style entry above).
 
 ## [0.2.1] – 2026-10-24
 
@@ -35,8 +35,8 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Text uses the bundled Comic Neue (SIL OFL) instead of the system Comic Sans, so the game looks the
-  same on every machine; sizes are scaled to keep the layout.
+- Text uses bundled pixel fonts instead of the system Comic Sans, so the game looks the same on
+  every machine (see the art style entry above).
 - Startup now opens with the shared splash all the sibling games use: the publisher clip, then
   the pygame logo.
 - pygamine updated to 0.19.0, now at `vectorviolet/pygamine`; repo links point at `vectorviolet`.

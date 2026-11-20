@@ -36,7 +36,7 @@ async def main() -> None:
             panel.textContent = "The Hunted could not start.\n\n" + error
             panel.style.cssText = (
                 "position:fixed;inset:0;z-index:9999;overflow:auto;"
-                "background:#1c2040;color:white;padding:24px;white-space:pre-wrap;"
+                "background:#1c0b18;color:#d9d7dc;padding:24px;white-space:pre-wrap;"
                 "font:16px monospace"
             )
             platform.window.document.body.appendChild(panel)

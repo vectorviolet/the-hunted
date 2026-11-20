@@ -85,14 +85,15 @@ Input is dispatched through `InputHandler` (Protocol in `src/input_handler.py`):
 
 ### Levels
 
-`settings.LEVELS` defines three platform layouts (`Classic`, `Towers`, `Arena`). Level selection happens on `STATE_LEVEL_SELECT`; `_handle_level_select_event` rebuilds `_world.platforms` from `LEVELS[i]['platforms']` before entering the game.
+`settings.LEVELS` defines three levels (`Classic`, `Towers`, `Arena`): the platform layout plus the art, as `background` (`assets/images/background/<name>.png`) and `style` (platform and ground art, `assets/images/{platform,ground}/<style>.png`). Level selection happens on `STATE_LEVEL_SELECT`; `_handle_level_select_event` rebuilds `_world.platforms` with `entities.level_platforms(i)` before entering the game. The menu uses `settings.MENU_BACKGROUND` and `MENU_STYLE`.
 
 ### Assets
 
-All images, sounds and the font live under `assets/`. Loaded directly with `pygame.image.load()` / `pygame.mixer.Sound()` — there is no asset loader in code. Naming conventions:
+All images, sounds and the fonts live under `assets/`. Loaded directly with `pygame.image.load()` / `pygame.mixer.Sound()` — there is no asset loader in code. Naming conventions:
 - `assets/images/vampire/R{i}E.png`, `L{i}E.png` for vampire walk frames (1-9)
 - `assets/images/peasant/R{i}.png`, `L{i}.png` for peasant walk frames
-- `assets/images/cursor/*.png` and `assets/images/buttons/*.png` are Kenney CC0 images (see `assets/SOURCES.yaml`); `Cursor` shows one static image per state, `src/buttons.py` draws the menu buttons from them and the labels in the game font
+- The scenery and UI art is AI-generated in one pixel-art style (`docs/design/art-style.md`, made by `scripts/art_gen/`): `images/background/` (800x600, one per level and the menu), `images/platform/` and `images/ground/` (cap | tiled middle | cap sheets, drawn by `Platform` through `pixelart.three_slice`), `images/ui/` (iron buttons in three states, panel and card frames, stretched by `pixelart.nine_slice`), `images/cursor/` (arrow, hand, grab; one static image per `Cursor` state) and `images/countdown/` (3, 2, 1, GO). Scenery and UI are drawn at 2x (one art pixel = 2x2 screen pixels), the characters at 1x.
+- Fonts: `settings.TITLE_FONT` (Jacquard 12, titles only, mixed case) and `settings.UI_FONT` (Silkscreen, everything else). Render them without anti-aliasing and at whole multiples of their pixel grid (Silkscreen 16/24/48, Jacquard 12 at 72). Colors drawn in code come from the palette constants in `settings.py` (INK, RIM, BONE, ...).
 
 **Asset sources:** every file under `assets/` must be listed in `assets/SOURCES.yaml` with its
 source pack (or `own`, or `unknown` with a `todo`) and its original file name. Each pack needs its
