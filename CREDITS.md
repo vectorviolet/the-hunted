@@ -38,6 +38,7 @@ under "Pending replacement" and are not covered by the MIT license.
 
 These files are waiting for a source or a replacement. Files marked credited above are replaced for license reasons while their pack stays credited. The other 18 have no confirmed source or license: they are not credited to anyone and are not covered by the MIT license.
 
+- `assets/images/icon/` (1 file, credited above): Pending owner approval: one of three AI-generated candidates (scripts/icons/), see the devlog
 - `assets/images/vampire/` (18 files): replace (owner, 2026-11-20): generate a new vampire with AI image generation, in the game's new art style
 
 CC0 assets need no attribution; they are credited here anyway. The OFL font is

@@ -25,7 +25,8 @@ frame at 60 FPS, the same as the browser's frame rate, so no catch-up stepping i
   no splash when `util.web.is_web()` (`sys.platform == "emscripten"`).
 - **Fullscreen:** the browser has no window modes, so `Game.cycle_window_mode` (pygamine maps F11
   to it) toggles the page's fullscreen through `util/web.py` in the browser and keeps the
-  engine's behavior on desktop.
+  engine's behavior on desktop. This stays local to Hunted until the engine offers it
+  ([pygamine#58](https://github.com/vectorviolet/pygamine/issues/58)).
 - **Page:** `web/template.tmpl` is Highrise's loader page (click to play, so the music may start)
   with the title drawn as text instead of a logo image, and `web/icon.png` as favicon and pygbag
   icon. The store cover art is not shipped in the bundle.

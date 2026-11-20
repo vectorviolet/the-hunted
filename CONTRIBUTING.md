@@ -128,4 +128,4 @@ Build the PyInstaller bundle, then compile the script with [Inno Setup](https://
 iscc /DAppVersion=0.3.0 packaging/hunted.iss   # writes installer-out/hunted-windows-setup.exe
 ```
 
-The icon (`packaging/icon.ico`, `web/icon.png`) is drawn by `scripts/make_icon.py`.
+The icon files (`packaging/icon.ico`, `web/icon.png`, `assets/images/icon/icon_64.png`) are made by `scripts/make_icon.py` from a candidate in `scripts/icons/`.

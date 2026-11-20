@@ -314,3 +314,8 @@ def test_is_fullscreen_reads_the_page(monkeypatch, fullscreen):
 
     _fake_browser(monkeypatch, fullscreen)
     assert web.is_fullscreen() is fullscreen
+
+
+def test_window_icon_file_exists_and_is_small_square():
+    icon = pygame.image.load(settings.WINDOW_ICON)
+    assert icon.get_width() == icon.get_height() == 64

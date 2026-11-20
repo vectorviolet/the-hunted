@@ -27,6 +27,8 @@ class Game(Application):
         self._cursor = Cursor()
         _mouse = Mouse()
         _mouse.cursor = self._cursor
+        # Before the first set_mode(): X11 and macOS apply the icon only if it is set first.
+        pygame.display.set_icon(pygame.image.load(settings.WINDOW_ICON))
 
         super().__init__(
             size=(settings.VIRTUAL_W, settings.VIRTUAL_H),
@@ -146,7 +148,8 @@ class Game(Application):
         self._audio.play_menu()
 
     def cycle_window_mode(self, step: int = 1) -> None:
-        # F11. The browser has no window modes; it toggles the page's fullscreen.
+        # F11. The browser has no window modes; it toggles the page's fullscreen. Kept here
+        # for now; the engine-level version is vectorviolet/pygamine#58.
         if web.is_web():
             web.toggle_fullscreen()
         else:
