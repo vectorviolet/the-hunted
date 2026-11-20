@@ -1,12 +1,16 @@
 """Exercise publishing guards against manual runs and partial desktop releases."""
 
+import struct
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 import yaml
 
-JOBS = yaml.safe_load(Path(".github/workflows/release.yml").read_text())["jobs"]
+ROOT = Path(__file__).resolve().parent.parent
+JOBS = yaml.safe_load((ROOT / ".github" / "workflows" / "release.yml").read_text())[
+    "jobs"
+]
 PUBLISH_JOBS = (
     "release",
     "publish-itch",
@@ -22,6 +26,7 @@ def allowed(
     ref="refs/tags/v0.3.0",
     release="success",
     web="success",
+    installer="success",
     canceled=False,
 ):
     expression = JOBS[job]["if"].removeprefix("${{").removesuffix("}}")
@@ -36,7 +41,7 @@ def allowed(
         needs=SimpleNamespace(
             web=SimpleNamespace(result=web),
             release=SimpleNamespace(result=release),
-            installer=SimpleNamespace(result="success"),
+            installer=SimpleNamespace(result=installer),
         ),
         cancelled=lambda: canceled,  # codespell:ignore cancelled
         startsWith=lambda value, prefix: value.startswith(prefix),
@@ -80,7 +85,7 @@ def test_desktop_release_jobs_download_only_the_desktop_zips(job):
 
 
 def test_installer_script_and_workflow_agree_on_names():
-    script = Path("packaging/hunted.iss").read_text(encoding="utf-8")
+    script = (ROOT / "packaging" / "hunted.iss").read_text(encoding="utf-8")
     assert "OutputBaseFilename=hunted-windows-setup" in script
     assert r'Source: "..\dist\hunted\*"' in script
     upload = next(
@@ -89,4 +94,23 @@ def test_installer_script_and_workflow_agree_on_names():
         if step.get("uses", "").startswith("actions/upload-artifact")
     )
     assert upload["with"]["path"] == "installer-out/hunted-windows-setup.exe"
-    assert Path("packaging/icon.ico").is_file()
+    assert (ROOT / "packaging" / "icon.ico").is_file()
+
+
+@pytest.mark.parametrize(
+    "result",
+    ["skipped", "failure", "cancelled"],  # codespell:ignore cancelled
+)
+def test_installer_attachment_needs_the_installer_and_the_desktop_release(result):
+    assert allowed("attach-installer")
+    assert not allowed("attach-installer", release=result)
+    assert not allowed("attach-installer", installer=result)
+    assert not allowed("attach-installer", canceled=True)
+
+
+def test_installer_icon_has_the_standard_sizes():
+    data = (ROOT / "packaging" / "icon.ico").read_bytes()
+    reserved, kind, count = struct.unpack("<HHH", data[:6])
+    assert (reserved, kind) == (0, 1)
+    sizes = [data[6 + 16 * i] or 256 for i in range(count)]  # 0 means 256
+    assert sizes == [16, 32, 48, 256]

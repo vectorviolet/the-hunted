@@ -51,7 +51,14 @@ def test_stage_has_the_game_engine_and_assets(staged):
 def test_stage_leaves_out_everything_the_browser_never_uses(staged):
     files = _files(staged)
     top = {f.split("/")[0] for f in files}
-    assert top == {"main.py", "src", "assets"}  # no tests, .git, docs
+    assert top == {
+        "main.py",
+        "src",
+        "assets",
+        "licenses",
+        "CREDITS.md",
+        "LICENSE",
+    }  # no tests, .git, docs
     assert not any(f.startswith("src/pygamine/") and "/tests/" in f for f in files)
     assert not any("__pycache__" in f or f.endswith(".pyc") for f in files)
     assert not any("branding/vectorviolet/splash" in f for f in files)
@@ -59,6 +66,16 @@ def test_stage_leaves_out_everything_the_browser_never_uses(staged):
     assert {f.split("/")[2] for f in files if f.startswith("src/pygamine/")} == {
         "pygamine"
     }
+
+
+def test_stage_ships_attribution_and_license_texts(staged):
+    root = SCRIPT.parent.parent
+    assert (staged / "CREDITS.md").read_bytes() == (root / "CREDITS.md").read_bytes()
+    assert (staged / "LICENSE").read_bytes() == (root / "LICENSE").read_bytes()
+    # The asset packs' texts and the software's (from pygamine) in one folder.
+    assert any((root / "licenses" / "assets").iterdir())
+    assert (staged / "licenses" / "assets").is_dir()
+    assert (staged / "licenses" / "README.md").is_file()
 
 
 def test_stage_has_every_module_and_package_of_src(staged):
@@ -80,12 +97,15 @@ def _fake_root(build_web, tmp_path, skip=None):
         if rel != skip:
             (root / rel).parent.mkdir(parents=True, exist_ok=True)
             (root / rel).write_text("")
+    (root / "CREDITS.md").write_text("")
+    (root / "LICENSE").write_text("")
+    (root / "licenses").mkdir()
     return root
 
 
 def test_stage_copies_top_level_modules_of_src(build_web, tmp_path):
     root = _fake_root(build_web, tmp_path)
-    (root / "src" / "pygamine" / "pygamine").mkdir(parents=True)
+    (root / "src" / "pygamine" / "pygamine" / "licenses").mkdir(parents=True)
     (root / "src" / "pygamine" / "pygamine" / "__init__.py").write_text("")
     (root / "src" / "helper.py").write_text("X = 1")
     (root / "assets").mkdir(exist_ok=True)

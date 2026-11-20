@@ -5,7 +5,8 @@
 
 The staged folder (build/web-stage/hunted/) holds only what the web build needs:
 `web/main.py` as `main.py`, the app's `src/` modules, pygamine's package (without its
-splash clip, which the web build never shows) and `assets/`. No tests, no .git. The
+splash clip, which the web build never shows), `assets/`, and CREDITS.md, LICENSE and
+`licenses/` (attribution, as in the desktop bundles). No tests, no .git. The
 game has no saves, so no user data goes in.
 
 pygbag is pinned and run through `uvx`; it downloads the browser runtime, so
@@ -45,7 +46,9 @@ TEMPLATE = ROOT / TEMPLATE_REL
 ICON = ROOT / ICON_REL
 BUILD_TIMEOUT_SECONDS = 300
 # Copied whole into the stage.
-COPIED_DIRS = ("assets",)
+COPIED_DIRS = ("assets", "licenses")
+# Attribution and the game's own license, as in the desktop bundles.
+COPIED_FILES = ("CREDITS.md", "LICENSE")
 EXCLUDED_PYGAMINE = (
     "branding/vectorviolet/splash",  # video frames of the splash screen
     "branding/vectorviolet/splash.ogg",
@@ -69,9 +72,9 @@ def _ignore(
     return ignore
 
 
-def stage(dest: Path = STAGE_DIR, root: Path = ROOT) -> Path:
-    """Build a clean stage folder at `dest` and return it. An old one is removed."""
-    # Fail before the slow pygbag run (and in CI's --stage-only) on a missing file.
+def _check_inputs(root: Path) -> Path:
+    """Fail before the slow pygbag run (and in CI's --stage-only) on a missing file.
+    Returns pygamine's package folder."""
     for rel, what in (
         (ENTRY_POINT_REL, "web entry point"),
         (TEMPLATE_REL, "web page template"),
@@ -79,12 +82,21 @@ def stage(dest: Path = STAGE_DIR, root: Path = ROOT) -> Path:
     ):
         if not (root / rel).is_file():
             raise SystemExit(f"Missing {what}: {root / rel}")
-    entry = root / ENTRY_POINT_REL
+    for rel in COPIED_FILES:
+        if not (root / rel).is_file():
+            raise SystemExit(f"Missing {rel}: {root / rel}")
     pygamine = root / "src" / "pygamine" / "pygamine"
     if not pygamine.is_dir():
         raise SystemExit(
             f"Missing {pygamine}: run `git submodule update --init` first."
         )
+    return pygamine
+
+
+def stage(dest: Path = STAGE_DIR, root: Path = ROOT) -> Path:
+    """Build a clean stage folder at `dest` and return it. An old one is removed."""
+    pygamine = _check_inputs(root)
+    entry = root / ENTRY_POINT_REL
     if dest.exists():
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
@@ -107,6 +119,13 @@ def stage(dest: Path = STAGE_DIR, root: Path = ROOT) -> Path:
     )
     for name in COPIED_DIRS:
         shutil.copytree(root / name, dest / name, ignore=_IGNORED)
+    for name in COPIED_FILES:
+        shutil.copy2(root / name, dest / name)
+    # The software licenses (pygame-ce and its libraries) join the asset packs' texts,
+    # as in the desktop bundles.
+    shutil.copytree(
+        pygamine / "licenses", dest / "licenses", dirs_exist_ok=True, ignore=_IGNORED
+    )
     return dest
 
 
