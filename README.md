@@ -80,7 +80,7 @@ Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch
 
 ```bash
 git clone --recurse-submodules https://github.com/vectorviolet/the-hunted.git
-cd hunted
+cd the-hunted
 uv sync
 uv run python __main__.py
 ```
