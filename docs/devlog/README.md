@@ -19,6 +19,7 @@ PR. "Owner" is the project owner; "Claude" is the Claude Code session that imple
 | 2026-11-20 | [Main menu pages: play, credits and exit](2026-11-20-main-menu-pages.md) | UI | #18, PR #23 |
 | 2026-11-20 | [Replacing the music and the jump sound](2026-11-20-music-and-jump-sound.md) | Audio | #7, PR #15 |
 | 2026-11-20 | [New pixel-art vampire and peasant](2026-11-20-pixel-art-characters.md) | Art | #8 |
+| 2026-11-20 | [README and store page refresh](2026-11-20-store-media-and-readme.md) | Docs, Art | #22 |
 <!-- index:end -->
 
 ## Adding an entry
