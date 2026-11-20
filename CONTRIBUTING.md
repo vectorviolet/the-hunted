@@ -97,3 +97,35 @@ commit `vx.y.z`. The tag triggers [`.github/workflows/release.yml`](.github/work
 which builds each OS, attaches the zips to a GitHub release (with auto-generated notes) and pushes
 each build to its [itch.io](https://umutcanekinci.itch.io/the-hunted) channel with
 [Butler](https://itch.io/docs/butler/). **Run workflow** builds without publishing.
+The same workflow builds the Windows installer (`packaging/hunted.iss`, compiled with Inno Setup on
+a Windows runner after the Windows zip) and the browser bundle, attaches `hunted-windows-setup.exe`
+and `hunted-web.zip` to the release once the desktop release succeeded, and pushes the bundle to the
+`html5` channel on itch.io.
+
+### Browser build
+
+`scripts/build_web.py` stages the game and runs [pygbag](https://pypi.org/project/pygbag/) 0.9.3
+(pinned, through `uvx`); it needs internet. `web/main.py` is the browser entry point (it awaits
+`Game().run_async()`); `web/template.tmpl` is the loading page. Build and serve locally from the
+repo root:
+
+```bash
+uv run python scripts/build_web.py
+python -m http.server 8000 --bind 127.0.0.1 -d build/web
+```
+
+Open `http://127.0.0.1:8000` in a focused desktop browser and click the page to start.
+`--stage-only` stages the files without pygbag (CI does this). After the first release, enable
+**This file will be played in the browser** on the itch.io upload and pick the embed size
+(800x600 is the game's canvas). Design: [ADR 0001](docs/decisions/0001-web-build.md).
+
+### Windows installer
+
+Build the PyInstaller bundle, then compile the script with [Inno Setup](https://jrsoftware.org/isinfo.php)
+(the workflow does this and passes the version from the tag):
+
+```bash
+iscc /DAppVersion=0.3.0 packaging/hunted.iss   # writes installer-out/hunted-windows-setup.exe
+```
+
+The icon files (`packaging/icon.ico`, `web/icon.png`, `assets/images/icon/icon_64.png`) are made by `scripts/make_icon.py` from a candidate in `scripts/icons/`.

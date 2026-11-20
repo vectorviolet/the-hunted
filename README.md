@@ -35,17 +35,19 @@ In 1-player mode you control **both keysets** and play against the AI.
 
 [![Available on itch.io](https://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://umutcanekinci.itch.io/the-hunted)
 
-Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/vectorviolet/hunted/releases/latest) — no Python required. Unzip and run:
+Grab a ready-to-play build for your OS from [itch.io](https://umutcanekinci.itch.io/the-hunted) or the [latest GitHub release](https://github.com/vectorviolet/hunted/releases/latest) — no Python required. On Windows, run the installer, or unzip and run:
 
 | OS | Run |
 |----|-----|
-| Windows | Extract `hunted-windows.zip`, run `hunted.exe` |
+| Windows | Run `hunted-windows-setup.exe` (choose the setup language and the install folder, e.g. `C:\Games`; it adds a Start Menu shortcut and, if you tick it, a desktop one), or extract `hunted-windows.zip` and run `hunted.exe` |
 | macOS | Extract `hunted-macos.zip`, open `Hunted.app` |
 | Linux | Extract `hunted-linux.zip`, run `./hunted/hunted` |
 
 > macOS Gatekeeper: the app is unsigned, so the first launch needs **right-click → Open** (or `xattr -dr com.apple.quarantine Hunted.app`).
 >
-> Windows SmartScreen: the app is unsigned, so the first launch shows **"Windows protected your PC."** Click **More info → Run anyway**. This is Microsoft's download-reputation check, not a virus warning — brand-new unsigned executables always trigger it.
+> Windows SmartScreen: the app is unsigned, so the first launch shows **"Windows protected your PC."** Click **More info → Run anyway**. This is Microsoft's download-reputation check, not a virus warning — brand-new unsigned executables always trigger it. The installer is unsigned too and shows the same warning.
+
+**In the browser.** Play it on [itch.io](https://umutcanekinci.itch.io/the-hunted) without installing anything (desktop browser with a keyboard; click the page to start; F11 toggles fullscreen). The same build is attached to each GitHub release as `hunted-web.zip`; to build and test it yourself see [CONTRIBUTING.md](CONTRIBUTING.md#browser-build).
 
 ## Requirements (from source)
 
@@ -79,14 +81,14 @@ The result lands in `dist/hunted/` (`dist/Hunted.app` on macOS).
 
 ### Cutting a release
 
-Per-OS bundles for Windows, macOS, and Linux are built and published automatically by [`.github/workflows/release.yml`](.github/workflows/release.yml) when a version tag is pushed:
+Per-OS bundles for Windows, macOS, and Linux, a Windows installer and the browser build are built and published automatically by [`.github/workflows/release.yml`](.github/workflows/release.yml) when a version tag is pushed:
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-The workflow builds on each OS, zips the bundle, attaches all three to a GitHub Release (with auto-generated notes), and pushes each build to its [itch.io](https://umutcanekinci.itch.io/the-hunted) channel via [Butler](https://itch.io/docs/butler/). Use the workflow's **Run workflow** button to test a build without publishing.
+The workflow builds on each OS, zips the bundle, attaches the zips (and then the installer and the web zip) to a GitHub Release (with auto-generated notes), and pushes each build, the browser build included, to its [itch.io](https://umutcanekinci.itch.io/the-hunted) channel via [Butler](https://itch.io/docs/butler/). Use the workflow's **Run workflow** button to test a build without publishing.
 
 ## Project layout
 
@@ -102,7 +104,9 @@ src/renderer.py        Level-select + in-game drawing
 src/audio.py           Menu / game music
 src/cursor.py          Custom multi-state cursor
 src/settings.py        Physics, combat, colors, and 3 level layouts
-src/util/              Frozen-build resource path resolution
+src/util/              Frozen-build resource path resolution, the browser check
+web/                   Browser build: pygbag entry point, loader page, icon
+packaging/             Windows installer script (Inno Setup) and its icon
 src/pygamine/       Engine submodule (used only for Application + Mouse + GameObject)
 assets/                Images and sounds
 ```

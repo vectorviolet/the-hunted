@@ -108,6 +108,14 @@ generated: add your entry file, run `uv run python scripts/gen_devlog_index.py`,
 the tables by hand. `tests/test_devlog_index.py` fails in CI if a table is out of date.
 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) is the human-facing version of this overview.
 
+### Browser build and installer
+
+`web/main.py` (entry point, `run_async()`), `web/template.tmpl` and `scripts/build_web.py` make the
+pygbag bundle (`uv run python scripts/build_web.py`; `--stage-only` is offline); `src/util/web.py`
+holds `is_web()` (used to skip the threaded splash in the browser) and the fullscreen toggle F11 uses there. `packaging/hunted.iss` is the
+Inno Setup script for the Windows installer. Both are built by `release.yml` (see ADR 0001 and
+CONTRIBUTING.md). Keep `PYGBAG_VERSION` in step with the CDN URLs in the template.
+
 ### Persistence
 
 None. Scores and round state are kept in memory only.

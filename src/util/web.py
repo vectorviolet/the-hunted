@@ -1,0 +1,36 @@
+"""The browser side of the web build (pygbag, `sys.platform == "emscripten"`).
+
+The game asks `is_web()` and calls these functions; tests replace `_window()` with a fake.
+On desktop only `is_web()` is ever called."""
+
+import sys
+from typing import Any
+
+
+def is_web() -> bool:
+    """True in the browser build. Read at call time (not import time) so a test
+    can pretend to be the browser by patching `sys.platform`."""
+    return sys.platform == "emscripten"
+
+
+def _window() -> Any:
+    """pygbag's `platform.window`: the browser's JavaScript `window`."""
+    import platform
+
+    # pygbag's platform module adds `window`; the standard library's has none.
+    return platform.window  # type: ignore[attr-defined]
+
+
+def is_fullscreen() -> bool:
+    """True while the page is in the browser's fullscreen mode."""
+    return _window().document.fullscreenElement is not None
+
+
+def toggle_fullscreen() -> None:
+    """Enters the browser's fullscreen mode, or leaves it. The browser only
+    allows this from a click or key press (F11 is one)."""
+    window = _window()
+    if window.document.fullscreenElement is not None:
+        window.document.exitFullscreen()
+    else:
+        window.document.documentElement.requestFullscreen()
