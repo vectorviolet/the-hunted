@@ -7,7 +7,7 @@
 [![CI](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/vectorviolet/the-hunted)](https://github.com/vectorviolet/the-hunted/releases/latest)
 [![License: MIT](https://img.shields.io/github/license/vectorviolet/the-hunted)](LICENSE)
-[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/the-hunted/main/.github/badges/coverage.json)](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vectorviolet/the-hunted/badges/coverage.json)](https://github.com/vectorviolet/the-hunted/actions/workflows/ci.yml)
 [![Python 3.12+ | pygame-ce](https://img.shields.io/badge/python-3.12%2B%20%7C%20pygame--ce-3776AB?logo=python&logoColor=white)](https://github.com/pygame-community/pygame-ce)
 
 </div>
